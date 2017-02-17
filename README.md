@@ -132,7 +132,7 @@ Código|Descripción|Cuerpo
 
 #### DELETE /guias/{id}
 
-Elimina un objeto Employee.
+Elimina un objeto Guia.
 
 #### Parámetros
 
