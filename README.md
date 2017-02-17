@@ -59,7 +59,7 @@ El objeto Guia tiene 1 representaciones JSON:
 }
 ```
 
-#### GET /employees
+#### GET /guias
 
 Retorna una colección de objetos Guia
 
