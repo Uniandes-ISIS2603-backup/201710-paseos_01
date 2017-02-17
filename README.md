@@ -6,6 +6,10 @@
 #API REST
 ## Introducción
 
-Ramón VeGA
-juan
+GET
+api/cliente/id/visitas 
+retorna el historico de visitas hechas y por hacer
+
+api/cliente/id/visitas/futuras
+retorna la lista de visitas por hacer
 
