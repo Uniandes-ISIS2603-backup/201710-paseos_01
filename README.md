@@ -9,7 +9,7 @@
     - [POST /guias](#POST-/guias)
     - [PUT /guias/{id}](#PUT-/guias/{id})
     - [DELETE /guias/{id}](#DELETE-/guias/{id})
-   - [Recurso Cliente](#recurso-cliente)
+  - [Recurso Cliente](#recurso-cliente)
     - [GET /clientes](#GET-/clientes)
     - [GET /clientes/{id}](#GET-/clientes/{id})
     - [POST /clientes](#POST-/clientes)
