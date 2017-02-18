@@ -1,6 +1,6 @@
 # Paseos
 
-# Tabla de contenidos
+# Tabla de contenido
 -  [Introducción](#introducción)
 -  [API](#api-de-la-aplicación-paseos)
   - [Recurso Guia](#recurso-guia)
