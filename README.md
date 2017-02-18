@@ -310,7 +310,7 @@ Código|Descripción|Cuerpo
 
 #### POST /detalles
 
-Es el encargado de crear objetos Guia.
+Es el encargado de crear objetos Detalle.
 
 #### Parámetros
 
