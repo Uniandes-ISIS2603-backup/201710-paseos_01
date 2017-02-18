@@ -41,7 +41,7 @@ La respuesta del servidor al solicitar una colección presenta el siguiente form
 
 ## API de la aplicación paseos
 ### Recurso Guia
-El objeto Guia tiene 1 representaciones JSON:	
+El objeto Guia tiene 1 representacione JSON:	
 
 #### Representación 
 ```javascript
