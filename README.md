@@ -27,6 +27,12 @@
     - [POST /paseos](#POST-/paseos)
     - [PUT /paseos/{id}](#PUT-/paseos/{id})
     - [DELETE /paseos/{id}](#DELETE-/paseos/{id})
+  - [Recurso Visita](#recurso-visita)
+    - [GET /visitas](#GET-/visitas)
+    - [GET /visitas/{id}](#GET-/visitas/{id})
+    - [POST /visitas](#POST-/visitas)
+    - [PUT /visitas/{id}](#PUT-/visitas/{id})
+    - [DELETE /visitas/{id}](#DELETE-/visitas/{id})
 
 # API Rest
 ## Introducción
@@ -461,6 +467,109 @@ Elimina un objeto Paseo.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Paseo a eliminar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+
+### Recurso Visita
+El objeto Visita tiene 1 representación JSON:	
+
+#### Representación 
+```javascript
+{
+    id: '' /*Tipo Long*/,
+    idCliente: '' /*Tipo Long*/,
+    idGuia: '' /*Tipo Long*/,
+    idPaseo: '' /*Tipo Long*/,
+    calificacion: ''/*Tipo int*/,
+    comentario: ''/*Tipo String*/
+}
+```
+
+#### GET /visitas
+
+Retorna una colección de objetos visita
+
+#### Parámetros
+
+#### N/A
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [Representación](#recurso-visita)
+409|Un objeto relacionado no existe|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### GET /visitas/{id}
+
+Retorna una colección de objetos visitas en su representación.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Visita a consultar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Visita en [Representación](#recurso-visita)
+404|No existe un objeto Visita con el ID solicitado|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### POST /visitas
+
+Es el encargado de crear objetos Visita.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|Objeto Visita que será creado|Sí|[Representación](#recurso-visita)
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Visita ha sido creado|[Representación](#recurso-visita)
+409|Un objeto relacionado no existe|Mensaje de error
+500|No se pudo crear el objeto Visita|Mensaje de error
+
+#### PUT /visitas/{id}
+
+Es el encargado de actualizar objetos Visita.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Paseo a actualizar|Sí|Integer
+body|body|Objeto Visita nuevo|Sí|[Representación](#recurso-visita)
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Visita actualizado|[Representación](#recurso-visita)
+409|Un objeto relacionado no existe|Mensaje de error
+500|No se pudo actualizar el objeto Visita|Mensaje de error
+
+#### DELETE /visitas/{id}
+
+Elimina un objeto Visita.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Visita a eliminar|Sí|Integer
 
 #### Respuesta
 
