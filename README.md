@@ -550,7 +550,7 @@ Es el encargado de actualizar objetos Visita.
 
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
-id|Path|ID del objeto Paseo a actualizar|Sí|Integer
+id|Path|ID del objeto Visita a actualizar|Sí|Integer
 body|body|Objeto Visita nuevo|Sí|[Representación](#recurso-visita)
 
 #### Respuesta
