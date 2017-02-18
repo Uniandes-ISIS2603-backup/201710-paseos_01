@@ -33,6 +33,9 @@
     - [POST /visitas](#POST-/visitas)
     - [PUT /visitas/{id}](#PUT-/visitas/{id})
     - [DELETE /visitas/{id}](#DELETE-/visitas/{id})
+    - [GET /visitas/{id}/fotos](#GET-/visitas/{id}/fotos)
+    - [GET /visitas/{id}/fotos/{id}](#GET-/visitas/{id}/fotos/{id})
+    
 
 # API Rest
 ## Introducción
@@ -508,7 +511,7 @@ Código|Descripción|Cuerpo
 
 #### GET /visitas/{id}
 
-Retorna una colección de objetos visitas en su representación.
+Retorna una colección de objetos visita en su representación.
 
 #### Parámetros
 
@@ -576,6 +579,53 @@ id|Path|ID del objeto Visita a eliminar|Sí|Integer
 Código|Descripción|Cuerpo
 :--|:--|:--
 204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+
+El objeto Foto tiene 1 representación JSON:	
+
+#### Representación 
+```javascript
+{
+    id: '' /*Tipo Long*/,
+    idVisita: '' /*Tipo Long*/,
+    path: ''/*Tipo String*/
+}
+```
+#### GET /visitas/{id}/fotos
+
+Retorna una colección de objetos foto
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Visita con las fotos a consultar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de objetos foto en[Representación](#recurso-visita)
+409|Un objeto relacionado no existe|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### GET /visitas/{idVisita}/fotos/{idFoto}
+
+Retorna una colección de objetos fotos en su representación.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idVisita|Path|ID del objeto Visita con la foto a consultar|Sí|Integer
+idFoto|Path|ID del objeto foto a consultar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto foto en [Representación](#recurso-visita)
+404|No existe un objeto Visita con el ID solicitado|Mensaje de error
 500|Error interno|Mensaje de error
 
 
