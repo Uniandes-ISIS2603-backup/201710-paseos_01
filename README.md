@@ -505,7 +505,7 @@ Retorna una colección de objetos visita
 
 Código|Descripción|Cuerpo
 :--|:--|:--
-200|OK|Colección de [Representación](#recurso-visita)
+200|OK|Colección de objetosVisita en [Representación](#recurso-visita)
 409|Un objeto relacionado no existe|Mensaje de error
 500|Error interno|Mensaje de error
 
@@ -605,7 +605,7 @@ id|Path|ID del objeto Visita con las fotos a consultar|Sí|Integer
 
 Código|Descripción|Cuerpo
 :--|:--|:--
-200|OK|Colección de objetos foto en[Representación](#recurso-visita)
+200|OK|Colección de objetos foto en su representación JSON
 409|Un objeto relacionado no existe|Mensaje de error
 500|Error interno|Mensaje de error
 
@@ -624,7 +624,7 @@ idFoto|Path|ID del objeto foto a consultar|Sí|Integer
 
 Código|Descripción|Cuerpo
 :--|:--|:--
-200|OK|Objeto foto en [Representación](#recurso-visita)
+200|OK|Objeto foto en su representación
 404|No existe un objeto Visita con el ID solicitado|Mensaje de error
 500|Error interno|Mensaje de error
 
