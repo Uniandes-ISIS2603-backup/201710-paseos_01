@@ -15,6 +15,12 @@
     - [POST /clientes](#POST-/clientes)
     - [PUT /clientes/{id}](#PUT-/clientes/{id})
     - [DELETE /clientes/{id}](#DELETE-/clientes/{id})
+  - [Recurso Detalle](#recurso-cliente)
+    - [GET /detalles](#GET-/detalles)
+    - [GET /detalles/{id}](#GET-/detalles/{id})
+    - [POST /detalles](#POST-/detalles)
+    - [PUT /detalles/{id}](#PUT-/detalles/{id})
+    - [DELETE /detalles/{id}](#DELETE-/detalles/{id})
 
 # API Rest
 ## Introducción
@@ -53,7 +59,7 @@ El objeto Guia tiene 1 representación JSON:
     pass: '' /*Tipo undifined*/,
     formacion: '' /*Tipo String*/,
     experiencia: '' /*Tipo undifined*/,
-    calificacionPromedio: '' /*Tipo double*/,
+    calificacionPromedio: '' /*Tipo double*/
 }
 ```
 
@@ -241,6 +247,113 @@ Elimina un objeto Cliente.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Clientes a eliminar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+
+### Recurso Detalle
+El objeto Detalle tiene 1 representación JSON:	
+
+#### Representación 
+```javascript
+{
+    id: '' /*Tipo Long*/,
+    tematica: '' /*Tipo String*/,
+    numeroMinimo: '' /*Tipo int*/,
+    numeroMaximo: '' /*Tipo int*/,
+    destino: '' /*Tipo String*/,
+    descripcion: '' /*Tipo String*/,
+    condicionFisica: '' /*Tipo int*/,
+    costo: '' /*Tipo double*/,
+    transporte: ''/*Tipo boolean*/,
+    almuerzo: ''/*Tipo boolean*/
+}
+```
+
+#### GET /detalles
+
+Retorna una colección de objetos Detalle
+
+#### Parámetros
+
+#### N/A
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [Representación](#recurso-detalle)
+409|Un objeto relacionado no existe|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### GET /detalles/{id}
+
+Retorna una colección de objetos detalles en su representación.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Detalle a consultar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Detalle en [Representación](#recurso-detalle)
+404|No existe un objeto Detalle con el ID solicitado|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### POST /detalles
+
+Es el encargado de crear objetos Guia.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|Objeto Detalle que será creado|Sí|[Representación](#recurso-guia)
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Detalle ha sido creado|[Representación](#recurso-detalle)
+409|Un objeto relacionado no existe|Mensaje de error
+500|No se pudo crear el objeto Detalle|Mensaje de error
+
+#### PUT /detalles/{id}
+
+Es el encargado de actualizar objetos Detalle.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Detalle a actualizar|Sí|Integer
+body|body|Objeto Detalle nuevo|Sí|[Representación](#recurso-detalle)
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Detalle actualizado|[Representación](#recurso-detalle)
+409|Un objeto relacionado no existe|Mensaje de error
+500|No se pudo actualizar el objeto Detalle|Mensaje de error
+
+#### DELETE /detalles/{id}
+
+Elimina un objeto Detalle.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Detalle a eliminar|Sí|Integer
 
 #### Respuesta
 
