@@ -15,12 +15,18 @@
     - [POST /clientes](#POST-/clientes)
     - [PUT /clientes/{id}](#PUT-/clientes/{id})
     - [DELETE /clientes/{id}](#DELETE-/clientes/{id})
-  - [Recurso Detalle](#recurso-cliente)
+  - [Recurso Detalle](#recurso-detalle)
     - [GET /detalles](#GET-/detalles)
     - [GET /detalles/{id}](#GET-/detalles/{id})
     - [POST /detalles](#POST-/detalles)
     - [PUT /detalles/{id}](#PUT-/detalles/{id})
     - [DELETE /detalles/{id}](#DELETE-/detalles/{id})
+  - [Recurso Paseo](#recurso-paseo)
+    - [GET /paseos](#GET-/paseos)
+    - [GET /paseos/{id}](#GET-/paseos/{id})
+    - [POST /paseos](#POST-/paseos)
+    - [PUT /paseos/{id}](#PUT-/paseos/{id})
+    - [DELETE /paseos/{id}](#DELETE-/paseos/{id})
 
 # API Rest
 ## Introducción
@@ -316,7 +322,7 @@ Es el encargado de crear objetos Detalle.
 
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
-body|body|Objeto Detalle que será creado|Sí|[Representación](#recurso-guia)
+body|body|Objeto Detalle que será creado|Sí|[Representación](#recurso-detalle)
 
 #### Respuesta
 
@@ -354,6 +360,107 @@ Elimina un objeto Detalle.
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
 id|Path|ID del objeto Detalle a eliminar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+204|Objeto eliminado|N/A
+500|Error interno|Mensaje de error
+
+### Recurso Paseo
+El objeto Paseo tiene 1 representación JSON:	
+
+#### Representación 
+```javascript
+{
+    id: '' /*Tipo Long*/,
+    idDetalle: '' /*Tipo Long*/,
+    fecha: ''/*Tipo Date*/,
+    inscritos: ''/*Tipo int*/
+}
+```
+
+#### GET /paseos
+
+Retorna una colección de objetos Paseo
+
+#### Parámetros
+
+#### N/A
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Colección de [Representación](#recurso-paseo)
+409|Un objeto relacionado no existe|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### GET /paseos/{id}
+
+Retorna una colección de objetos paseos en su representación.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Paseo a consultar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto Paseo en [Representación](#recurso-paseo)
+404|No existe un objeto Paseo con el ID solicitado|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### POST /paseos
+
+Es el encargado de crear objetos Paseo.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+body|body|Objeto Paseo que será creado|Sí|[Representación](#recurso-paseo)
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Paseo ha sido creado|[Representación](#recurso-paseo)
+409|Un objeto relacionado no existe|Mensaje de error
+500|No se pudo crear el objeto Paseo|Mensaje de error
+
+#### PUT /paseos/{id}
+
+Es el encargado de actualizar objetos Paseo.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Paseo a actualizar|Sí|Integer
+body|body|Objeto Paseo nuevo|Sí|[Representación](#recurso-paseo)
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+201|El objeto Paseo actualizado|[Representación](#recurso-paseo)
+409|Un objeto relacionado no existe|Mensaje de error
+500|No se pudo actualizar el objeto Paseo|Mensaje de error
+
+#### DELETE /paseos/{id}
+
+Elimina un objeto Paseo.
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Paseo a eliminar|Sí|Integer
 
 #### Respuesta
 
