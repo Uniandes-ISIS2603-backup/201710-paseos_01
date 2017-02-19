@@ -34,6 +34,8 @@
     - [PUT /visitas/{id}](#PUT-/visitas/{id})
     - [DELETE /visitas/{id}](#DELETE-/visitas/{id})
     - [GET /visitas/{id}/fotos](#GET-/visitas/{id}/fotos)
+    - [POST /visitas/{id}/fotos](#GET-/visitas/{id}/fotos)
+    - [DELETE /visitas/{id}/fotos/{id}](#GET-/visitas/{id}/fotos/{id})
     - [GET /visitas/{id}/fotos/{id}](#GET-/visitas/{id}/fotos/{id})
     
 
@@ -608,6 +610,45 @@ Código|Descripción|Cuerpo
 200|OK|Colección de objetos foto en su representación JSON
 409|Un objeto relacionado no existe|Mensaje de error
 500|Error interno|Mensaje de error
+
+#### POST /visitas/{id}/fotos
+
+Crea el elemento foto
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+id|Path|ID del objeto Visita|Sí|Integer
+foto|Body|objeto foto en su representación JSON|Sí|JSON
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Objeto foto en su representación
+409|Un objeto relacionado no existe|Mensaje de error
+500|Error interno|Mensaje de error
+
+#### DELETE /visitas/{idVisita}/fotos/{idFoto}
+
+Elimina una foto
+
+#### Parámetros
+
+Nombre|Ubicación|Descripción|Requerido|Esquema
+:--|:--|:--|:--|:--
+idVisita|Path|ID del objeto Visita con la foto a eliminar|Sí|Integer
+idFoto|Path|ID del objeto foto a eliminar|Sí|Integer
+
+#### Respuesta
+
+Código|Descripción|Cuerpo
+:--|:--|:--
+200|OK|Void
+404|No existe un objeto Visita con el ID solicitado|Mensaje de error
+500|Error interno|Mensaje de error
+
 
 #### GET /visitas/{idVisita}/fotos/{idFoto}
 
