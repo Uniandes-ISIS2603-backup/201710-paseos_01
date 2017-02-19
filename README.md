@@ -629,5 +629,5 @@ Código|Descripción|Cuerpo
 500|Error interno|Mensaje de error
 
 
-[Volver arriba](#tabla-de-contenidos)
+[Volver arriba](#tabla-de-contenido)
 
