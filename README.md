@@ -3,25 +3,25 @@
 # Tabla de contenido
 -  [Introducción](#introducción)
 -  [API](#api-de-la-aplicación-paseos)
-  - [Recurso Usuario](#recurso-Usuario)
-    - [GET /clientes](#GET-/clientes)
-    - [GET /clientes/{id}](#GET-/clientes/{id})
-    - [POST /clientes](#POST-/clientes)
-    - [PUT /clientes/{id}](#PUT-/clientes/{id})
-    - [DELETE /clientes/{id}](#DELETE-/clientes/{id})
-  - [Recurso Detalle](#recurso-detalle)
-    - [GET /detalles](#GET-/detalles)
-    - [GET /detalles/{id}](#GET-/detalles/{id})
-    - [POST /detalles](#POST-/detalles)
-    - [PUT /detalles/{id}](#PUT-/detalles/{id})
-    - [DELETE /detalles/{id}](#DELETE-/detalles/{id})
-  - [Recurso Paseo](#recurso-paseo)
+  - [Recurso Usuario](#Recurso Usuario)
+    - [GET /usuarios](#GET-/clientes)
+    - [GET /usuarios/{id}](#GET-/clientes/{id})
+    - [POST /usuarios](#POST-/clientes)
+    - [PUT /usuarios/{id}](#PUT-/clientes/{id})
+    - [DELETE /usuarios/{id}](#DELETE-/clientes/{id})
+  - [Recurso Oferta](#Recurso Oferta)
+    - [GET /ofertas](#GET-/detalles)
+    - [GET /ofertas/{id}](#GET-/detalles/{id})
+    - [POST /ofertas](#POST-/detalles)
+    - [PUT /ofertas/{id}](#PUT-/detalles/{id})
+    - [DELETE /ofertas/{id}](#DELETE-/detalles/{id})
+  - [Recurso Paseo](#Recurso Paseo)
     - [GET /paseos](#GET-/paseos)
     - [GET /paseos/{id}](#GET-/paseos/{id})
     - [POST /paseos](#POST-/paseos)
     - [PUT /paseos/{id}](#PUT-/paseos/{id})
     - [DELETE /paseos/{id}](#DELETE-/paseos/{id})
-  - [Recurso Visita](#recurso-visita)
+  - [Recurso Visita](#Recurso Visita)
     - [GET /visitas](#GET-/visitas)
     - [GET /visitas/{id}](#GET-/visitas/{id})
     - [POST /visitas](#POST-/visitas)
@@ -57,115 +57,24 @@ La respuesta del servidor al solicitar una colección presenta el siguiente form
 ```
 
 ## API de la aplicación paseos
-### Recurso Guia
-El objeto Guia tiene 1 representación JSON:	
 
-#### Representación 
+
+### Recurso Usuario
+El objeto Cliente tiene 1 representación JSON:	
+
+#### Representación Báscia
 ```javascript
 {
     id: '' /*Tipo Long*/,
     nombre: '' /*Tipo String*/,
     apellido: '' /*Tipo String*/,
     usuario: '' /*Tipo String*/,
-    pass: '' /*Tipo undifined*/,
-    formacion: '' /*Tipo String*/,
-    experiencia: '' /*Tipo undifined*/,
-    calificacionPromedio: '' /*Tipo double*/
+    pass: '' /*Tipo undefined.*/,
+    edad: '' /*Tipo Integer.*/,
+    condicionFisica: '' /*Tipo Integer.*/
 }
 ```
-
-#### GET /guias
-
-Retorna una colección de objetos Guia
-
-#### Parámetros
-
-#### N/A
-
-#### Respuesta
-
-Código|Descripción|Cuerpo
-:--|:--|:--
-200|OK|Colección de [Representación](#recurso-guia)
-409|Un objeto relacionado no existe|Mensaje de error
-500|Error interno|Mensaje de error
-
-#### GET /guias/{id}
-
-Retorna una colección de objetos guias en su representación.
-
-#### Parámetros
-
-Nombre|Ubicación|Descripción|Requerido|Esquema
-:--|:--|:--|:--|:--
-id|Path|ID del objeto Guia a consultar|Sí|Integer
-
-#### Respuesta
-
-Código|Descripción|Cuerpo
-:--|:--|:--
-200|OK|Objeto Guia en [Representación](#recurso-guia)
-404|No existe un objeto Guia con el ID solicitado|Mensaje de error
-500|Error interno|Mensaje de error
-
-#### POST /guias
-
-Es el encargado de crear objetos Guia.
-
-#### Parámetros
-
-Nombre|Ubicación|Descripción|Requerido|Esquema
-:--|:--|:--|:--|:--
-body|body|Objeto Guia que será creado|Sí|[Representación](#recurso-guia)
-
-#### Respuesta
-
-Código|Descripción|Cuerpo
-:--|:--|:--
-201|El objeto Guia ha sido creado|[Representación](#recurso-guia)
-409|Un objeto relacionado no existe|Mensaje de error
-500|No se pudo crear el objeto Guia|Mensaje de error
-
-#### PUT /guias/{id}
-
-Es el encargado de actualizar objetos Guias.
-
-#### Parámetros
-
-Nombre|Ubicación|Descripción|Requerido|Esquema
-:--|:--|:--|:--|:--
-id|Path|ID del objeto Guia a actualizar|Sí|Integer
-body|body|Objeto Guia nuevo|Sí|[Representación](#recurso-guia)
-
-#### Respuesta
-
-Código|Descripción|Cuerpo
-:--|:--|:--
-201|El objeto Guia actualizado|[Representación](#recurso-guia)
-409|Un objeto relacionado no existe|Mensaje de error
-500|No se pudo actualizar el objeto Guia|Mensaje de error
-
-#### DELETE /guias/{id}
-
-Elimina un objeto Guia.
-
-#### Parámetros
-
-Nombre|Ubicación|Descripción|Requerido|Esquema
-:--|:--|:--|:--|:--
-id|Path|ID del objeto Guia a eliminar|Sí|Integer
-
-#### Respuesta
-
-Código|Descripción|Cuerpo
-:--|:--|:--
-204|Objeto eliminado|N/A
-500|Error interno|Mensaje de error
-
-### Recurso Cliente
-El objeto Cliente tiene 1 representación JSON:	
-
-#### Representación 
+#### Representación Detallada
 ```javascript
 {
     id: '' /*Tipo Long*/,
@@ -178,7 +87,7 @@ El objeto Cliente tiene 1 representación JSON:
 }
 ```
 
-#### GET /clientes
+#### GET /usuarios
 
 Retorna una colección de objetos CLiente en su representación.
 
@@ -194,21 +103,21 @@ Código|Descripción|Cuerpo
 409|Un objeto relacionado no existe|Mensaje de error
 500|Error interno|Mensaje de error
 
-#### GET /clientes/{id}
+#### GET /usuarios/{id}
 
-Retorna una colección de objetos Cliente en su representación.
+Retorna un objeto usuario en su representación.
 
 #### Parámetros
 
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
-id|Path|ID del objeto Cliente a consultar|Sí|Integer
+id|Path|ID del objeto usuario a consultar|Sí|Integer
 
 #### Respuesta
 
 Código|Descripción|Cuerpo
 :--|:--|:--
-200|OK|Objeto Cliente en [Representación](#recurso-cliente)
+200|OK|Objeto usuario en [Representación](#recurso-usuario-básica)
 404|No existe un objeto Cliente con el ID solicitado|Mensaje de error
 500|Error interno|Mensaje de error
 
@@ -220,44 +129,44 @@ Es el encargado de crear objetos Cliente.
 
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
-body|body|Objeto Cliente que será creado|Sí|[Representación](#recurso-cliente)
+body|body|Objeto usuario que será creado|Sí|[Representación](#recurso-cliente)
 
 #### Respuesta
 
 Código|Descripción|Cuerpo
 :--|:--|:--
-201|El objeto Cliente ha sido creado|[Representación](#recurso-cliente)
+201|El objeto usuario ha sido creado|[Representación](#recurso-cliente)
 409|Un objeto relacionado no existe|Mensaje de error
-500|No se pudo crear el objeto Cliente|Mensaje de error
+500|No se pudo crear el objeto usuario|Mensaje de error
 
-#### PUT /clientes/{id}
+#### PUT /usuarios/{id}
 
-Es el encargado de actualizar objetos clientes.
+Es el encargado de actualizar objetos usuario.
 
 #### Parámetros
 
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
-id|Path|ID del objeto Cliente a actualizar|Sí|Integer
-body|body|Objeto Cliente nuevo|Sí|[Representación](#recurso-cliente)
+id|Path|ID del objeto usuario a actualizar|Sí|Integer
+body|body|Objeto usuario nuevo|Sí|[Representación](#recurso-cliente)
 
 #### Respuesta
 
 Código|Descripción|Cuerpo
 :--|:--|:--
-201|El objeto Cliente actualizado|[Representación](#recurso-cliente)
+201|El objeto usuario actualizado|[Representación](#recurso-cliente)
 409|Un objeto relacionado no existe|Mensaje de error
-500|No se pudo actualizar el objeto Cliente|Mensaje de error
+500|No se pudo actualizar el objeto usuario|Mensaje de error
 
-#### DELETE /clientes/{id}
+#### DELETE /usuarios/{id}
 
-Elimina un objeto Cliente.
+Elimina un objeto usuario.
 
 #### Parámetros
 
 Nombre|Ubicación|Descripción|Requerido|Esquema
 :--|:--|:--|:--|:--
-id|Path|ID del objeto Clientes a eliminar|Sí|Integer
+id|Path|ID del objeto usuario a eliminar|Sí|Integer
 
 #### Respuesta
 
