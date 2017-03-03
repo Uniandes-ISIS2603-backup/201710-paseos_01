@@ -9,6 +9,7 @@
     - [POST /usuarios](#POST-/clientes)
     - [PUT /usuarios/{id}](#PUT-/clientes/{id})
     - [DELETE /usuarios/{id}](#DELETE-/clientes/{id})
+    
   - [Recurso Oferta](#Recurso Oferta)
     - [GET /ofertas](#GET-/detalles)
     - [GET /ofertas/{id}](#GET-/detalles/{id})
