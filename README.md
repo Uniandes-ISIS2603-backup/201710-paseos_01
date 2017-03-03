@@ -16,12 +16,14 @@
     - [POST /ofertas](#POST-/detalles)
     - [PUT /ofertas/{id}](#PUT-/detalles/{id})
     - [DELETE /ofertas/{id}](#DELETE-/detalles/{id})
+    
   - [Recurso Paseo](#Recurso Paseo)
     - [GET /paseos](#GET-/paseos)
     - [GET /paseos/{id}](#GET-/paseos/{id})
     - [POST /paseos](#POST-/paseos)
     - [PUT /paseos/{id}](#PUT-/paseos/{id})
     - [DELETE /paseos/{id}](#DELETE-/paseos/{id})
+    
   - [Recurso Visita](#Recurso Visita)
     - [GET /visitas](#GET-/visitas)
     - [GET /visitas/{id}](#GET-/visitas/{id})
