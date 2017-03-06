@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.paseos.dtos;
 
+import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
