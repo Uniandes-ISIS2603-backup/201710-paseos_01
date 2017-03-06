@@ -12,6 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jma.lovera10
  */
 @XmlRootElement
-public class UsuarioDetailDTO {
+public class UsuarioDetailDTO extends UsuarioDTO{
     
 }
