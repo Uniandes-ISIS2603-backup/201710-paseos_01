@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>paseos-web</artifactId>
-    <name>paseos-web</name>
+    <artifactId>paseos-01-web</artifactId>
+    <name>paseos-01-web</name>
     <packaging>war</packaging>
     <parent>
         <groupId>co.edu.uniandes.csw.paseos</groupId>
-        <artifactId>paseos</artifactId>
+        <artifactId>paseos-01</artifactId>
         <version>0.1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -59,7 +59,7 @@
         </dependency>
         <dependency>
             <groupId>co.edu.uniandes.csw.paseos</groupId>
-            <artifactId>paseos-logic</artifactId>
+            <artifactId>paseos-01-logic</artifactId>
             <version>0.1.0</version>
         </dependency>
         <dependency>
