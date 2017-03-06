@@ -17,27 +17,27 @@ public class UsuarioDTO {
     /**
      * Atributo que modela el id generado del usuario
      */
-    private Long id;
+    protected Long id;
     
     /**
      * Atributo que modela los nombres del usuario
      */
-    private String nombres;
+    protected String nombres;
     
     /**
      * Atributo que modela los apellidos del usuario
      */
-    private String apellidos;
+    protected String apellidos;
     
     /**
      * Atributo que modela la edad del usuario
      */
-    private Integer edad;
+    protected Integer edad;
     
     /**
      * Atributo que modela la condición física del usuario
      */
-    private Integer condicionFisica;
+    protected Integer condicionFisica;
 
     /**
      * Constructor por defecto
