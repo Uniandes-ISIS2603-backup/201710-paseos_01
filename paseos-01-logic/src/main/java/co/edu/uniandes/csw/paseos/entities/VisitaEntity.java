@@ -31,6 +31,39 @@ public class VisitaEntity implements Serializable {
     
     @OneToMany(mappedBy = "FotoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FotoEntity> fotos;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Integer calificacion) {
+        this.calificacion = calificacion;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public List<FotoEntity> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(List<FotoEntity> fotos) {
+        this.fotos = fotos;
+    }
+    
     
     
 }
