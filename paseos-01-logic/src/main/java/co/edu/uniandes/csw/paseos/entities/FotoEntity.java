@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -22,6 +23,28 @@ public class FotoEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String path;
+    
+    @ManyToOne
+    private VisitaEntity visita;
+    
+    @ManyToOne
+    private PaseoEntity paseo;
+
+    public PaseoEntity getPaseo() {
+        return paseo;
+    }
+
+    public void setPaseo(PaseoEntity paseo) {
+        this.paseo = paseo;
+    }
+
+    public VisitaEntity getVisita() {
+        return visita;
+    }
+
+    public void setVisita(VisitaEntity visita) {
+        this.visita = visita;
+    }
 
     public Long getId() {
         return id;

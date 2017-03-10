@@ -31,11 +31,33 @@ public class OfertaEntity implements Serializable {
     
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date fecha;
-    
+
     private Integer inscritos;
     
     @OneToOne
-    private List<VisitaEntity> visitas; 
+    private VisitaEntity visita;
+    
+    @ManyToOne
+    private UsuarioEntity usuario;
+    
+    @ManyToOne
+    private PaseoEntity paseo;
+
+    public PaseoEntity getPaseo() {
+        return paseo;
+    }
+
+    public void setPaseo(PaseoEntity paseo) {
+        this.paseo = paseo;
+    }
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
 
     public Long getId() {
         return id;
@@ -61,12 +83,12 @@ public class OfertaEntity implements Serializable {
         this.inscritos = inscritos;
     }
 
-    public List<VisitaEntity> getVisitas() {
-        return visitas;
+    public VisitaEntity getVisita() {
+        return visita;
     }
 
-    public void setVisitas(List<VisitaEntity> visitas) {
-        this.visitas = visitas;
+    public void setVisita(VisitaEntity visita) {
+        this.visita = visita;
     }
     
 }

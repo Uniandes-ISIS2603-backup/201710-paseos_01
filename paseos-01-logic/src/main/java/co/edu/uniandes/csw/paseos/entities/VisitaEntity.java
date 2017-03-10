@@ -12,7 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -31,6 +33,28 @@ public class VisitaEntity implements Serializable {
     
     @OneToMany(mappedBy = "FotoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FotoEntity> fotos;
+    
+    @ManyToOne
+    private UsuarioEntity usuario;
+    
+    @OneToOne
+    private OfertaEntity oferta;
+
+    public UsuarioEntity getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
+    }
+
+    public OfertaEntity getOferta() {
+        return oferta;
+    }
+
+    public void setOferta(OfertaEntity oferta) {
+        this.oferta = oferta;
+    }
 
     public Long getId() {
         return id;
