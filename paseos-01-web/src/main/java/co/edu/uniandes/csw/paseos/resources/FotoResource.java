@@ -1,8 +1,7 @@
 
-
 package co.edu.uniandes.csw.paseos.resources;
 
-import co.edu.uniandes.csw.employee.dtos.HabiDTO;
+import co.edu.uniandes.csw.employee.dtos.HabitacionDTO;
 import co.edu.uniandes.csw.employee.ejbs.HabitacionLogic;
 import co.edu.uniandes.csw.employee.entities.HabitacionEntity;
 import co.edu.uniandes.csw.employee.exceptions.BusinessLogicException;
@@ -22,7 +21,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/habitaciones")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class PaseoResource {
+public class FotoResource {
     
     @Inject
     private HabitacionLogic habitacionLogic;
@@ -47,6 +46,3 @@ public class PaseoResource {
         return new HabitacionDTO(storedHabitacion);
     }
  }
-
-
-

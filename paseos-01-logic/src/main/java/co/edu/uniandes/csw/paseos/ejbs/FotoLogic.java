@@ -22,13 +22,11 @@ public class FotoLogic {
     
     /**
      * Obtiene la lista de los registros de Foto.
-     *
      * @return Colección de objetos de FotoEntity.
-     * 
      */
    
-    public List<FotoEntity> getFotos() {
-        return persistence.findAll();
+    public List<FotoEntity> getFotosVisita(long id) {
+        return persistence.findAllVisita(id);
     }
 
 

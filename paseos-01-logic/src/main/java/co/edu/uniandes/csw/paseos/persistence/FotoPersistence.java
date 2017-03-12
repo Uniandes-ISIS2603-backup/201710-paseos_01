@@ -6,8 +6,10 @@
 package co.edu.uniandes.csw.paseos.persistence;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -19,19 +21,37 @@ import javax.persistence.Query;
 @Stateless
 public class FotoPersistence {
     
+    /**
+     * Administrador de entidades
+     */
     @PersistenceContext(unitName="paseosPU")
     protected EntityManager em;
     
+    /**
+     * Método que encuentra la foto en la BD
+     * @param id de la foto a buscar
+     * @return la entidad de la foto
+     */
     public FotoEntity find(Long id){
         
         return em.find(FotoEntity.class, id);
         
     }
     
-    public List<FotoEntity> findAll(){
+    /**
+     * Método que retorna todas las fotos
+     * @param id id de 
+     * @return Fotos en el a BD
+     */
+    public List<FotoEntity> findAllVisita(long id){
         
         Query q = em.createQuery("select u from FotoEntity u");
-        return q.getResultList();
+        List<FotoEntity> fotos = q.getResultList();
+        List<FotoEntity> lista = new ArrayList<>();
+        for(FotoEntity entity:fotos){
+            if(entity.getVisita().getId()==id)lista.add(entity);
+        }
+        return lista;
     }
     
     public FotoEntity create(FotoEntity entity){

@@ -34,11 +34,11 @@ public class OfertaEntity implements Serializable {
 
     private Integer inscritos;
     
-    @OneToOne
-    private VisitaEntity visita;
+    @OneToMany
+    private List <VisitaEntity> visitas;
     
     @ManyToOne
-    private UsuarioEntity usuario;
+    private UsuarioEntity guia;
     
     @ManyToOne
     private PaseoEntity paseo;
@@ -51,12 +51,12 @@ public class OfertaEntity implements Serializable {
         this.paseo = paseo;
     }
 
-    public UsuarioEntity getUsuario() {
-        return usuario;
+    public UsuarioEntity getGuia() {
+        return guia;
     }
 
-    public void setUsuario(UsuarioEntity usuario) {
-        this.usuario = usuario;
+    public void setGuia(UsuarioEntity usuario) {
+        this.guia = usuario;
     }
 
     public Long getId() {
@@ -83,12 +83,11 @@ public class OfertaEntity implements Serializable {
         this.inscritos = inscritos;
     }
 
-    public VisitaEntity getVisita() {
-        return visita;
+    public List <VisitaEntity> getVisitas() {
+        return visitas;
     }
 
-    public void setVisita(VisitaEntity visita) {
-        this.visita = visita;
-    }
-    
+    public void setVisitas(List <VisitaEntity> visitas) {
+        this.visitas = visitas;
+    }    
 }
