@@ -28,8 +28,8 @@ public class PaseoDetailDTO extends PaseoDTO{
             ofertas.add(new OfertaDTO(of));
         }
                 
-        if (entity.getOfertas()!=null){
-        this.fotos = FotoDTO( entity.getOfertas().get(0));
+        if (entity.getOfertas()!=null && entity.getOfertas().get(0)!=null && entity.getOfertas().get(0).getVisitas()!=null){
+        this.fotos = FotoDTO( entity.getOfertas().get(0).getVisitas().get(0).getFotos());
         }
     }
 
