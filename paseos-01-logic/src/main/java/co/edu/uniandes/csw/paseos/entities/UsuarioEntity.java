@@ -43,6 +43,8 @@ public class UsuarioEntity implements Serializable {
     
     private Double calificacionPromedio;
     
+    private int cuantasCalificaciones; 
+    
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)    
     private List<VisitaEntity> visitas;
     
@@ -151,6 +153,13 @@ public class UsuarioEntity implements Serializable {
 
     public void setOfertas(List<OfertaEntity> ofertas) {
         this.ofertas = ofertas;
+    }
+    public void recalcularPromedio(int calificacion)
+    {
+        double total = calificacionPromedio*cuantasCalificaciones; 
+        total += calificacion;
+        cuantasCalificaciones++; 
+        calificacionPromedio = total/cuantasCalificaciones; 
     }
     
     
