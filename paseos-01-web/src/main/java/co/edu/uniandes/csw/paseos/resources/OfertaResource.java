@@ -27,6 +27,7 @@ import javax.ws.rs.core.MediaType;
 public class OfertaResource {
     
     @Inject
+    
     private OfertaLogic ofertaLogic;
     
     @GET
@@ -55,7 +56,7 @@ public class OfertaResource {
     
     @PUT
     @Path("{id: \\d+}")
-    public OfertaDetailDTO updateOferta(@PathParam("id") Long id, OfertaDetailDTO dto) {
+    public OfertaDetailDTO updateOferta(@PathParam("id") Long id, OfertaDetailDTO dto) throws BusinessLogicException {
         OfertaEntity entity = dto.toEntity();
         entity.setId(id);
         return new OfertaDetailDTO(ofertaLogic.updateOferta(entity));

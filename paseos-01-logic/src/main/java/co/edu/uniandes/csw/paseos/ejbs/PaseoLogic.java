@@ -31,4 +31,12 @@ public class PaseoLogic {
     public PaseoEntity createPaseo(PaseoEntity paseo){
         return persist.create(paseo);
     }
+    
+    public PaseoEntity modificar(PaseoEntity paseo){
+        return persist.update(paseo);
+    }
+    
+    public void delete (long id){
+        persist.delete(id);
+    }
 }

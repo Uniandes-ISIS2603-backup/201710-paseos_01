@@ -15,7 +15,7 @@ import javax.inject.Inject;
 
 /**
  *
- * @author jma.lovera10
+ * @author re.vega11
  */
 @Stateless
 public class OfertaLogic {
@@ -44,8 +44,10 @@ public class OfertaLogic {
         return persistence.find(id);
     }
     
-    public OfertaEntity updateOferta(OfertaEntity entity) {
-        return persistence.update(entity);
+    public OfertaEntity updateOferta(OfertaEntity oferta) throws BusinessLogicException {
+      if (oferta.getFecha().after(new Date(System.currentTimeMillis())))
+          throw new BusinessLogicException ("No se puede editar una oferta que ya pasó");
+      return persistence.update(oferta);
     }
     
     public void deleteOferta (Long id){
