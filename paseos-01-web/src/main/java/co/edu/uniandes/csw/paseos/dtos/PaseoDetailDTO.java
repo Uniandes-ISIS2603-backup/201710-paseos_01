@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.paseos.dtos;
 
+import co.edu.uniandes.csw.paseos.entities.FotoEntity;
 import co.edu.uniandes.csw.paseos.entities.OfertaEntity;
 import co.edu.uniandes.csw.paseos.entities.PaseoEntity;
 import java.util.ArrayList;
@@ -20,16 +21,23 @@ public class PaseoDetailDTO extends PaseoDTO{
     private List<OfertaDTO> ofertas;
     private List<FotoDTO> fotos ;
 
-    public PaseoDetailDTO(PaseoEntity entity) {
+    public PaseoDetailDTO(PaseoEntity entity, boolean catalogo) {
         super(entity);
         List<OfertaEntity> ofertasEntities = entity.getOfertas();
         ofertas=new ArrayList<OfertaDTO>();
         for (OfertaEntity of : ofertasEntities) {
             ofertas.add(new OfertaDTO(of));
         }
-                
+        fotos=null;
+        if(catalogo){
+            fotos= new ArrayList<FotoDTO>();
         if (entity.getOfertas()!=null && entity.getOfertas().get(0)!=null && entity.getOfertas().get(0).getVisitas()!=null){
-        this.fotos = FotoDTO( entity.getOfertas().get(0).getVisitas().get(0).getFotos());
+            List<FotoEntity> lista = entity.getOfertas().get(0).getVisitas().get(0).getFotos();
+            for (FotoEntity fotoEntity : lista) {
+                fotos.add( new FotoDTO(fotoEntity));
+            }
+                         
+        }
         }
     }
 
@@ -57,7 +65,11 @@ public class PaseoDetailDTO extends PaseoDTO{
         entity.setCosto(costo);
         entity.setTransporte(transporte);
         entity.setAlmuerzo(almuerzo);
-        entity.setOfertas(ofertas);
+        ArrayList<OfertaEntity> list = new ArrayList<OfertaEntity>();
+        for (OfertaDTO ofertaDTO : ofertas) {
+            list.add(ofertaDTO.toEntity());
+        }
+        entity.setOfertas(list);
         return entity;
     }
     
