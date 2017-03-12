@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.paseos.ejbs;
 
+import co.edu.uniandes.csw.paseos.persistence.OfertaPersistence;
+import co.edu.uniandes.csw.paseos.persistence.UsuarioPersistence;
 import co.edu.uniandes.csw.paseos.persistence.VisitaPersistence;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -16,5 +18,13 @@ import javax.inject.Inject;
 @Stateless
 public class VisitaLogic {
     
-    @Inject private VisitaPersistence presistence;
+    @Inject private VisitaPersistence persistenceVisita;
+    
+    @Inject private UsuarioPersistence persistenceUsuario;
+    
+    @Inject private OfertaPersistence persistenceOferta;
+    
+    public List<VisitaEntity> getEntity() {
+        return persistence.findAll();
+    }
 }
