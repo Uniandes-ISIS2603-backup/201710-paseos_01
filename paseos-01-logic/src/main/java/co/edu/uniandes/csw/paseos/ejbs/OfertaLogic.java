@@ -23,11 +23,11 @@ public class OfertaLogic {
     @Inject
     private OfertaPersistence persistence;
     
-    public OfertaEntity createCompany(OfertaEntity oferta)throws BusinessLogicException{
+    public OfertaEntity createOferta(OfertaEntity oferta)throws BusinessLogicException{
         if (oferta.getFecha() == null || oferta.getFecha().after(new Date(System.currentTimeMillis())))
-            throw new BusinessLogicException ("La oferta debe tener fecha y esta debe ser posterior a la fecha actual");
+           throw new BusinessLogicException ("La oferta debe tener fecha y esta debe ser posterior a la fecha actual");
         if(oferta.getPaseo() == null)
-           throw new BusinessLogicException ("La oferta debe tener pertenecer a un paseo");
+           throw new BusinessLogicException ("La oferta debe pertenecer a un paseo");
         if(oferta.getInscritos() != 0)
            throw new BusinessLogicException ("El numero de inscritos no puede ser diferente de cero");
         if(oferta.getVisitas().size()!= 0)
@@ -36,19 +36,19 @@ public class OfertaLogic {
         return persistence.create(oferta);
     }
     
-    public List<OfertaEntity> getCompanies (){
+    public List<OfertaEntity> getOfertas (){
         return persistence.findAll();
     }
     
-    public OfertaEntity getCompany (Long id){
+    public OfertaEntity getOferta (Long id){
         return persistence.find(id);
     }
     
-    public OfertaEntity updateCompany(OfertaEntity entity) {
+    public OfertaEntity updateOferta(OfertaEntity entity) {
         return persistence.update(entity);
     }
     
-    public void deleteCompany (Long id){
+    public void deleteOferta (Long id){
         persistence.delete(id);
     }
 }
