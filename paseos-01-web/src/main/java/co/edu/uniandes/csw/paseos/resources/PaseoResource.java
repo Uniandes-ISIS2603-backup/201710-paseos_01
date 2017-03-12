@@ -7,7 +7,6 @@ import co.edu.uniandes.csw.paseos.dtos.PaseoDTO;
 import co.edu.uniandes.csw.paseos.dtos.PaseoDetailDTO;
 import co.edu.uniandes.csw.paseos.ejbs.PaseoLogic;
 import co.edu.uniandes.csw.paseos.entities.PaseoEntity;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
