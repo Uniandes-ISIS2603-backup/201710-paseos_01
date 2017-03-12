@@ -43,10 +43,10 @@ public class UsuarioEntity implements Serializable {
     
     private Double calificacionPromedio;
     
-    @OneToMany(mappedBy = "VisitaEntity", cascade = CascadeType.ALL, orphanRemoval = true)    
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)    
     private List<VisitaEntity> visitas;
     
-    @OneToMany(mappedBy = "OfertaEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "guia", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OfertaEntity> ofertas;
 
     public Long getId() {
@@ -136,9 +136,17 @@ public class UsuarioEntity implements Serializable {
     public void setVisitas(List<VisitaEntity> visitas) {
         this.visitas = visitas;
     }
+    public void addVisita(VisitaEntity visita)
+    {
+        visitas.add(visita);
+    }
 
     public List<OfertaEntity> getOfertas() {
         return ofertas;
+    }
+     public void addOferta(OfertaEntity oferta)
+    {
+        ofertas.add(oferta);
     }
 
     public void setOfertas(List<OfertaEntity> ofertas) {
