@@ -1,14 +1,17 @@
 
+
 package co.edu.uniandes.csw.paseos.resources;
 
 import co.edu.uniandes.csw.paseos.dtos.OfertaDetailDTO;
 import co.edu.uniandes.csw.paseos.ejbs.OfertaLogic;
 import co.edu.uniandes.csw.paseos.entities.OfertaEntity;
 import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -46,3 +49,4 @@ public class OfertaResource {
         return new HabitacionDTO(storedHabitacion);
     }
  }
+

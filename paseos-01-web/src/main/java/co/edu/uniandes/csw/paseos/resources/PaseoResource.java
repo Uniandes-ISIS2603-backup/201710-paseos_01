@@ -1,4 +1,5 @@
 
+
 package co.edu.uniandes.csw.paseos.resources;
 
 import co.edu.uniandes.csw.employee.dtos.HabiDTO;
@@ -46,3 +47,6 @@ public class PaseoResource {
         return new HabitacionDTO(storedHabitacion);
     }
  }
+
+
+
