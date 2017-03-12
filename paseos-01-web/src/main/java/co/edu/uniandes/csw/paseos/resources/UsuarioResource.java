@@ -62,7 +62,7 @@ public class UsuarioResource {
      * @generated
      */
     @GET
-    public List<UsuarioDetailDTO> getEmployees() {
+    public List<UsuarioDetailDTO> getUsuarios() {
         
         return listEntity2DTO(usuarioLogic.getUsuarios());
     }  
