@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -26,6 +27,12 @@ public class FotoEntity implements Serializable {
      * Valor codificado de la foto
      */
     private byte[] valor;
+    
+    @ManyToOne
+    private VisitaEntity visita;
+    
+    @ManyToOne
+    private PaseoEntity paseo;
 
     /**
      * Método que obtiene el id
@@ -57,6 +64,22 @@ public class FotoEntity implements Serializable {
      */
     public void setValor(byte[] valor) {
         this.valor = valor;
+    }
+
+    public VisitaEntity getVisita() {
+        return visita;
+    }
+
+    public void setVisita(VisitaEntity visita) {
+        this.visita = visita;
+    }
+
+    public PaseoEntity getPaseo() {
+        return paseo;
+    }
+
+    public void setPaseo(PaseoEntity paseo) {
+        this.paseo = paseo;
     }
     
 }
