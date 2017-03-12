@@ -38,19 +38,15 @@ public class VisitaEntity implements Serializable {
     @ManyToOne
     private UsuarioEntity usuario;
     
-    @ManyToMany
-    private List<OfertaEntity> ofertas;
+    @ManyToOne
+    private OfertaEntity oferta;
 
-    public List<OfertaEntity> getOfertas() {
-        return ofertas;
+    public OfertaEntity getOferta() {
+        return oferta;
     }
 
-    public void setFotos(List<FotoEntity> fotos) {
-        this.fotos = fotos;
-    }
-    
-    public void addOferta(OfertaEntity ofertas){
-        this.ofertas.add(ofertas);
+    public void setOferta(OfertaEntity oferta) {
+        this.oferta = oferta;
     }
 
     public UsuarioEntity getUsuario() {
@@ -93,8 +89,8 @@ public class VisitaEntity implements Serializable {
         this.fotos.add(fotos);
     }   
     
-    public void setOfertas(List<OfertaEntity> ofertas) {
-        this.ofertas = ofertas;
+    public void setFotos(List<FotoEntity> fotos) {
+        this.fotos = fotos;
     }
     
 }

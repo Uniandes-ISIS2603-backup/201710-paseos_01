@@ -5,9 +5,13 @@
  */
 package co.edu.uniandes.csw.paseos.ejbs;
 
+import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.paseos.persistence.OfertaPersistence;
 import co.edu.uniandes.csw.paseos.persistence.UsuarioPersistence;
 import co.edu.uniandes.csw.paseos.persistence.VisitaPersistence;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -25,6 +29,38 @@ public class VisitaLogic {
     @Inject private OfertaPersistence persistenceOferta;
     
     public List<VisitaEntity> getEntity() {
-        return persistence.findAll();
+        return persistenceVisita.findAll();
+    }
+    
+    public VisitaEntity getVisita(Long id) {
+        return persistenceVisita.find(id);
+    } 
+    
+    public VisitaEntity updateVisita(VisitaEntity entity) throws BusinessLogicException{
+        if(getVisita(entity.getId()).getOferta()!=entity.getOferta()){
+            throw new BusinessLogicException("La oferta no es la oferta original");
+        }
+        if(!entity.getOferta().getFecha().before(new Date(System.currentTimeMillis()))){
+            throw new BusinessLogicException("La fecha de oferta tiene que haber pasado");
+        }
+        if(getVisita(entity.getId()).getUsuario()!=entity.getUsuario()){
+            throw new BusinessLogicException("El usuario no es el usuario original");
+        }
+        if(getVisita(entity.getId()).getCalificacion()!=entity.getCalificacion()){
+            if(!getVisita(entity.getId()).getUsuario().getGuia()){
+                throw new BusinessLogicException("El usuario que deberia ser guia no es guia");
+            }
+            persistenceUsuario.update(getVisita(entity.getId()).getUsuario().recalcularPromedio(entity.getCalificacion()));
+        }
+        return persistenceVisita.update(entity);
+    }
+    
+    public void deleteVisita(Long id) throws BusinessLogicException{
+        if(getVisita(id).getOferta().getFecha().before(new Date(System.currentTimeMillis()))){
+            throw new BusinessLogicException("La fecha de oferta no puede haber pasado");
+        }
+        persistenceUsuario.update(getVisita(id).getUsuario().deleteVisita(getVisita(id)));
+        persistenceOferta.update(getVisita(id).getOferta().deleteVisita(getVisita(id)));
+        persistenceVisita.delete(id);
     }
 }
