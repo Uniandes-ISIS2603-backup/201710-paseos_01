@@ -51,5 +51,18 @@ public class PaseoResource {
     public PaseoDTO crearPaseo(PaseoDTO paseo){
         return new PaseoDTO(logic.createPaseo(paseo.toEntity()));
     }
-          
+    
+    @PUT
+    @Path("{id: \\d+}")
+    public PaseoDTO modificarPaseo(PaseoDTO paseo, @PathParam("id") long id ){
+       PaseoEntity entity = paseo.toEntity();
+        entity.setId(id);
+        return new PaseoDTO(logic.modificar(entity));
+    }
+    
+    @DELETE
+    @Path("{id: \\d+}")
+    public void deletePaseo(@PathParam("id") long id) {
+        logic.delete(id);
+    }
     }
