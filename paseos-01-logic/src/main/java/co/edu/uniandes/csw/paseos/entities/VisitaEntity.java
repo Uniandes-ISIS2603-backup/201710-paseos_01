@@ -87,7 +87,19 @@ public class VisitaEntity implements Serializable {
 
     public void addFotos(FotoEntity fotos) {
         this.fotos.add(fotos);
-    }   
+    } 
+    
+    public void deleteFotos(FotoEntity foto){
+        boolean encontrado = false;
+        while(!encontrado){
+            for(int i = 0; i<this.fotos.size(); i++){
+                if(this.fotos.get(i).getId() == foto.getId()){
+                    this.fotos.remove(i);
+                    encontrado = true;
+                }
+            }
+        }
+    }
     
     public void setFotos(List<FotoEntity> fotos) {
         this.fotos = fotos;

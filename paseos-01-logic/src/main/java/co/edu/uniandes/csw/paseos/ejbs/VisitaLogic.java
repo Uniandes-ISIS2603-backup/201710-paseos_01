@@ -30,7 +30,7 @@ public class VisitaLogic {
     
     @Inject private OfertaPersistence persistenceOferta;
     
-    public List<VisitaEntity> getEntity() {
+    public List<VisitaEntity> getVisita() {
         return persistenceVisita.findAll();
     }
     
