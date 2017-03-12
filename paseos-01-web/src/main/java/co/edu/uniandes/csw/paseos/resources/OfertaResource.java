@@ -21,7 +21,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/paseos")
+@Path("/ofertas")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class OfertaResource {
@@ -29,24 +29,42 @@ public class OfertaResource {
     @Inject
     private OfertaLogic ofertaLogic;
     
-    //GET /habitaciones -- obtiene todas las Habitaciones
     @GET
     public List <OfertaDetailDTO> getOfertas(){
         List <OfertaDetailDTO> ofertaDTOs = new ArrayList<>();
-        List <OfertaDetailDTO> ofertas = ofertaLogic.getOfertas();
+        List <OfertaEntity> ofertas = ofertaLogic.getOfertas();
         for(OfertaEntity oferta : ofertas){
             OfertaDetailDTO dto = new OfertaDetailDTO(oferta);
             ofertaDTOs.add(dto);
         }
-        return habitacionDTOs;
+        return ofertaDTOs;
     }
     
-    //POST /companies -- agrega una habitacion
+    @GET
+    @Path("{id: \\d+}")
+    public OfertaDetailDTO getOferta(@PathParam("id") Long id) {
+        return new OfertaDetailDTO(ofertaLogic.getOferta(id));
+    }
+    
     @POST
-    public HabitacionDTO addCompany(HabitacionDTO habitacionDTO)throws BusinessLogicException{
-        HabitacionEntity habitacion = habitacionDTO.toEntity();
-        HabitacionEntity storedHabitacion = habitacionLogic.createHabitacion(habitacion);
-        return new HabitacionDTO(storedHabitacion);
+    public OfertaDetailDTO addOferta(OfertaDetailDTO ofertaDTO)throws BusinessLogicException{
+        OfertaEntity oferta = ofertaDTO.toEntity();
+        OfertaEntity storedOferta = ofertaLogic.createOferta(oferta);
+        return new OfertaDetailDTO(storedOferta);       
+    }
+    
+    @PUT
+    @Path("{id: \\d+}")
+    public OfertaDetailDTO updateOferta(@PathParam("id") Long id, OfertaDetailDTO dto) {
+        OfertaEntity entity = dto.toEntity();
+        entity.setId(id);
+        return new OfertaDetailDTO(ofertaLogic.updateOferta(entity));
+    }
+    
+   @DELETE
+    @Path("{id: \\d+}")
+    public void deleteOferta(@PathParam("id") Long id) {
+        ofertaLogic.deleteOferta(id);
     }
  }
 

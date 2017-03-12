@@ -89,5 +89,24 @@ public class OfertaEntity implements Serializable {
 
     public void setVisitas(List <VisitaEntity> visitas) {
         this.visitas = visitas;
-    }    
+    }
+    
+    public void addtVisita(VisitaEntity visita) {
+        this.visitas.add(visita);
+        inscritos++;
+    }
+    
+    public void deleteVisita(VisitaEntity visita){
+        boolean encontrado = false;
+        while(!encontrado){
+            for(int i = 0; i<inscritos; i++){
+                if(this.visitas.get(i).getId() == visita.getId()){
+                    this.visitas.remove(i);
+                    encontrado = true;
+                }
+            }
+        }
+        inscritos--;
+    }
+    
 }
