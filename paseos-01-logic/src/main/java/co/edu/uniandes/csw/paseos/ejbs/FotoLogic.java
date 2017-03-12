@@ -21,12 +21,20 @@ public class FotoLogic {
     @Inject private FotoPersistence persistence;
     
     /**
-     * Obtiene la lista de los registros de Foto.
+     * Obtiene la lista de los registros de Foto para una visita.
      * @return Colección de objetos de FotoEntity.
      */
    
-    public List<FotoEntity> getFotosVisita(long id) {
+    public List<FotoEntity> getFotosVisita(Long id) {
         return persistence.findAllVisita(id);
+    }
+    
+    /**
+     * Obtiene la lista de los registros de Foto para un paseo.
+     * @return Colección de objetos de FotoEntity.
+     */
+    public List<FotoEntity> getFotosPaseo(Long id) {
+        return persistence.findAllPaseo(id);
     }
 
 

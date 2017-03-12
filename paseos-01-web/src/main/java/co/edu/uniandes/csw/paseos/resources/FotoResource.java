@@ -1,10 +1,7 @@
 
 package co.edu.uniandes.csw.paseos.resources;
 
-import co.edu.uniandes.csw.employee.dtos.HabitacionDTO;
-import co.edu.uniandes.csw.employee.ejbs.HabitacionLogic;
-import co.edu.uniandes.csw.employee.entities.HabitacionEntity;
-import co.edu.uniandes.csw.employee.exceptions.BusinessLogicException;
+import co.edu.uniandes.csw.paseos.ejbs.FotoLogic;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -18,13 +15,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/habitaciones")
+@Path("/fotos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class FotoResource {
     
     @Inject
-    private HabitacionLogic habitacionLogic;
+    private FotoLogic habitacionLogic;
     
     //GET /habitaciones -- obtiene todas las Habitaciones
     @GET
