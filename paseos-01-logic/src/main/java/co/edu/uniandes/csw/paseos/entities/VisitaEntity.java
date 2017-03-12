@@ -32,7 +32,7 @@ public class VisitaEntity implements Serializable {
     
     private String comentario;
     
-    @OneToMany(mappedBy = "Foto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
     private List<FotoEntity> fotos;
     
     @ManyToOne
