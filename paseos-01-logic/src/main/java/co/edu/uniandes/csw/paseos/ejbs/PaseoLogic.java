@@ -5,16 +5,30 @@
  */
 package co.edu.uniandes.csw.paseos.ejbs;
 
+import co.edu.uniandes.csw.paseos.entities.PaseoEntity;
 import co.edu.uniandes.csw.paseos.persistence.PaseoPersistence;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
- * @author jma.lovera10
+ * @author tf.venegas10
  */
 @Stateless
 public class PaseoLogic {
     
-    @Inject private PaseoPersistence presistence;
+    @Inject private PaseoPersistence persist;
+    
+    public PaseoEntity getPaseo(long id){
+        return persist.find(id);
+    }
+    
+    public List<PaseoEntity> getPaseos(){
+        return persist.findAll();
+    }
+    
+    public PaseoEntity createPaseo(PaseoEntity paseo){
+        return persist.create(paseo);
+    }
 }

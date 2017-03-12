@@ -43,6 +43,8 @@ public class UsuarioEntity implements Serializable {
     
     private Double calificacionPromedio;
     
+    private int cuantasCalificaciones; 
+    
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)    
     private List<VisitaEntity> visitas;
     
@@ -148,9 +150,38 @@ public class UsuarioEntity implements Serializable {
     {
         ofertas.add(oferta);
     }
+    public void deleteVisita(VisitaEntity visita){
+        boolean encontrado = false;
+        while(!encontrado){
+            for(int i = 0; i<visitas.size(); i++){
+                if(this.visitas.get(i).getId() == visita.getId()){
+                    this.visitas.remove(i);
+                    encontrado = true;
+                }
+            }
+        }
+    }
+    public void deleteOferta(OfertaEntity oferta){
+        boolean encontrado = false;
+        while(!encontrado){
+            for(int i = 0; i<ofertas.size(); i++){
+                if(this.ofertas.get(i).getId() == oferta.getId()){
+                    this.ofertas.remove(i);
+                    encontrado = true;
+                }
+            }
+        }
+    }
 
     public void setOfertas(List<OfertaEntity> ofertas) {
         this.ofertas = ofertas;
+    }
+    public void recalcularPromedio(int calificacion)
+    {
+        double total = calificacionPromedio*cuantasCalificaciones; 
+        total += calificacion;
+        cuantasCalificaciones++; 
+        calificacionPromedio = total/cuantasCalificaciones; 
     }
     
     

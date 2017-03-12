@@ -21,14 +21,13 @@ public class FotoLogic {
     @Inject private FotoPersistence persistence;
     
     /**
-     * Obtiene la lista de los registros de Foto.
+     * Obtiene la lista de los registros de Foto para una visita.
      * @return Colección de objetos de FotoEntity.
      */
    
-    public List<FotoEntity> getFotosVisita(long id) {
-        return persistence.findAllVisita(id);
+    public List<FotoEntity> getFotos() {
+        return persistence.findAll();
     }
-
 
     /**
      * Obtiene los datos de una instancia de Foto a partir de su ID.
@@ -37,7 +36,7 @@ public class FotoLogic {
      * @return Instancia de FotoEntity con los datos de la Foto consultada.
      *
      */
-    public FotoEntity getFotos(Long id) {
+    public FotoEntity getFoto(Long id) {
         return persistence.find(id);
     }
 

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.paseos.dtos;
 
+import co.edu.uniandes.csw.paseos.entities.OfertaEntity;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -13,5 +14,19 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class OfertaDetailDTO extends OfertaDTO{
+    
+    public OfertaDetailDTO(){
+        super();
+    }
+    
+    public OfertaDetailDTO(OfertaEntity entity){
+        super(entity);
+    }
+    
+    @Override
+    public OfertaEntity toEntity() {
+        OfertaEntity entity = super.toEntity();
+        return entity;
+    }
     
 }
