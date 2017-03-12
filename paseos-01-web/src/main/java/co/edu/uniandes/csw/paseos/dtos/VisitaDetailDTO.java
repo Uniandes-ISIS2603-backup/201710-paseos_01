@@ -37,7 +37,7 @@ public class VisitaDetailDTO extends VisitaDTO{
         VisitaEntity entity = super.toEntity();
         List<FotoEntity> temp = new ArrayList<FotoEntity>();
         for(FotoDTO x: fotos){
-            FotoEntity fotoTemp = new FotoDTO.toEntity(x);
+            FotoEntity fotoTemp =x.toEntity();
             temp.add(fotoTemp);
         }
         entity.setFotos(temp);

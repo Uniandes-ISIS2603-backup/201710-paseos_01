@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.csw.paseos.ejbs;
 
+import co.edu.uniandes.csw.paseos.entities.OfertaEntity;
+import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
 import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.paseos.persistence.OfertaPersistence;
@@ -50,7 +52,9 @@ public class VisitaLogic {
             if(!getVisita(entity.getId()).getUsuario().getGuia()){
                 throw new BusinessLogicException("El usuario que deberia ser guia no es guia");
             }
-            persistenceUsuario.update(getVisita(entity.getId()).getUsuario().recalcularPromedio(entity.getCalificacion()));
+            UsuarioEntity temp = entity.getUsuario();
+            temp.recalcularPromedio(entity.getCalificacion());
+            persistenceUsuario.update(temp);
         }
         return persistenceVisita.update(entity);
     }
@@ -59,8 +63,27 @@ public class VisitaLogic {
         if(getVisita(id).getOferta().getFecha().before(new Date(System.currentTimeMillis()))){
             throw new BusinessLogicException("La fecha de oferta no puede haber pasado");
         }
-        persistenceUsuario.update(getVisita(id).getUsuario().deleteVisita(getVisita(id)));
-        persistenceOferta.update(getVisita(id).getOferta().deleteVisita(getVisita(id)));
+        
+        UsuarioEntity update = getVisita(id).getUsuario();
+        update.deleteVisita(getVisita(id));
+        persistenceUsuario.update(update);
+        
+        OfertaEntity up= getVisita(id).getOferta();
+        up.deleteVisita(getVisita(id));
+        persistenceOferta.update(up);
         persistenceVisita.delete(id);
+    }
+    
+    public VisitaEntity createVisita(VisitaEntity entity){
+        UsuarioEntity update = entity.getUsuario();
+        update.addVisita(entity);
+        persistenceUsuario.update(update);
+        
+        OfertaEntity up= entity.getOferta();
+        up.addtVisita(entity);
+        persistenceOferta.update(up);
+        
+        persistenceVisita.create(entity);
+        return entity;
     }
 }
