@@ -5,7 +5,10 @@
  */
 package co.edu.uniandes.csw.paseos.resources;
 
-
-public class VisitaResource {
+/**
+ *
+ * @author jma.lovera10
+ */
+public class PaseoResource {
     
 }

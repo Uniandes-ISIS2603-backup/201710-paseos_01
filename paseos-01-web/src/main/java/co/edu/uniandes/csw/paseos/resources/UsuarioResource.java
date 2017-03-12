@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.paseos.resources;
 
+
 import javax.ws.rs.Path;
 import java.util.List;
 import javax.inject.Inject;
@@ -118,5 +119,4 @@ public class UsuarioResource {
         usuarioLogic.deleteUsuario(id);
     }
     
-    
-}
+} 
