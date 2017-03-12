@@ -3,6 +3,7 @@
 package co.edu.uniandes.csw.paseos.resources;
 
 
+import co.edu.uniandes.csw.paseos.dtos.PaseoDTO;
 import co.edu.uniandes.csw.paseos.dtos.PaseoDetailDTO;
 import co.edu.uniandes.csw.paseos.ejbs.PaseoLogic;
 import co.edu.uniandes.csw.paseos.entities.PaseoEntity;
@@ -47,8 +48,8 @@ public class PaseoResource {
     }
     
     @POST
-    public PaseoDTO crearPaseo(PaseoDTO paso){
-        
+    public PaseoDTO crearPaseo(PaseoDTO paseo){
+        return new PaseoDTO(logic.createPaseo(paseo.toEntity()));
     }
           
     }
