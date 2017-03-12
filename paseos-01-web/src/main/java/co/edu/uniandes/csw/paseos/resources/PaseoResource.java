@@ -2,10 +2,11 @@
 
 package co.edu.uniandes.csw.paseos.resources;
 
-import co.edu.uniandes.csw.employee.dtos.HabiDTO;
-import co.edu.uniandes.csw.employee.ejbs.HabitacionLogic;
-import co.edu.uniandes.csw.employee.entities.HabitacionEntity;
-import co.edu.uniandes.csw.employee.exceptions.BusinessLogicException;
+
+import co.edu.uniandes.csw.paseos.dtos.PaseoDetailDTO;
+import co.edu.uniandes.csw.paseos.ejbs.PaseoLogic;
+import co.edu.uniandes.csw.paseos.entities.PaseoEntity;
+import com.sun.org.glassfish.gmbal.ParameterNames;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -19,34 +20,30 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/habitaciones")
+@Path("/paseos")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PaseoResource {
     
-    @Inject
-    private HabitacionLogic habitacionLogic;
+    @Inject 
+    private PaseoLogic logic;
     
-    //GET /habitaciones -- obtiene todas las Habitaciones
     @GET
-    public List <HabitacionDTO> getCompanies(){
-        List <HabitacionDTO> habitacionDTOs = new ArrayList<>();
-        List <HabitacionEntity> habitaciones = habitacionLogic.getHabitaciones();
-        for(HabitacionEntity habitacion : habitaciones){
-            HabitacionDTO dto = new HabitacionDTO(habitacion);
-            habitacionDTOs.add(dto);
-        }
-        return habitacionDTOs;
+    public List<PaseoDetailDTO> getPaseos(@PathParam("catalogo") boolean cat){
+        List<PaseoEntity> listEntities = logic.getPaseos();
+        List<PaseoDetailDTO> lista= new ArrayList<PaseoDetailDTO>();
+            for (PaseoEntity entity : listEntities) {
+                lista.add(new PaseoDetailDTO(entity, cat));
+            }
+        return lista;
+        
     }
     
-    //POST /companies -- agrega una habitacion
-    @POST
-    public HabitacionDTO addCompany(HabitacionDTO habitacionDTO)throws BusinessLogicException{
-        HabitacionEntity habitacion = habitacionDTO.toEntity();
-        HabitacionEntity storedHabitacion = habitacionLogic.createHabitacion(habitacion);
-        return new HabitacionDTO(storedHabitacion);
+    @GET
+    @Path("{id : \\d+}")
+    public PaseoDetailDTO getPaseo(@PathParam("id") long id){
+        return new PaseoDetailDTO(logic.getPaseo(id),true);
+        
     }
- }
-
-
-
+          
+    }
