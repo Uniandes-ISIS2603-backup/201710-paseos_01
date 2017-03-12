@@ -22,7 +22,7 @@ public class FotoEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String path;
+    private String valor;
     
     @ManyToOne
     private VisitaEntity visita;
@@ -54,12 +54,12 @@ public class FotoEntity implements Serializable {
         this.id = id;
     }
 
-    public String getPath() {
-        return path;
+    public String getValor() {
+        return valor;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setValor(String valor) {
+        this.valor = valor;
     }
     
 }
