@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -31,14 +32,26 @@ public class VisitaEntity implements Serializable {
     
     private String comentario;
     
-    @OneToMany(mappedBy = "FotoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "Foto", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FotoEntity> fotos;
     
     @ManyToOne
     private UsuarioEntity usuario;
     
-    @OneToOne
-    private OfertaEntity oferta;
+    @ManyToMany
+    private List<OfertaEntity> ofertas;
+
+    public List<OfertaEntity> getOfertas() {
+        return ofertas;
+    }
+
+    public void setFotos(List<FotoEntity> fotos) {
+        this.fotos = fotos;
+    }
+    
+    public void addOferta(OfertaEntity ofertas){
+        this.ofertas.add(ofertas);
+    }
 
     public UsuarioEntity getUsuario() {
         return usuario;
@@ -46,14 +59,6 @@ public class VisitaEntity implements Serializable {
 
     public void setUsuario(UsuarioEntity usuario) {
         this.usuario = usuario;
-    }
-
-    public OfertaEntity getOferta() {
-        return oferta;
-    }
-
-    public void setOferta(OfertaEntity oferta) {
-        this.oferta = oferta;
     }
 
     public Long getId() {
@@ -84,10 +89,12 @@ public class VisitaEntity implements Serializable {
         return fotos;
     }
 
-    public void setFotos(List<FotoEntity> fotos) {
-        this.fotos = fotos;
+    public void addFotos(FotoEntity fotos) {
+        this.fotos.add(fotos);
+    }   
+    
+    public void setOfertas(List<OfertaEntity> ofertas) {
+        this.ofertas = ofertas;
     }
-    
-    
     
 }
