@@ -45,5 +45,10 @@ public class PaseoResource {
         return new PaseoDetailDTO(logic.getPaseo(id),true);
         
     }
+    
+    @POST
+    public PaseoDTO crearPaseo(PaseoDTO paso){
+        
+    }
           
     }
