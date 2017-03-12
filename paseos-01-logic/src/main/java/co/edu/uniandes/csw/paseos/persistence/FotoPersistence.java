@@ -6,10 +6,8 @@
 package co.edu.uniandes.csw.paseos.persistence;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -40,30 +38,38 @@ public class FotoPersistence {
     
     /**
      * Método que retorna todas las fotos
-     * @param id id de 
      * @return Fotos en el a BD
      */
-    public List<FotoEntity> findAllVisita(long id){
+    public List<FotoEntity> findAll(){
         
         Query q = em.createQuery("select u from FotoEntity u");
-        List<FotoEntity> fotos = q.getResultList();
-        List<FotoEntity> lista = new ArrayList<>();
-        for(FotoEntity entity:fotos){
-            if(entity.getVisita().getId()==id)lista.add(entity);
-        }
-        return lista;
+        return q.getResultList();
     }
     
+    /**
+     * Método que crea una una entidad de foto
+     * @param entity foto a crear
+     * @return la foto creada
+     */
     public FotoEntity create(FotoEntity entity){
         
         em.persist(entity);
         return entity;
     }
     
+    /**
+     * Método que actualiza una foto
+     * @param entity foto a modificar
+     * @return la foto modificada
+     */
     public FotoEntity update(FotoEntity entity){
         return em.merge(entity);
     }
     
+    /**
+     * Método que elimina una foto de la BD
+     * @param id de la foto a eliminar
+     */
     public void delete(Long id){
         FotoEntity entity = em.find(FotoEntity.class, id);
         em.remove(entity);
