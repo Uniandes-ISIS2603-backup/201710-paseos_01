@@ -26,7 +26,7 @@ public class FotoEntity implements Serializable {
     /**
      * Valor codificado de la foto
      */
-    private String valor;
+    private byte[] valor;
     
     /**
      * Relación muchos a uno con una visita
@@ -92,7 +92,7 @@ public class FotoEntity implements Serializable {
      * Método que obtiene el valor codificado
      * @return valor de la foto
      */
-    public String getValor() {
+    public byte[] getValor() {
         return valor;
     }
 
@@ -100,7 +100,7 @@ public class FotoEntity implements Serializable {
      * Método que establece el valor codificado de la foto
      * @param valor de la foto
      */
-    public void setValor(String valor) {
+    public void setValor(byte[] valor) {
         this.valor = valor;
     }
     
