@@ -25,18 +25,9 @@ public class FotoLogic {
      * @return Colección de objetos de FotoEntity.
      */
    
-    public List<FotoEntity> getFotosVisita(Long id) {
-        return persistence.findAllVisita(id);
+    public List<FotoEntity> getFotos() {
+        return persistence.findAll();
     }
-    
-    /**
-     * Obtiene la lista de los registros de Foto para un paseo.
-     * @return Colección de objetos de FotoEntity.
-     */
-    public List<FotoEntity> getFotosPaseo(Long id) {
-        return persistence.findAllPaseo(id);
-    }
-
 
     /**
      * Obtiene los datos de una instancia de Foto a partir de su ID.
