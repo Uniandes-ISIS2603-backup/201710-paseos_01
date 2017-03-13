@@ -6,6 +6,7 @@
 package co.edu.uniandes.csw.paseos.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ import javax.persistence.OneToMany;
 
 /**
  *
- * @author jma.lovera10
+ * @author n.acevedos
  */
 @Entity
 public class UsuarioEntity implements Serializable {
@@ -29,7 +30,7 @@ public class UsuarioEntity implements Serializable {
     
     private String apellidos;
     
-    private Integer edad;
+    private Date fechaNaciemiento; 
     
     private Integer condicionFisica;
     
@@ -75,14 +76,7 @@ public class UsuarioEntity implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public Integer getEdad() {
-        return edad;
-    }
-
-    public void setEdad(Integer edad) {
-        this.edad = edad;
-    }
-
+    
     public Integer getCondicionFisica() {
         return condicionFisica;
     }
@@ -173,6 +167,22 @@ public class UsuarioEntity implements Serializable {
         }
     }
 
+    public Date getFechaNaciemiento() {
+        return fechaNaciemiento;
+    }
+
+    public int getCuantasCalificaciones() {
+        return cuantasCalificaciones;
+    }
+
+    public void setFechaNaciemiento(Date fechaNaciemiento) {
+        this.fechaNaciemiento = fechaNaciemiento;
+    }
+
+    public void setCuantasCalificaciones(int cuantasCalificaciones) {
+        this.cuantasCalificaciones = cuantasCalificaciones;
+    }
+    
     public void setOfertas(List<OfertaEntity> ofertas) {
         this.ofertas = ofertas;
     }
