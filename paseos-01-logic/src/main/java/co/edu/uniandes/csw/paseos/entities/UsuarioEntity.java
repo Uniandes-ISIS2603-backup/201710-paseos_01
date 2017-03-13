@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -30,6 +31,7 @@ public class UsuarioEntity implements Serializable {
     
     private String apellidos;
     
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date fechaNaciemiento; 
     
     private Integer condicionFisica;
