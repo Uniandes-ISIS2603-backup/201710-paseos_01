@@ -29,7 +29,6 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(co.edu.uniandes.csw.paseos.resources.FotoResource.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.OfertaResource.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.PaseoResource.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.UsuarioResource.class);
