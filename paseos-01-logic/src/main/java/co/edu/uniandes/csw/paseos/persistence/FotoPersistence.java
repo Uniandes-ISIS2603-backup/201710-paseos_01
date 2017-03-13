@@ -71,7 +71,6 @@ public class FotoPersistence {
      * @param id de la foto a eliminar
      */
     public void delete(Long id){
-        FotoEntity entity = em.find(FotoEntity.class, id);
-        em.remove(entity);
+        em.remove(find(id));
     }
 }

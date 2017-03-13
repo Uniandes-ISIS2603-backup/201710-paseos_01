@@ -40,7 +40,7 @@ public class FotoDTO {
     public FotoDTO(FotoEntity entity){
         if(entity!=null){
             id = entity.getId();
-            valor = DatatypeConverter.printBase64Binary(entity.getValor());
+            valor = Base64.getEncoder().encodeToString(entity.getValor());
         }
     }
 
