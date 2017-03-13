@@ -6,11 +6,12 @@
 package co.edu.uniandes.csw.paseos.dtos;
 
 import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
+import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author jma.lovera10
+ * @author n.acevedos
  */
 @XmlRootElement
 public class UsuarioDTO {
@@ -33,7 +34,7 @@ public class UsuarioDTO {
     /**
      * Atributo que modela la edad del usuario
      */
-    protected Integer edad;
+    protected Date fechaNacimiento; 
     
     /**
      * Atributo que modela la condición física del usuario
@@ -51,18 +52,18 @@ public class UsuarioDTO {
             this.id = entity.getId();
             this.nombres = entity.getNombres();
             this.apellidos = entity.getApellidos();
-            this.edad = entity.getEdad();
+            this.fechaNacimiento = entity.getFechaNaciemiento();
             this.condicionFisica = entity.getCondicionFisica();
         }
     }
     
     public UsuarioEntity toEntity(){
         UsuarioEntity entity = new UsuarioEntity();
-        entity.setId(id);
-        entity.setNombres(nombres);
-        entity.setApellidos(apellidos);
-        entity.setEdad(edad);
-        entity.setCondicionFisica(condicionFisica);
+        entity.setId(this.id);
+        entity.setNombres(this.nombres);
+        entity.setApellidos(this.apellidos);
+        entity.setFechaNaciemiento(this.fechaNacimiento);
+        entity.setCondicionFisica(this.condicionFisica);
         return entity;
     }
 
@@ -114,22 +115,14 @@ public class UsuarioDTO {
         this.apellidos = apellidos;
     }
 
-    /**
-     * Obtiene la edad del usuario
-     * @return edad del usuario
-     */
-    public Integer getEdad() {
-        return edad;
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    /**
-     * Establece la edad del usuario
-     * @param edad del usuario
-     */
-    public void setEdad(Integer edad) {
-        this.edad = edad;
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
-
+    
     /**
      * Obtiene la condición física del usuario
      * @return condición física del usuario
