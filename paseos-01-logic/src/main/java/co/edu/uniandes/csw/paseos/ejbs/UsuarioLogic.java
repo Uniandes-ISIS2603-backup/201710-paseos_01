@@ -11,12 +11,14 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.paseos.persistence.UsuarioPersistence;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
+import java.util.Date;
 import java.util.List;
 
 
 /**
  *
- * @author jma.lovera10
+ * @author n.acevedos
  */
 @Stateless
 public class UsuarioLogic {
@@ -52,7 +54,11 @@ public class UsuarioLogic {
      * @return Objeto de UsuarioEntity con los datos nuevos y su ID.
      * @generated
      */
-    public UsuarioEntity createUsuario(UsuarioEntity entity) {
+    public UsuarioEntity createUsuario(UsuarioEntity entity) throws BusinessLogicException {
+        if (entity.getFechaNaciemiento().after(new Date()))
+        {
+            throw new BusinessLogicException("la fecha de nacimiento tiene que ser despues de la actual"); 
+        }
         persistence.create(entity);
         return entity;
     }
