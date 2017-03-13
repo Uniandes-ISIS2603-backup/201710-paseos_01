@@ -18,41 +18,45 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("/paseos")
+
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PaseoResource {
     
     @Inject 
     private PaseoLogic logic;
-    
+   
+    @Path("/paseos")
     @GET
-    public List<PaseoDetailDTO> getPaseos(@PathParam("catalogo") boolean cat){
+    public List<PaseoDetailDTO> getPaseos( @QueryParam("catalogo")int cat ){
         List<PaseoEntity> listEntities = logic.getPaseos();
         List<PaseoDetailDTO> lista= new ArrayList<PaseoDetailDTO>();
             for (PaseoEntity entity : listEntities) {
-                lista.add(new PaseoDetailDTO(entity, cat));
+                lista.add(new PaseoDetailDTO(entity, cat!=0));
             }
         return lista;
         
     }
     
     @GET
-    @Path("{id : \\d+}")
+    @Path("/paseos/{id : \\d+}")
+  
     public PaseoDetailDTO getPaseo(@PathParam("id") long id){
         return new PaseoDetailDTO(logic.getPaseo(id),true);
         
     }
     
     @POST
+    @Path("/paseos")
     public PaseoDTO crearPaseo(PaseoDTO paseo){
         return new PaseoDTO(logic.createPaseo(paseo.toEntity()));
     }
     
     @PUT
-    @Path("{id: \\d+}")
+    @Path("/paseos/{id: \\d+}")
     public PaseoDTO modificarPaseo(PaseoDTO paseo, @PathParam("id") long id ){
        PaseoEntity entity = paseo.toEntity();
         entity.setId(id);
@@ -60,7 +64,7 @@ public class PaseoResource {
     }
     
     @DELETE
-    @Path("{id: \\d+}")
+    @Path("/paseos/{id: \\d+}")
     public void deletePaseo(@PathParam("id") long id) {
         logic.delete(id);
     }
