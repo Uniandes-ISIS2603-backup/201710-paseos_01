@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
 import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
+import co.edu.uniandes.csw.paseos.persistence.PaseoPersistence;
+import co.edu.uniandes.csw.paseos.persistence.VisitaPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -19,6 +21,10 @@ import javax.inject.Inject;
 public class FotoLogic {
     
     @Inject private FotoPersistence persistence;
+    
+    @Inject private VisitaPersistence visitaPersistence;
+    
+    @Inject private PaseoPersistence paseoPersistence;
     
     /**
      * Obtiene la lista de los registros de Foto para una visita.
@@ -51,18 +57,6 @@ public class FotoLogic {
     public FotoEntity createFoto(FotoEntity entity) {
         persistence.create(entity);
         return entity;
-    }
-
-    /**
-     * Actualiza la información de una instancia de Foto.
-     *
-     * @param entity Instancia de FotoEntity con los nuevos datos.
-     * @return Instancia de FotoEntity con los datos actualizados.
-     * 
-     */
-   
-    public FotoEntity updateFoto(FotoEntity entity) {
-        return persistence.update(entity);
     }
 
     /**
