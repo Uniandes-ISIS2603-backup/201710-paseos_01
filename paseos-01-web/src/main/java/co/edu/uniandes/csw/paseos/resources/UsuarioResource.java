@@ -24,6 +24,7 @@ import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.paseos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.paseos.ejbs.UsuarioLogic;
 import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import javax.ws.rs.WebApplicationException;
 
@@ -89,7 +90,7 @@ public class UsuarioResource {
      */
     @POST
     @Path("/usuarios")
-    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO dto) {
+    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO dto) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.createUsuario(dto.toEntity()));
     }
 
