@@ -41,6 +41,7 @@ public class PaseoDetailDTO extends PaseoDTO{
         }
     }
 
+
     public List<FotoDTO> getFotos() {
         return fotos;
     }
