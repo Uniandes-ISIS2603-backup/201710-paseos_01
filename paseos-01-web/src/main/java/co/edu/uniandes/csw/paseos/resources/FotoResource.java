@@ -60,39 +60,28 @@ public class FotoResource {
     }
     
     @GET
-    @Path("/visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
-    public FotoDTO getFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
-        return new FotoDTO(fotoLogic.getFoto(id));
+    @Path("/visitas/{idVisita: \\d+}/fotos")
+    public List<FotoDTO> getFotosVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
+        return listEntity2DTO(fotoLogic.getFotosVisita(idVisita));
     }
     
     @GET
-    @Path("/paseos/{idPaseo: \\d+}/fotos/{id: \\d+}")
-    public FotoDTO getFotoPaseo(@PathParam("id") Long id, @PathParam("idPaseo") Long idPaseo){
-        return new FotoDTO(fotoLogic.getFoto(id));
+    @Path("/visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
+    public FotoDTO getFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
+        return new FotoDTO(fotoLogic.getFotoVisita(id,idVisita));
     }
     
     //POST /companies -- agrega una habitacion
     @POST
     @Path("/visitas/{idVisita: \\d+}/fotos")
     public FotoDTO addFotoVisita(@PathParam("idVisita") Long idVisita, FotoDTO fotoDTO)throws BusinessLogicException{
-        return new FotoDTO(fotoLogic.createFoto(fotoDTO.toEntity()));
+        return new FotoDTO(fotoLogic.createFotoVisita(fotoDTO.toEntity(),idVisita));
     }
-    
-    @POST
-    @Path("/paseos/{idPaseo: \\d+}/fotos")
-    public FotoDTO addFotoPaseo(@PathParam("idPaseo") Long idPaseo, FotoDTO fotoDTO)throws BusinessLogicException{
-        return new FotoDTO(fotoLogic.createFoto(fotoDTO.toEntity()));
-    }
+   
     
     @DELETE
     @Path("/visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
     public void deleteFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita) {
-        fotoLogic.deleteFoto(id);
-    }
-    
-    @DELETE
-    @Path("/paseos/{idPaseo: \\d+}/fotos/{id: \\d+}")
-    public void deleteFotoPaseo(@PathParam("id") Long id, @PathParam("idPaseo") Long idPaseo) {
-        fotoLogic.deleteFoto(id);
+        fotoLogic.deleteFotoVisita(id);
     }
  }

@@ -30,9 +30,6 @@ public class FotoEntity implements Serializable {
     
     @ManyToOne
     private VisitaEntity visita;
-    
-    @ManyToOne
-    private PaseoEntity paseo;
 
     /**
      * Método que obtiene el id
@@ -72,14 +69,6 @@ public class FotoEntity implements Serializable {
 
     public void setVisita(VisitaEntity visita) {
         this.visita = visita;
-    }
-
-    public PaseoEntity getPaseo() {
-        return paseo;
-    }
-
-    public void setPaseo(PaseoEntity paseo) {
-        this.paseo = paseo;
     }
     
 }
