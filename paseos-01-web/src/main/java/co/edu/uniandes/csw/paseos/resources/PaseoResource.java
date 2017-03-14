@@ -7,6 +7,7 @@ import co.edu.uniandes.csw.paseos.dtos.PaseoDTO;
 import co.edu.uniandes.csw.paseos.dtos.PaseoDetailDTO;
 import co.edu.uniandes.csw.paseos.ejbs.PaseoLogic;
 import co.edu.uniandes.csw.paseos.entities.PaseoEntity;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -24,18 +25,32 @@ import javax.ws.rs.core.MediaType;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Path("/")
 public class PaseoResource {
     
     @Inject 
     private PaseoLogic logic;
    
-    @Path("/paseos")
+    
     @GET
-    public List<PaseoDetailDTO> getPaseos( @QueryParam("catalogo")int cat ){
+    @Path("paseos")
+    public List<PaseoDTO> getPaseos( @QueryParam("catalogo")int cat ){
         List<PaseoEntity> listEntities = logic.getPaseos();
-        List<PaseoDetailDTO> lista= new ArrayList<PaseoDetailDTO>();
+        List<PaseoDTO> lista= new ArrayList<PaseoDTO>();
             for (PaseoEntity entity : listEntities) {
-                lista.add(new PaseoDetailDTO(entity, cat!=0));
+                //.llenarisaje()
+                if (cat==1){
+                    PaseoDetailDTO p=new PaseoDetailDTO(entity);
+                    p.llenarListas(entity);
+                    lista.add(p);
+                }
+                else if (cat==0){
+                lista.add(new PaseoDTO(entity));
+                }
+                
+                
+                    //
+//cat!=0));
             }
         return lista;
         
@@ -44,20 +59,22 @@ public class PaseoResource {
     @GET
     @Path("/paseos/{id : \\d+}")
   
-    public PaseoDetailDTO getPaseo(@PathParam("id") long id){
-        return new PaseoDetailDTO(logic.getPaseo(id),true);
+    public PaseoDTO getPaseo(@PathParam("id") long id){
+        //llenar
+        return new PaseoDetailDTO(logic.getPaseo(id));
         
     }
     
     @POST
     @Path("/paseos")
-    public PaseoDTO crearPaseo(PaseoDTO paseo){
+    public PaseoDTO crearPaseo(PaseoDTO paseo) throws BusinessLogicException{
+        if (paseo==null) throw new BusinessLogicException();
         return new PaseoDTO(logic.createPaseo(paseo.toEntity()));
     }
     
     @PUT
     @Path("/paseos/{id: \\d+}")
-    public PaseoDTO modificarPaseo(PaseoDTO paseo, @PathParam("id") long id ){
+    public PaseoDTO modificarPaseo(PaseoDTO paseo, @PathParam("id") long id ) throws BusinessLogicException{
        PaseoEntity entity = paseo.toEntity();
         entity.setId(id);
         return new PaseoDTO(logic.modificar(entity));
