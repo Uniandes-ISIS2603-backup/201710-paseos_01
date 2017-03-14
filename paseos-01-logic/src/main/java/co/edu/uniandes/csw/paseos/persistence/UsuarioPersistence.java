@@ -51,7 +51,7 @@ public class UsuarioPersistence {
     public boolean loginUnico(String login)
     {
      boolean res = false; 
-     Query q = em.createQuery("select u from UsuarioEntity u where u.login = login").setParameter("login", login);
+     Query q = em.createQuery("select u from UsuarioEntity u where u.login = :login").setParameter("login", login);
      if (q.getResultList().isEmpty())
      {
          res = true; 

@@ -79,9 +79,7 @@ public class UsuarioResource {
      * @generated
      */
     @GET
-
     @Path("usuarios/{id: \\d+}")
-
     public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
     }
