@@ -109,7 +109,7 @@ public class UsuarioResource {
      */
     @PUT
     @Path("usuarios/{id: \\d+}")
-    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO dto) {
+    public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO dto) throws BusinessLogicException {
         UsuarioEntity entity = dto.toEntity();
         entity.setId(id);
         return new UsuarioDetailDTO(usuarioLogic.updateUsuario(entity));
@@ -125,7 +125,7 @@ public class UsuarioResource {
 
     @Path("usuarios/{id: \\d+}")
 
-    public void deleteUsuario(@PathParam("id") Long id) {
+    public void deleteUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         usuarioLogic.deleteUsuario(id);
     }
     

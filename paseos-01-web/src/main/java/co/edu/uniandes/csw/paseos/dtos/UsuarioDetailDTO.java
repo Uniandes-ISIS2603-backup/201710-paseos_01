@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UsuarioDetailDTO extends UsuarioDTO{
     
-    private String login; 
+    
     
     private boolean guia; 
     
@@ -67,7 +67,6 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         entity.setFechaNaciemiento(this.fechaNacimiento);
         entity.setExperiencia(this.experiencia);
         entity.setGuia(this.guia);
-        entity.setLogin(this.login);
         entity.setNombres(this.nombres);
         
         List<OfertaEntity> ofertas1 = new ArrayList<OfertaEntity>(); 
