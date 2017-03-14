@@ -21,7 +21,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     
     
     
-    private Boolean guia; 
+    private boolean guia; 
     
     private String formacion; 
     
@@ -29,7 +29,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     
     private Double calificacionPromedio; 
     
-    private Boolean admin; 
+    private boolean admin; 
     
     private List<OfertaDetailDTO> ofertas; 
     
