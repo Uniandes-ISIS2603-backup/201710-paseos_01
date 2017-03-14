@@ -6,10 +6,11 @@
 package co.edu.uniandes.csw.paseos.resources;
 
 
-import javax.ws.rs.Path;
+
+import co.edu.uniandes.csw.paseos.dtos.UsuarioDTO;
 import java.util.List;
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,15 +19,14 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
+
 import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.paseos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.paseos.ejbs.UsuarioLogic;
 import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
-import javax.ws.rs.WebApplicationException;
+
 
 
 /**
@@ -95,8 +95,8 @@ public class UsuarioResource {
      */
     @POST
     @Path("usuarios")
-    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO dto) throws BusinessLogicException {
-        return new UsuarioDetailDTO(usuarioLogic.createUsuario(dto.toEntity()));
+    public UsuarioDTO createUsuario(UsuarioDTO dto) throws BusinessLogicException {
+        return new UsuarioDTO(usuarioLogic.createUsuario(dto.toEntity()));
     }
 
     /**
@@ -108,7 +108,7 @@ public class UsuarioResource {
      * @generated
      */
     @PUT
-    @Path("/usuarios/{id: \\d+}")
+    @Path("usuarios/{id: \\d+}")
     public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO dto) {
         UsuarioEntity entity = dto.toEntity();
         entity.setId(id);
