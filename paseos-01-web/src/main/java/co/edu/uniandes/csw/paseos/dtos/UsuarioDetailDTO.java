@@ -21,7 +21,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     
     
     
-    private boolean guia; 
+    private Boolean guia; 
     
     private String formacion; 
     
@@ -29,7 +29,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     
     private Double calificacionPromedio; 
     
-    private boolean admin; 
+    private Boolean admin; 
     
     private List<OfertaDetailDTO> ofertas; 
     
@@ -61,7 +61,6 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     {
         UsuarioEntity entity = new UsuarioEntity();
         entity.setId(this.id);
-        entity.setApellidos(this.apellidos);
         entity.setCalificacionPromedio(this.calificacionPromedio);
         entity.setCondicionFisica(this.condicionFisica);
         entity.setFechaNaciemiento(this.fechaNacimiento);
