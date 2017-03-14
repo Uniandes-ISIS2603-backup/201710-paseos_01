@@ -36,6 +36,16 @@ public class PaseoDTO {
     protected Integer condicionFisica;
     
     /**
+     * Atributo que modela el número minimo de integtrantes
+     */  
+    protected Integer numeroMinimo;
+    
+    /**
+     * Atributo que modela el número máximo de integtrantes
+     */
+    protected Integer numeroMaximo;
+    
+    /**
      * Atributo que modela el costo del paseo
      */
     protected Double costo;
@@ -74,6 +84,8 @@ public class PaseoDTO {
         entity.setCosto(costo);
         entity.setTransporte(transporte);
         entity.setAlmuerzo(almuerzo);
+        entity.setNumeroMaximo(numeroMaximo);
+        entity.setNumeroMinimo(numeroMinimo);
         return entity;
     }
 
@@ -188,6 +200,24 @@ public class PaseoDTO {
     public void setAlmuerzo(Boolean almuerzo) {
         this.almuerzo = almuerzo;
     }
+
+    public Integer getNumeroMaximo() {
+        return numeroMaximo;
+    }
+
+    public Integer getNumeroMinimo() {
+        return numeroMinimo;
+    }
+
+    public void setNumeroMaximo(Integer numeroMaximo) {
+        this.numeroMaximo = numeroMaximo;
+    }
+
+    public void setNumeroMinimo(Integer numeroMinimo) {
+        this.numeroMinimo = numeroMinimo;
+    }
+    
+    
     
     
 }

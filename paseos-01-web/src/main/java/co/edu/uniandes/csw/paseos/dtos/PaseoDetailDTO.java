@@ -20,7 +20,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PaseoDetailDTO extends PaseoDTO{
     private List<OfertaDTO> ofertas;
     private List<FotoDTO> fotos ;
+    private String descripcion;
 
+    public PaseoDetailDTO() {
+    }
+
+    
     public PaseoDetailDTO(PaseoEntity entity) {
         super(entity);
         
@@ -77,6 +82,9 @@ public class PaseoDetailDTO extends PaseoDTO{
         entity.setCosto(costo);
         entity.setTransporte(transporte);
         entity.setAlmuerzo(almuerzo);
+        entity.setNumeroMinimo(numeroMinimo);
+        entity.setNumeroMaximo(numeroMaximo);
+        entity.setDescripcion(descripcion);
         ArrayList<OfertaEntity> list = new ArrayList<OfertaEntity>();
         for (OfertaDTO ofertaDTO : ofertas) {
             list.add(ofertaDTO.toEntity());
