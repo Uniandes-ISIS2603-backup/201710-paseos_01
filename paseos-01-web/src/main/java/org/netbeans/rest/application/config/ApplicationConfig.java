@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
         resources.add(co.edu.uniandes.csw.paseos.resources.FotoResource.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.OfertaResource.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.PaseoResource.class);
+        resources.add(co.edu.uniandes.csw.paseos.resources.UsuarioResource.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.VisitaResource.class);
     }
     
