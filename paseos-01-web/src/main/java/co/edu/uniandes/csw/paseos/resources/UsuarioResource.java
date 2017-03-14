@@ -36,6 +36,7 @@ import javax.ws.rs.WebApplicationException;
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Path("/")
 public class UsuarioResource {
     
     @Inject 
@@ -63,7 +64,7 @@ public class UsuarioResource {
      * @generated
      */
     @GET
-    @Path("/usuarios{id: \\d+}")
+    @Path("usuarios")
     public List<UsuarioDetailDTO> getUsuarios() {
         
         return listEntity2DTO(usuarioLogic.getUsuarios());
@@ -76,7 +77,7 @@ public class UsuarioResource {
      * @generated
      */
     @GET
-    @Path("{id: \\d+}")
+    @Path("usuarios/{id: \\d+}")
     public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
     }
@@ -89,7 +90,7 @@ public class UsuarioResource {
      * @generated
      */
     @POST
-    @Path("/usuarios")
+    @Path("usuarios")
     public UsuarioDetailDTO createUsuario(UsuarioDetailDTO dto) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.createUsuario(dto.toEntity()));
     }
@@ -117,7 +118,7 @@ public class UsuarioResource {
      * @generated
      */
     @DELETE
-    @Path("/usuarios{id: \\d+}")
+    @Path("usuarios/{id: \\d+}")
     public void deleteUsuario(@PathParam("id") Long id) {
         usuarioLogic.deleteUsuario(id);
     }
