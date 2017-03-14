@@ -24,15 +24,16 @@ public class OfertaLogic {
     private OfertaPersistence persistence;
     
     public OfertaEntity createOferta(OfertaEntity oferta)throws BusinessLogicException{
-        if (oferta.getFecha() == null || oferta.getFecha().after(new Date(System.currentTimeMillis())))
+        if (oferta.getFecha() == null || oferta.getFecha().before(new Date()))
            throw new BusinessLogicException ("La oferta debe tener fecha y esta debe ser posterior a la fecha actual");
-        if(oferta.getPaseo() == null)
-           throw new BusinessLogicException ("La oferta debe pertenecer a un paseo");
         if(oferta.getInscritos() != 0)
            throw new BusinessLogicException ("El numero de inscritos no puede ser diferente de cero");
         if(oferta.getVisitas().size()!= 0)
             throw new BusinessLogicException ("La oferta se acaba de crear, no puede tener visitas");
-
+        if(oferta.getGuia() == null)
+            throw new BusinessLogicException ("La oferta no se puede crear sin un guía");
+        if(oferta.getPaseo() == null)
+           throw new BusinessLogicException ("La oferta debe pertenecer a un paseo");
         return persistence.create(oferta);
     }
     
