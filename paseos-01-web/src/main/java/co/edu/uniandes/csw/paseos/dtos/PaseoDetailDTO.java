@@ -21,24 +21,35 @@ public class PaseoDetailDTO extends PaseoDTO{
     private List<OfertaDTO> ofertas;
     private List<FotoDTO> fotos ;
 
-    public PaseoDetailDTO(PaseoEntity entity, boolean catalogo) {
+    public PaseoDetailDTO(PaseoEntity entity) {
         super(entity);
-        List<OfertaEntity> ofertasEntities = entity.getOfertas();
+        
+        ofertas=null;
+       
+        fotos=null;
+        
+    }
+    
+    public void llenarListas(PaseoEntity entity){
         ofertas=new ArrayList<OfertaDTO>();
+        List<OfertaEntity> ofertasEntities = entity.getOfertas();
+        if(ofertasEntities==null) return;
         for (OfertaEntity of : ofertasEntities) {
             ofertas.add(new OfertaDTO(of));
         }
-        fotos=null;
-        if(catalogo){
+   
+            if (entity==null) return;
+       
             fotos= new ArrayList<FotoDTO>();
-        if (entity.getOfertas()!=null && entity.getOfertas().get(0)!=null && entity.getOfertas().get(0).getVisitas()!=null){
+        if (entity.getOfertas()==null || entity.getOfertas().isEmpty() || entity.getOfertas().get(0)==null || entity.getOfertas().get(0).getVisitas()==null || entity.getOfertas().get(0).getVisitas().isEmpty()) return;
             List<FotoEntity> lista = entity.getOfertas().get(0).getVisitas().get(0).getFotos();
+            if (lista==null) return;
             for (FotoEntity fotoEntity : lista) {
                 fotos.add( new FotoDTO(fotoEntity));
             }
                          
-        }
-        }
+        
+        
     }
 
 
@@ -50,13 +61,13 @@ public class PaseoDetailDTO extends PaseoDTO{
         this.fotos = fotos;
     }
 
-    public List<OfertaDTO> getOfertas() {
+    /*public List<OfertaDTO> getOfertas() {
         return ofertas;
     }
 
     public void setOfertas(List<OfertaDTO> ofertas) {
         this.ofertas = ofertas;
-    }
+    }*/
     public PaseoEntity toEntity(){
         PaseoEntity entity = new PaseoEntity();
         entity.setId(id);
