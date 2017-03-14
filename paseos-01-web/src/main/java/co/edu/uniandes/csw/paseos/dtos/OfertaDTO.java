@@ -31,8 +31,6 @@ public class OfertaDTO {
      */
     protected Integer inscritos;
     
-    protected UsuarioDTO guia;
-
     /**
      * Constructor por defecto
      */
@@ -44,16 +42,14 @@ public class OfertaDTO {
             this.id = entity.getId();
             this.fecha = entity.getFecha();
             this.inscritos = entity.getInscritos();
-            this.guia = new UsuarioDTO(entity.getGuia());
         }
     }
     
     public OfertaEntity toEntity(){
         OfertaEntity entity = new OfertaEntity();
-        entity.setId(id);
-        entity.setFecha(fecha);
-        entity.setInscritos(inscritos);
-        entity.setGuia(guia.toEntity());
+        entity.setId(this.getId());
+        entity.setFecha(this.getFecha());
+        entity.setInscritos(this.getInscritos());
         return entity;
     }
 
@@ -103,12 +99,5 @@ public class OfertaDTO {
      */
     public void setInscritos(Integer inscritos) {
         this.inscritos = inscritos;
-    }
-    
-    public UsuarioDTO getGuia() {
-        return guia;
-    }
-    public void setGuia(UsuarioDTO guia) {
-        this.guia = guia;
     }
 }

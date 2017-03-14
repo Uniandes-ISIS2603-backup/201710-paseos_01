@@ -48,10 +48,10 @@ public class OfertaResource {
     }
     
     @POST
-    public OfertaDTO addOferta(OfertaDTO ofertaDTO)throws BusinessLogicException{
+    public OfertaDetailDTO addOferta(OfertaDetailDTO ofertaDTO)throws BusinessLogicException{
         OfertaEntity oferta = ofertaDTO.toEntity();
         OfertaEntity storedOferta = ofertaLogic.createOferta(oferta);
-        return new OfertaDTO(storedOferta);       
+        return new OfertaDetailDTO(storedOferta);       
     }
     
     @PUT
