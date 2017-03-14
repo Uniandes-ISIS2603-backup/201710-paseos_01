@@ -67,6 +67,10 @@ public class UsuarioLogic {
         {
             throw new BusinessLogicException("la fecha de nacimiento tiene que ser despues de la actual"); 
         }
+        if (!persistence.loginUnico(entity.getLogin()))
+        {
+            throw new BusinessLogicException("ya existe un usuario con ese login"); 
+        }
         persistence.create(entity);
         return entity;
     }
