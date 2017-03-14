@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.paseos.persistence;
 
+import co.edu.uniandes.csw.paseos.entities.FotoEntity;
 import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -38,6 +39,12 @@ public class VisitaPersistence {
         
         em.persist(entity);
         return entity;
+    }
+    
+    public VisitaEntity createFoto(FotoEntity entity, Long id){
+        VisitaEntity ent = find(id);
+        ent.addFotos(entity);
+        return em.merge(ent);
     }
     
     public VisitaEntity update(VisitaEntity entity){
