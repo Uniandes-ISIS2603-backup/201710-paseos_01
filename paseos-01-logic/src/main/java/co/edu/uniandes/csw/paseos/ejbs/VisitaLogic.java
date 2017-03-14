@@ -12,6 +12,7 @@ import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.paseos.persistence.OfertaPersistence;
 import co.edu.uniandes.csw.paseos.persistence.UsuarioPersistence;
 import co.edu.uniandes.csw.paseos.persistence.VisitaPersistence;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -38,11 +39,22 @@ public class VisitaLogic {
         return persistenceVisita.find(id);
     } 
     
+    public List<VisitaEntity> getVisitaPorUsuario(Long idUsusario){
+        List<VisitaEntity> lista = persistenceVisita.findAll();
+        List<VisitaEntity> respuesta = new ArrayList<VisitaEntity>();
+        for(VisitaEntity x : lista){
+            if(x.getUsuario().getId().compareTo(idUsusario)==0){
+                respuesta.add(x);
+            }
+        }
+        return respuesta;
+    }
+    
     public VisitaEntity updateVisita(VisitaEntity entity) throws BusinessLogicException{
         if(getVisita(entity.getId()).getOferta()!=entity.getOferta()){
             throw new BusinessLogicException("La oferta no es la oferta original");
         }
-        if(!entity.getOferta().getFecha().before(new Date(System.currentTimeMillis()))){
+        if(!entity.getOferta().getFecha().before(new Date())){
             throw new BusinessLogicException("La fecha de oferta tiene que haber pasado");
         }
         if(getVisita(entity.getId()).getUsuario()!=entity.getUsuario()){
@@ -74,7 +86,13 @@ public class VisitaLogic {
         persistenceVisita.delete(id);
     }
     
-    public VisitaEntity createVisita(VisitaEntity entity){
+    public VisitaEntity createVisita(VisitaEntity entity) throws BusinessLogicException{
+        if(!getVisita(entity.getId()).getUsuario().getGuia()){
+                throw new BusinessLogicException("El usuario que deberia ser guia no es guia");
+        }
+        if(entity.getOferta().getFecha().before(new Date())){
+            throw new BusinessLogicException("La fecha de oferta no puede haber pasado");
+        }
         UsuarioEntity update = entity.getUsuario();
         update.addVisita(entity);
         persistenceUsuario.update(update);
@@ -85,5 +103,16 @@ public class VisitaLogic {
         
         persistenceVisita.create(entity);
         return entity;
+    }
+
+    public List<VisitaEntity> getVisitaPorPaseo(Long idPaseo) {
+        List<VisitaEntity> lista = persistenceVisita.findAll();
+        List<VisitaEntity> respuesta = new ArrayList<VisitaEntity>();
+        for(VisitaEntity x : lista){
+            if(x.getOferta().getPaseo().getId().compareTo(idPaseo)==0){
+                respuesta.add(x);
+            }
+        }
+        return respuesta;
     }
 }
