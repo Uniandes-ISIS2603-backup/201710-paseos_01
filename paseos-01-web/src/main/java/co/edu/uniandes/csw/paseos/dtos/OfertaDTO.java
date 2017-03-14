@@ -30,6 +30,8 @@ public class OfertaDTO {
      * Atributo que modela la cantidad de inscritos para la oferta
      */
     protected Integer inscritos;
+    
+    protected UsuarioDTO guia;
 
     /**
      * Constructor por defecto
@@ -42,6 +44,7 @@ public class OfertaDTO {
             this.id = entity.getId();
             this.fecha = entity.getFecha();
             this.inscritos = entity.getInscritos();
+            this.guia = new UsuarioDTO(entity.getGuia());
         }
     }
     
@@ -50,6 +53,7 @@ public class OfertaDTO {
         entity.setId(id);
         entity.setFecha(fecha);
         entity.setInscritos(inscritos);
+        entity.setGuia(guia.toEntity());
         return entity;
     }
 
@@ -101,5 +105,10 @@ public class OfertaDTO {
         this.inscritos = inscritos;
     }
     
-    
+    public UsuarioDTO getGuia() {
+        return guia;
+    }
+    public void setGuia(UsuarioDTO guia) {
+        this.guia = guia;
+    }
 }
