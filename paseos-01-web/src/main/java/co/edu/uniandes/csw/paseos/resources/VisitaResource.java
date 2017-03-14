@@ -27,7 +27,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
+@Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class VisitaResource {
@@ -47,31 +47,31 @@ public class VisitaResource {
     }
     
     @GET
-    @Path("/visitas")
+    @Path("visitas")
     public List<VisitaDTO> getVisitas() {
         return listEntity2DTO(visitaLogic.getVisita());
     }
     
     @GET
-    @Path("/usuarios/{idUsuario: \\d+}/visitas")
+    @Path("usuarios/{idUsuario: \\d+}/visitas")
     public List<VisitaDTO> getVisitasPorUsuario(@PathParam("idUsuario") Long idUsuario) {
         return listEntity2DTO(visitaLogic.getVisitaPorUsuario(idUsuario));
     }
     
     @GET
-    @Path("/paseos/{idPaseo: \\d+}/visitas")
+    @Path("paseos/{idPaseo: \\d+}/visitas")
     public List<VisitaDTO> getVisitasPorPaseo(@PathParam("idPaseo") Long idPaseo) {
         return listEntity2DTO(visitaLogic.getVisitaPorPaseo(idPaseo));
     }
     
     @GET
-    @Path("/visitas/{id: \\d+}")
+    @Path("visitas/{id: \\d+}")
     public VisitaDetailDTO getVisita(@PathParam("id") Long id){
         return new VisitaDetailDTO(visitaLogic.getVisita(id));
     }
     
     @POST
-    @Path("/usuarios/{idUsuario: \\d+}/ofertas/{idOferta: \\d+}/visitas/{id: \\d+}")
+    @Path("usuarios/{idUsuario: \\d+}/ofertas/{idOferta: \\d+}/visitas/{id: \\d+}")
     public VisitaDTO createVisita(@PathParam("id") Long id, @PathParam("idOferta") Long idOferta, @PathParam("idUsuario") Long idUsuario, VisitaDTO dto ) throws BusinessLogicException{
         VisitaEntity entity = dto.toEntity();
         entity.setId(id);
@@ -83,7 +83,7 @@ public class VisitaResource {
     }
     
     @PUT
-    @Path("/visitas/{id: \\d+}")
+    @Path("visitas/{id: \\d+}")
     public VisitaDTO updateVisita(@PathParam("id") Long id, VisitaDTO dto) throws BusinessLogicException{
         VisitaEntity entity = dto.toEntity();
         entity.setId(id);
@@ -91,7 +91,7 @@ public class VisitaResource {
     }
     
     @DELETE
-    @Path("/visitas/{id: \\d+}")
+    @Path("visitas/{id: \\d+}")
     public void deleteVisita(@PathParam("id") Long id) throws BusinessLogicException{
         visitaLogic.deleteVisita(id);
     }
