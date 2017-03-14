@@ -41,6 +41,7 @@ public class UsuarioLogic {
      *
      * @param id Identificador de la instancia a consultar
      * @return Instancia de UsuarioEntity con los datos del Usuario consultado.
+     * @throws co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException
      *
      */
     public UsuarioEntity getUsuario(Long id) throws BusinessLogicException {
@@ -57,6 +58,7 @@ public class UsuarioLogic {
      *
      * @param entity Objeto de UsuarioEntity con los datos nuevos
      * @return Objeto de UsuarioEntity con los datos nuevos y su ID.
+     * @throws co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException
      * @generated
      */
     public UsuarioEntity createUsuario(UsuarioEntity entity) throws BusinessLogicException {
@@ -77,7 +79,8 @@ public class UsuarioLogic {
      * 
      */
    
-    public UsuarioEntity updateUsuario(UsuarioEntity entity) {
+    public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException {
+        UsuarioEntity ue = getUsuario(entity.getId()); 
         return persistence.update(entity);
     }
     
@@ -88,7 +91,8 @@ public class UsuarioLogic {
      *
      */
    
-    public void deleteUsuario(Long id) {
+    public void deleteUsuario(Long id) throws BusinessLogicException {
+        UsuarioEntity ue = getUsuario(id); 
         persistence.delete(id);
     }
     
