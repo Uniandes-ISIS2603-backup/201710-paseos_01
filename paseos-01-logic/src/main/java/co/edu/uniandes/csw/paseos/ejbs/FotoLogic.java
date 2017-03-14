@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
 import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
-import co.edu.uniandes.csw.paseos.persistence.PaseoPersistence;
 import co.edu.uniandes.csw.paseos.persistence.VisitaPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
