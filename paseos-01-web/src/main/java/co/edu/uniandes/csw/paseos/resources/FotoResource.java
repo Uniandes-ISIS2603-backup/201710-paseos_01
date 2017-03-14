@@ -19,6 +19,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+@Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class FotoResource {
@@ -48,39 +49,39 @@ public class FotoResource {
     }
     
     @GET
-    @Path("/fotos")
+    @Path("fotos")
     public List <FotoDTO> getFotos(){
         return listEntity2DTO(fotoLogic.getFotos());
     }
     
     @GET
-    @Path("/fotos/{id: \\d+}")
+    @Path("fotos/{id: \\d+}")
     public FotoDTO getFoto(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
         return new FotoDTO(fotoLogic.getFoto(id));
     }
     
     @GET
-    @Path("/visitas/{idVisita: \\d+}/fotos")
+    @Path("visitas/{idVisita: \\d+}/fotos")
     public List<FotoDTO> getFotosVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
         return listEntity2DTO(fotoLogic.getFotosVisita(idVisita));
     }
     
     @GET
-    @Path("/visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
+    @Path("visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
     public FotoDTO getFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
         return new FotoDTO(fotoLogic.getFotoVisita(id,idVisita));
     }
     
     //POST /companies -- agrega una habitacion
     @POST
-    @Path("/visitas/{idVisita: \\d+}/fotos")
+    @Path("visitas/{idVisita: \\d+}/fotos")
     public FotoDTO addFotoVisita(@PathParam("idVisita") Long idVisita, FotoDTO fotoDTO)throws BusinessLogicException{
         return new FotoDTO(fotoLogic.createFotoVisita(fotoDTO.toEntity(),idVisita));
     }
    
     
     @DELETE
-    @Path("/visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
+    @Path("visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
     public void deleteFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita) {
         fotoLogic.deleteFotoVisita(id);
     }
