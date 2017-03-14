@@ -64,7 +64,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         entity.setApellidos(this.apellidos);
         entity.setCalificacionPromedio(this.calificacionPromedio);
         entity.setCondicionFisica(this.condicionFisica);
-        entity.setEdad(this.edad);
+        entity.setFechaNaciemiento(this.fechaNacimiento);
         entity.setExperiencia(this.experiencia);
         entity.setGuia(this.guia);
         entity.setLogin(this.login);

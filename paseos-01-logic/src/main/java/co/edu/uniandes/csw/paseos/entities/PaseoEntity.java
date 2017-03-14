@@ -43,10 +43,10 @@ public class PaseoEntity implements Serializable{
      
     private String descripcion;
     
-    @OneToMany(mappedBy = "OfertaEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "paseo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OfertaEntity> ofertas;
     
-    @OneToMany(mappedBy = "FotoEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany
     private List<FotoEntity> fotos;
 
     public Long getId() {

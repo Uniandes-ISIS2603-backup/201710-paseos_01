@@ -46,6 +46,17 @@ public class FotoPersistence {
         return q.getResultList();
     }
     
+    public List<FotoEntity> findFotosVisita(Long id) {
+        Query q = em.createQuery("select u from FotoEntity u where u.visita.id = "+id);
+        return q.getResultList();
+    }
+    
+    public FotoEntity findFotoVisita(Long idVisita , Long id) {
+        Query q = em.createQuery("select u from FotoEntity u where u.id = "+id+" and u.visita.id = "+idVisita);
+        List<FotoEntity> lista = q.getResultList();
+        return lista.size()!=0?lista.get(0):null;
+    }
+    
     /**
      * Método que crea una una entidad de foto
      * @param entity foto a crear
@@ -71,7 +82,7 @@ public class FotoPersistence {
      * @param id de la foto a eliminar
      */
     public void delete(Long id){
-        FotoEntity entity = em.find(FotoEntity.class, id);
-        em.remove(entity);
+        em.remove(find(id));
     }
+
 }

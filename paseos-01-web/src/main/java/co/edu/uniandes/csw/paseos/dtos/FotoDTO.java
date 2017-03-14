@@ -7,7 +7,6 @@ package co.edu.uniandes.csw.paseos.dtos;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
 import java.util.Base64;
-import javax.xml.bind.DatatypeConverter;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -40,7 +39,7 @@ public class FotoDTO {
     public FotoDTO(FotoEntity entity){
         if(entity!=null){
             id = entity.getId();
-            valor = DatatypeConverter.printBase64Binary(entity.getValor());
+            valor = Base64.getEncoder().encodeToString(entity.getValor());
         }
     }
 

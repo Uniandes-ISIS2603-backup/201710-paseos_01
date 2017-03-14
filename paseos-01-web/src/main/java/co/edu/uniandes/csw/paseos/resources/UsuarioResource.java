@@ -24,6 +24,7 @@ import javax.ws.rs.core.MediaType;
 import co.edu.uniandes.csw.paseos.dtos.UsuarioDetailDTO;
 import co.edu.uniandes.csw.paseos.ejbs.UsuarioLogic;
 import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
 import javax.ws.rs.WebApplicationException;
 
@@ -32,7 +33,7 @@ import javax.ws.rs.WebApplicationException;
  * URI: usuarios/
  * @generated
  */
-@Path("/usuarios")
+
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UsuarioResource {
@@ -62,6 +63,7 @@ public class UsuarioResource {
      * @generated
      */
     @GET
+    @Path("/usuarios")
     public List<UsuarioDetailDTO> getUsuarios() {
         
         return listEntity2DTO(usuarioLogic.getUsuarios());
@@ -74,8 +76,8 @@ public class UsuarioResource {
      * @generated
      */
     @GET
-    @Path("{id: \\d+}")
-    public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) {
+    @Path("/usuarios/{id: \\d+}")
+    public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
     }
 
@@ -87,7 +89,8 @@ public class UsuarioResource {
      * @generated
      */
     @POST
-    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO dto) {
+    @Path("/usuarios")
+    public UsuarioDetailDTO createUsuario(UsuarioDetailDTO dto) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.createUsuario(dto.toEntity()));
     }
 
@@ -100,7 +103,7 @@ public class UsuarioResource {
      * @generated
      */
     @PUT
-    @Path("{id: \\d+}")
+    @Path("/usuarios/{id: \\d+}")
     public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO dto) {
         UsuarioEntity entity = dto.toEntity();
         entity.setId(id);
@@ -114,7 +117,7 @@ public class UsuarioResource {
      * @generated
      */
     @DELETE
-    @Path("{id: \\d+}")
+    @Path("/usuarios/{id: \\d+}")
     public void deleteUsuario(@PathParam("id") Long id) {
         usuarioLogic.deleteUsuario(id);
     }

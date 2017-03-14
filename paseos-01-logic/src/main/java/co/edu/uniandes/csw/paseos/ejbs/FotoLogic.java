@@ -7,6 +7,8 @@ package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
 import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
+import co.edu.uniandes.csw.paseos.persistence.PaseoPersistence;
+import co.edu.uniandes.csw.paseos.persistence.VisitaPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -20,6 +22,8 @@ public class FotoLogic {
     
     @Inject private FotoPersistence persistence;
     
+    @Inject private VisitaPersistence visitaPersistence;
+    
     /**
      * Obtiene la lista de los registros de Foto para una visita.
      * @return Colección de objetos de FotoEntity.
@@ -31,48 +35,49 @@ public class FotoLogic {
 
     /**
      * Obtiene los datos de una instancia de Foto a partir de su ID.
-     *
      * @param id Identificador de la instancia a consultar
      * @return Instancia de FotoEntity con los datos de la Foto consultada.
-     *
      */
     public FotoEntity getFoto(Long id) {
         return persistence.find(id);
     }
+    
+    /**
+     * Obtiene los datos de una instancia de Foto a partir de su ID.
+     * @param id Identificador de la instancia a consultar
+     * @return Instancia de FotoEntity con los datos de la Foto consultada.
+     */
+    public FotoEntity getFotoVisita(Long id,Long idVisita) {
+        return persistence.findFotoVisita(idVisita, id );
+    }
+    
+    /**
+     * Obtiene los datos de una instancia de Foto a partir de su ID.
+     * @param id Identificador de la instancia a consultar
+     * @return Instancia de FotoEntity con los datos de la Foto consultada.
+     */
+    public List<FotoEntity> getFotosVisita(Long idVisita) {
+        return persistence.findFotosVisita(idVisita);
+    }
 
     /**
      * Se encarga de crear una Foto en la base de datos.
-     *
      * @param entity Objeto de FotoEntity con los datos nuevos
      * @return Objeto de FotoEntity con los datos nuevos y su ID.
      * @generated
      */
     
-    public FotoEntity createFoto(FotoEntity entity) {
-        persistence.create(entity);
+    public FotoEntity createFotoVisita(FotoEntity entity, Long id) {
+        visitaPersistence.createFoto(entity, id);
         return entity;
     }
 
     /**
-     * Actualiza la información de una instancia de Foto.
-     *
-     * @param entity Instancia de FotoEntity con los nuevos datos.
-     * @return Instancia de FotoEntity con los datos actualizados.
-     * 
-     */
-   
-    public FotoEntity updateFoto(FotoEntity entity) {
-        return persistence.update(entity);
-    }
-
-    /**
      * Elimina una instancia de Foto de la base de datos.
-     *
      * @param id Identificador de la instancia a eliminar.
-     *
      */
    
-    public void deleteFoto(Long id) {
+    public void deleteFotoVisita(Long id) {
         persistence.delete(id);
     }
 }
