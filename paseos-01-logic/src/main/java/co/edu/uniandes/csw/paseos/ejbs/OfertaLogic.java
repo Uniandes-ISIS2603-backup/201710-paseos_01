@@ -39,7 +39,7 @@ public class OfertaLogic {
         if(Ppersistence.find(oferta.getPaseo().getId()) == null)
             throw new BusinessLogicException ("El paseo no existe");
         if(Upersistence.find(oferta.getGuia().getId()) == null)
-            throw new BusinessLogicException ("El paseo no existe");
+            throw new BusinessLogicException ("El guía no existe");
         return Opersistence.create(oferta);
     }
     
@@ -57,7 +57,9 @@ public class OfertaLogic {
       return Opersistence.update(oferta);
     }
     
-    public void deleteOferta (Long id){
+    public void deleteOferta (Long id) throws BusinessLogicException{
+      if (Opersistence.find(id).getFecha().before(new Date()))
+         throw new BusinessLogicException ("No se puede eliminar una oferta que ya pasó");
         Opersistence.delete(id);
     }
 }
