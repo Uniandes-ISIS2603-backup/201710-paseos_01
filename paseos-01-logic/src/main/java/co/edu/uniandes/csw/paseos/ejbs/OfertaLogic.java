@@ -36,10 +36,10 @@ public class OfertaLogic {
            throw new BusinessLogicException ("La oferta debe tener fecha y esta debe ser posterior a la fecha actual");
         if(oferta.getInscritos() != 0)
            throw new BusinessLogicException ("El numero de inscritos no puede ser diferente de cero");
-        //if(Ppersistence.find(oferta.getPaseo().getId()) == null)
-          //  throw new BusinessLogicException ("El paseo no existe");
-        //if(Upersistence.find(oferta.getGuia().getId()) == null || !Upersistence.find(oferta.getGuia().getId()).getGuia())
-           // throw new BusinessLogicException ("El guía no existe");
+        if(Ppersistence.find(oferta.getPaseo().getId()) == null)
+            throw new BusinessLogicException ("El paseo no existe");
+        if(Upersistence.find(oferta.getGuia().getId()) == null || !Upersistence.find(oferta.getGuia().getId()).getGuia())
+            throw new BusinessLogicException ("El guía no existe");
         return Opersistence.create(oferta);
     }
     
