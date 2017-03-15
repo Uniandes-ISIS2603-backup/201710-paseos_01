@@ -64,7 +64,7 @@ public class OfertaResource {
     
    @DELETE
     @Path("{id: \\d+}")
-    public void deleteOferta(@PathParam("id") Long id) {
+    public void deleteOferta(@PathParam("id") Long id) throws BusinessLogicException{
         ofertaLogic.deleteOferta(id);
     }
  }
