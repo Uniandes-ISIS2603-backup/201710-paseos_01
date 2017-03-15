@@ -48,12 +48,14 @@ public class FotoResource {
         return list;
     }
     
+    //Debug
     @GET
     @Path("fotos")
     public List <FotoDTO> getFotos(){
         return listEntity2DTO(fotoLogic.getFotos());
     }
     
+    //Debug
     @GET
     @Path("fotos/{id: \\d+}")
     public FotoDTO getFoto(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
