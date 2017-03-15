@@ -26,6 +26,7 @@ import co.edu.uniandes.csw.paseos.ejbs.UsuarioLogic;
 import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
+import javax.ws.rs.QueryParam;
 
 
 
@@ -62,7 +63,7 @@ public class UsuarioResource {
      *
      * @return Colección de objetos de UsuarioDetailDTO
      * @generated
-     */
+     
     @GET
 
     @Path("usuarios")
@@ -71,6 +72,8 @@ public class UsuarioResource {
         
         return listEntity2DTO(usuarioLogic.getUsuarios());
     }  
+    **/
+    
      /**
      * Obtiene los datos de una instancia de Usuario a partir de su ID
      *
@@ -127,4 +130,26 @@ public class UsuarioResource {
         usuarioLogic.deleteUsuario(id);
     }
     
+   @GET
+   @Path("usuarios")
+   public List<UsuarioDetailDTO> getUsuariosGuias(@QueryParam("guias")int g ){
+      List<UsuarioDetailDTO> lista = new ArrayList<UsuarioDetailDTO>(); 
+      List<UsuarioDetailDTO> lista1 = listEntity2DTO(usuarioLogic.getUsuarios());
+      for (UsuarioDetailDTO usuario : lista1 )
+      {
+          if (usuario.isGuia())
+          {
+              lista.add(usuario); 
+          }
+      }
+      
+      if (g == 1 )
+      {
+          return lista; 
+      }
+      else 
+      {
+          return lista1; 
+      }
+   }
 } 
