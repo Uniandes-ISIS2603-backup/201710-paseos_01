@@ -38,7 +38,7 @@ public class OfertaLogic {
            throw new BusinessLogicException ("El numero de inscritos no puede ser diferente de cero");
         if(Ppersistence.find(oferta.getPaseo().getId()) == null)
             throw new BusinessLogicException ("El paseo no existe");
-        if(Upersistence.find(oferta.getGuia().getId()) == null)
+        if(Upersistence.find(oferta.getGuia().getId()) == null || !Upersistence.find(oferta.getGuia().getId()).getGuia())
             throw new BusinessLogicException ("El guía no existe");
         return Opersistence.create(oferta);
     }
@@ -54,12 +54,14 @@ public class OfertaLogic {
     public OfertaEntity updateOferta(OfertaEntity oferta) throws BusinessLogicException {
       if (oferta.getFecha().before(new Date()))
           throw new BusinessLogicException ("No se puede editar una oferta que ya pasó");
+      if(Upersistence.find(oferta.getGuia().getId()) == null || !Upersistence.find(oferta.getGuia().getId()).getGuia())
+            throw new BusinessLogicException ("El guía no existe");
       return Opersistence.update(oferta);
     }
     
     public void deleteOferta (Long id) throws BusinessLogicException{
       if (Opersistence.find(id).getFecha().before(new Date()))
          throw new BusinessLogicException ("No se puede eliminar una oferta que ya pasó");
-        Opersistence.delete(id);
+      Opersistence.delete(id);
     }
 }
