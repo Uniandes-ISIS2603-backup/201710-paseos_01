@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -82,7 +83,8 @@ public class UsuarioResource {
      * @generated
      */
     @GET
-    @Path("usuarios/{id: \\d+}")
+    @Path("/usuarios/{id: \\d+}")
+    // TODO: retornar una excepción / código 404 si no existe
     public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
     }
