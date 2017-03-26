@@ -2,6 +2,7 @@
 
 package co.edu.uniandes.csw.paseos.resources;
 
+import co.edu.uniandes.csw.paseos.dtos.OfertaDTO;
 import co.edu.uniandes.csw.paseos.dtos.OfertaDetailDTO;
 import co.edu.uniandes.csw.paseos.ejbs.OfertaLogic;
 import co.edu.uniandes.csw.paseos.entities.OfertaEntity;
@@ -26,16 +27,15 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class OfertaResource {
     
-    @Inject
-    
+    @Inject    
     private OfertaLogic ofertaLogic;
     
     @GET
-    public List <OfertaDetailDTO> getOfertas(){
-        List <OfertaDetailDTO> ofertaDTOs = new ArrayList<>();
+    public List <OfertaDTO> getOfertas(){
+        List <OfertaDTO> ofertaDTOs = new ArrayList<>();
         List <OfertaEntity> ofertas = ofertaLogic.getOfertas();
         for(OfertaEntity oferta : ofertas){
-            OfertaDetailDTO dto = new OfertaDetailDTO(oferta);
+            OfertaDTO dto = new OfertaDTO(oferta);
             ofertaDTOs.add(dto);
         }
         return ofertaDTOs;
@@ -48,10 +48,10 @@ public class OfertaResource {
     }
     
     @POST
-    public OfertaDetailDTO addOferta(OfertaDetailDTO ofertaDTO)throws BusinessLogicException{
+    public OfertaDTO addOferta(OfertaDTO ofertaDTO)throws BusinessLogicException{
         OfertaEntity oferta = ofertaDTO.toEntity();
         OfertaEntity storedOferta = ofertaLogic.createOferta(oferta);
-        return new OfertaDetailDTO(storedOferta);       
+        return new OfertaDTO(storedOferta);       
     }
     
     @PUT

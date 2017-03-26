@@ -64,7 +64,9 @@ public class UsuarioResource {
      * @generated
      */
     @GET
+
     @Path("usuarios")
+
     public List<UsuarioDetailDTO> getUsuarios() {
         
         return listEntity2DTO(usuarioLogic.getUsuarios());
@@ -77,7 +79,9 @@ public class UsuarioResource {
      * @generated
      */
     @GET
+
     @Path("usuarios/{id: \\d+}")
+
     public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
     }
@@ -104,7 +108,7 @@ public class UsuarioResource {
      * @generated
      */
     @PUT
-    
+    @Path("/usuarios/{id: \\d+}")
     public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO dto) {
         UsuarioEntity entity = dto.toEntity();
         entity.setId(id);
@@ -118,7 +122,9 @@ public class UsuarioResource {
      * @generated
      */
     @DELETE
+
     @Path("usuarios/{id: \\d+}")
+
     public void deleteUsuario(@PathParam("id") Long id) {
         usuarioLogic.deleteUsuario(id);
     }
