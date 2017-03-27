@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <!-- BOOTSTRAP CSS -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h1>Agregar un nuevo paseo</h1>
+        
+ <form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="tematica">Tematica</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="tematica" placeholder="tematica">
+    </div>
+  </div>
+ 
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+</form>
+        
+             
+<!--bower installers -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+
+<!-- main app-->
+<script src="/paseos-01-web/appPaseos.js"> </script>
+
+<!-- directives-->
+<script src="/paseos-01-web/directives/header.js"> </script>
+
+<!--Services -->
+<script src="/paseos-01-web/services/paseosServices.js"> </script> 
+    </body>
+</html>
