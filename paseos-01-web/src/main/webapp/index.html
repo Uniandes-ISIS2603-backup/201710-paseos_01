@@ -2,20 +2,12 @@
 
 <html>
     <head>
-        <title>paseos</title>
+        <title>Paseos</title>
         <meta charset="utf-8">
          <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 
-    </head>
-    <body ng-app="mainApp">
-        <header> </header>
-        <div class="container">
-            <div class="alert alert-success">
-            <p>Bootstrap works in here</p>
-            </div>
-        </div>
-        
+           
  <!--bower installers -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -25,7 +17,30 @@
 <!-- main app-->
 <script src="/paseos-01-web/appPaseos.js"> </script>
 
-<!-- directives-->
-<script src="/paseos-01-web/directives/header.js"> </script> 
+<!-- modules -->
+<script src="/paseos-01-web/src/modules/paseos/appPaseos.js"> </script>
+
+    </head>
+    <body ng-app="mainApp">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Paseos Ecológicos</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li ><a href="index.html">Home</a></li>
+              <li><a href="paseosCatalogo.html">Catálogo de Paseos</a></li>
+              <li><a href="#">Usuarios</a></li>
+              <li><a href="#">Mis paseos</a></li>
+            </ul>
+             <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+          </div>
+        </nav>
+
+    <div ng-view> </div>
+ 
     </body>
 </html>
