@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html ng-app="mainApp">
     <head>
         <title>Paseos</title>
         <meta charset="utf-8">
@@ -11,27 +11,28 @@
  <!--bower installers -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular/angular.min.js"></script>
-
-
-<!-- main app-->
-<script src="/paseos-01-web/app.js"> </script>
-
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- modules -->
-<script src="/paseos-01-web/src/modules/paseos/appPaseos.js"> </script>
+<script src="src/modules/paseos/appPaseos.js"> </script>
+
+ <!-- main app-->
+<script src="src/app.js"> </script>
+
+
 
     </head>
-    <body ng-app="mainApp">
+    <body >
         <nav class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="#">Paseos Ecológicos</a>
             </div>
             <ul class="nav navbar-nav">
-              <li ><a href="index.html">Home</a></li>
-              <li><a href="paseosCatalogo.html">Catálogo de Paseos</a></li>
-              <li><a href="#">Usuarios</a></li>
-              <li><a href="#">Mis paseos</a></li>
+              <li ><a ui-sref="#">Home</a></li>
+              <li><a ui-sref="paseosCatalogo">Catálogo de Paseos</a></li>
+              <li><a ui-sref="#">Usuarios</a></li>
+              <li><a ui-sref="#">Mis paseos</a></li>
             </ul>
              <ul class="nav navbar-nav navbar-right">
               <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -40,7 +41,7 @@
           </div>
         </nav>
 
-    <div ng-view> </div>
+    <div ui-view> </div>
  
     </body>
 </html>
