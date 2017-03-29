@@ -43,8 +43,7 @@ public class OfertaResource {
     
     @GET
     @Path("{id: \\d+}")
-    // TODO: retornar una excepción / código 404 si no existe
-    public OfertaDetailDTO getOferta(@PathParam("id") Long id) {
+    public OfertaDetailDTO getOferta(@PathParam("id") Long id) throws BusinessLogicException{
         return new OfertaDetailDTO(ofertaLogic.getOferta(id));
     }
     
