@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,6 +6,7 @@
  */
 package co.edu.uniandes.csw.paseos.ejbs;
 
+// TODO: eliminar los import que no se usan
 import co.edu.uniandes.csw.paseos.persistence.UsuarioPersistence;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -82,7 +84,7 @@ public class UsuarioLogic {
      * @return Instancia de UsuarioEntity con los datos actualizados.
      * 
      */
-   
+    // TODO: revisar las validaciones al momento de actualizar
     public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException {
         UsuarioEntity ue = getUsuario(entity.getId()); 
         return persistence.update(entity);
@@ -94,7 +96,7 @@ public class UsuarioLogic {
      * @param id Identificador de la instancia a eliminar.
      *
      */
-   
+    // TODO: revisar las validaciones al momento de borrar
     public void deleteUsuario(Long id) throws BusinessLogicException {
         UsuarioEntity ue = getUsuario(id); 
         persistence.delete(id);

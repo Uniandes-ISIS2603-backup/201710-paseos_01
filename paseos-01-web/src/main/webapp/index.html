@@ -1,37 +1,46 @@
 <!DOCTYPE html>
-<!--
-The MIT License (MIT)
 
-Copyright (c) 2015 Los Andes University
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
--->
 <html>
     <head>
-        <title>paseos</title>
+        <title>Paseos</title>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+         <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 
-      
+           
+ <!--bower installers -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+
+
+<!-- main app-->
+<script src="/paseos-01-web/app.js"> </script>
+
+<!-- modules -->
+<script src="/paseos-01-web/src/modules/paseos/appPaseos.js"> </script>
+
     </head>
-    <body style="padding-top: 60px;">
-        
+    <body ng-app="mainApp">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">Paseos Ecológicos</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li ><a href="index.html">Home</a></li>
+              <li><a href="paseosCatalogo.html">Catálogo de Paseos</a></li>
+              <li><a href="#">Usuarios</a></li>
+              <li><a href="#">Mis paseos</a></li>
+            </ul>
+             <ul class="nav navbar-nav navbar-right">
+              <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+          </div>
+        </nav>
+
+    <div ng-view> </div>
+ 
     </body>
 </html>

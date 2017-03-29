@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,6 +27,7 @@ import co.edu.uniandes.csw.paseos.ejbs.UsuarioLogic;
 import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
+import javax.ws.rs.QueryParam;
 
 
 
@@ -62,7 +64,7 @@ public class UsuarioResource {
      *
      * @return Colección de objetos de UsuarioDetailDTO
      * @generated
-     */
+     
     @GET
 
     @Path("usuarios")
@@ -71,6 +73,8 @@ public class UsuarioResource {
         
         return listEntity2DTO(usuarioLogic.getUsuarios());
     }  
+    **/
+    
      /**
      * Obtiene los datos de una instancia de Usuario a partir de su ID
      *
@@ -79,7 +83,8 @@ public class UsuarioResource {
      * @generated
      */
     @GET
-    @Path("usuarios/{id: \\d+}")
+    @Path("/usuarios/{id: \\d+}")
+    // TODO: retornar una excepción / código 404 si no existe
     public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
         return new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
     }
@@ -127,4 +132,26 @@ public class UsuarioResource {
         usuarioLogic.deleteUsuario(id);
     }
     
+   @GET
+   @Path("usuarios")
+   public List<UsuarioDetailDTO> getUsuariosGuias(@QueryParam("guias")int g ){
+      List<UsuarioDetailDTO> lista = new ArrayList<UsuarioDetailDTO>(); 
+      List<UsuarioDetailDTO> lista1 = listEntity2DTO(usuarioLogic.getUsuarios());
+      for (UsuarioDetailDTO usuario : lista1 )
+      {
+          if (usuario.isGuia())
+          {
+              lista.add(usuario); 
+          }
+      }
+      
+      if (g == 1 )
+      {
+          return lista; 
+      }
+      else 
+      {
+          return lista1; 
+      }
+   }
 } 

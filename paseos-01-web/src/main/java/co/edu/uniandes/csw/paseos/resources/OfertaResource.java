@@ -43,7 +43,7 @@ public class OfertaResource {
     
     @GET
     @Path("{id: \\d+}")
-    public OfertaDetailDTO getOferta(@PathParam("id") Long id) {
+    public OfertaDetailDTO getOferta(@PathParam("id") Long id) throws BusinessLogicException{
         return new OfertaDetailDTO(ofertaLogic.getOferta(id));
     }
     
@@ -64,7 +64,7 @@ public class OfertaResource {
     
    @DELETE
     @Path("{id: \\d+}")
-    public void deleteOferta(@PathParam("id") Long id) {
+    public void deleteOferta(@PathParam("id") Long id) throws BusinessLogicException{
         ofertaLogic.deleteOferta(id);
     }
  }

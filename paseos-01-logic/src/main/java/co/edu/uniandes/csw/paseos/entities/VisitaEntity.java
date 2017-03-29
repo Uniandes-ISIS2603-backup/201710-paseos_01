@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,6 +8,7 @@ package co.edu.uniandes.csw.paseos.entities;
 
 import java.io.Serializable;
 import java.util.List;
+// TODO: eliminar los import que no son usados
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

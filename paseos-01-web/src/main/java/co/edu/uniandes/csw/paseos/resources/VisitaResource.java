@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -65,7 +66,8 @@ public class VisitaResource {
     }
     
     @GET
-    @Path("visitas/{id: \\d+}")
+    @Path("/visitas/{id: \\d+}")
+    // TODO: retornar una excepción / código 404 si no existe
     public VisitaDetailDTO getVisita(@PathParam("id") Long id){
         return new VisitaDetailDTO(visitaLogic.getVisita(id));
     }

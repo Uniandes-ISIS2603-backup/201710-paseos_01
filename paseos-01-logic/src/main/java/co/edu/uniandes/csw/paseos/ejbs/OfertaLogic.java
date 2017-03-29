@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.OfertaEntity;
@@ -15,10 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-/**
- *
- * @author re.vega11
- */
 @Stateless
 public class OfertaLogic {
     
@@ -38,7 +29,7 @@ public class OfertaLogic {
            throw new BusinessLogicException ("El numero de inscritos no puede ser diferente de cero");
         if(Ppersistence.find(oferta.getPaseo().getId()) == null)
             throw new BusinessLogicException ("El paseo no existe");
-        if(Upersistence.find(oferta.getGuia().getId()) == null)
+        if(Upersistence.find(oferta.getGuia().getId()) == null || !Upersistence.find(oferta.getGuia().getId()).getGuia())
             throw new BusinessLogicException ("El guía no existe");
         return Opersistence.create(oferta);
     }
@@ -47,19 +38,21 @@ public class OfertaLogic {
         return Opersistence.findAll();
     }
     
-    public OfertaEntity getOferta (Long id){
+    public OfertaEntity getOferta (Long id)throws BusinessLogicException{
         return Opersistence.find(id);
     }
     
     public OfertaEntity updateOferta(OfertaEntity oferta) throws BusinessLogicException {
       if (oferta.getFecha().before(new Date()))
           throw new BusinessLogicException ("No se puede editar una oferta que ya pasó");
+      if(Upersistence.find(oferta.getGuia().getId()) == null || !Upersistence.find(oferta.getGuia().getId()).getGuia())
+            throw new BusinessLogicException ("El guía no existe");
       return Opersistence.update(oferta);
     }
     
     public void deleteOferta (Long id) throws BusinessLogicException{
       if (Opersistence.find(id).getFecha().before(new Date()))
          throw new BusinessLogicException ("No se puede eliminar una oferta que ya pasó");
-        Opersistence.delete(id);
+      Opersistence.delete(id);
     }
 }
