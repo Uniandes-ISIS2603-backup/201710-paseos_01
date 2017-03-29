@@ -1,6 +1,6 @@
-function(ng){
+(function(ng){
     //defincicón del modulo
-var appPaseos=ng.module('appPaseos',['ui-router']);
+var appPaseos=ng.module('appPaseos',['ui.router']);
  // Configuración de los estados del módulo
     appPaseos.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
@@ -37,4 +37,4 @@ var appPaseos=ng.module('appPaseos',['ui-router']);
         }
     ]);
 
-}(window.angular);
+})(window.angular);
