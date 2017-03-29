@@ -27,9 +27,8 @@ var appPaseos=ng.module('appPaseos',['ui.router']);
                 // El controlador guarda en el scope en la variable booksRecords los datos que trajo el resolve
                 // booksRecords será visible en el template
                 controller: ['$scope','getPaseos', function($scope,getPaseos){
-                    getPaseos.success(function(data){
-                    $scope.catalogo=data;
-        });
+          
+                    $scope.catalogo=getPaseos.data;
        
         
 }]            

@@ -1,6 +1,6 @@
 
 
-/* global mainController */
+/* global mainController 
 
 mainController.directive("header", function(){
         return{
@@ -8,3 +8,5 @@ mainController.directive("header", function(){
             templateUrl: "/paseos-01-web/directives/header.html"   
         }
 })
+
+*/
