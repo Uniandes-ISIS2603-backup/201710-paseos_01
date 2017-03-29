@@ -1,0 +1,22 @@
+  
+<h2>Paseos disponibles:</h2>
+<div class="container" ng-controller="mainController">
+    <div class="row" >
+        <div ng-repeat="paseo in catalogo"> 
+      <nav class="col-sm-2" id="myScrollspy">
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="#{{paseo.id}}">{{paseo.destino}}</a></li>
+        </ul>
+      </nav>
+      <div class="col-sm-10">
+        <div id="{{paseo.id}}"> 
+          <h1>{{paseo.destino}}</h1>
+        
+          <p>{{paseo.descripcion}}</p>
+        </div> 
+        ...
+      </div>
+       </div>
+    </div>
+  </div>
+ 
