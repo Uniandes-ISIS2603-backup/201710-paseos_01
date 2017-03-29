@@ -1,1 +1,3 @@
-var mainApp=angular.module('mainApp',['appPaseos']);
+function(ng){
+var mainApp=ng.module('mainApp',['appPaseos']);
+}(window.angular);
