@@ -1,9 +1,3 @@
-// TODO: eliminar los comentarios por defecto
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.OfertaEntity;
@@ -16,10 +10,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-/**
- *
- * @author re.vega11
- */
 @Stateless
 public class OfertaLogic {
     
@@ -48,7 +38,7 @@ public class OfertaLogic {
         return Opersistence.findAll();
     }
     
-    public OfertaEntity getOferta (Long id){
+    public OfertaEntity getOferta (Long id)throws BusinessLogicException{
         return Opersistence.find(id);
     }
     
