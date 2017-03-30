@@ -1,21 +1,26 @@
   
 <h2>Paseos disponibles:</h2>
 <div class="container" >
-    <div class="row" >
-        <div ng-repeat="paseo in catalogo"> 
+    <div class="row"  ng-repeat="paseo in catalogo">
       <nav class="col-sm-2" id="myScrollspy">
         <ul class="nav nav-pills nav-stacked">
           <li><a href="#{{paseo.id}}">{{paseo.destino}}</a></li>
         </ul>
       </nav>
       <div class="col-sm-10">
+        <a ui-sref="paseoDetail({idPaseo : paseo.id})">
         <div id="{{paseo.id}}"> 
-            <h1><a ui-sref="paseoDetail({idPaseo : paseo.id})">{{paseo.destino}}</a></h1>
+            <h1>{{paseo.destino}}</h1>
         
           <p>{{paseo.descripcion}}</p>
-        </div> 
+          <div class="row">
+        <div ui-view="detailView"></div>
+        </div>
+        </div>
+        </a>
       </div>
-       </div>
+      
     </div>
+    <div ui-view></div>
   </div>
  
