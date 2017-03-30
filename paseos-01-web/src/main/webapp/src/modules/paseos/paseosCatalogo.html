@@ -10,7 +10,7 @@
       </nav>
       <div class="col-sm-10">
         <div id="{{paseo.id}}"> 
-          <h1>{{paseo.destino}}</h1>
+            <h1><a ui-sref="paseoDetail({idPaseo : paseo.id})">{{paseo.destino}}</a></h1>
         
           <p>{{paseo.descripcion}}</p>
         </div> 

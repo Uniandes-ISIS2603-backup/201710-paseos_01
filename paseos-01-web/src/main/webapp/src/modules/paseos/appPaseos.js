@@ -6,11 +6,11 @@ var appPaseos=ng.module('appPaseos',['ui.router']);
             // En basePath se encuentran los templates y controladores de módulo
             var basePath = 'src/modules/paseos/';
             // Mostrar la lista de libros será el estado por defecto del módulo
-            $urlRouterProvider.otherwise("/paseosCatalogo");
+            $urlRouterProvider.otherwise("/paseos");
             // Definición del estado 'booksList' donde se listan los libros
-            $stateProvider.state('paseosCatalogo', {
+            $stateProvider.state('paseos', {
                 // Url que aparecerá en el browser
-                url: '/paseos/paseosCatalogo',
+                url: '/paseos',
                 // Se define una variable books (del estado) que toma por valor 
                 // la colección de libros que obtiene utilizando $http.get 
                  resolve: {
@@ -31,7 +31,32 @@ var appPaseos=ng.module('appPaseos',['ui.router']);
                     $scope.catalogo=getPaseos.data;
        
         
-}]            
+                }]            
+            });
+            
+            $stateProvider.state('paseoDetail',{
+                url: '/{idPaseo}',
+                parent:"paseos",
+                param : {
+                    idPaseo: null
+                },
+                resolve: {
+                    getPaseo: ["$http",function($http ){
+                    return $http.get("/paseos-01-web/api/paseos/"+idPaseo).success(function(data){
+                        return data;
+                    }).error(function(err){
+                        return err;
+                    });
+               }]
+                },
+                views:{
+                     templateUrl: basePath + 'paseo.detail.html',
+                        controller: ['$scope','getPaseo', function ($scope, getPaseo) {
+                                $scope.paseoActual = getPaseo.data;
+                            }]
+                
+                }
+            
             });
         }
     ]);
