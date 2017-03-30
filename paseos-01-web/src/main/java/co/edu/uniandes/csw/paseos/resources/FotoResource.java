@@ -48,14 +48,17 @@ public class FotoResource {
         return list;
     }
     
+    //Debug
     @GET
     @Path("fotos")
     public List <FotoDTO> getFotos(){
         return listEntity2DTO(fotoLogic.getFotos());
     }
     
+    //Debug
     @GET
-    @Path("fotos/{id: \\d+}")
+    @Path("/fotos/{id: \\d+}")
+    // TODO: retornar una excepción / código 404 si no existe
     public FotoDTO getFoto(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
         return new FotoDTO(fotoLogic.getFoto(id));
     }

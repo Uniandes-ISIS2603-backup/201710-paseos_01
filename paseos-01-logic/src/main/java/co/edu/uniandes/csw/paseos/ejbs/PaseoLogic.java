@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -42,10 +43,10 @@ public class PaseoLogic {
         if (paseo.getCosto()<0) throw new BusinessLogicException("EL costo del paseo debe ser positivo.");
         if (paseo.getNumeroMaximo()<paseo.getNumeroMinimo() || paseo.getNumeroMinimo()<0) throw new BusinessLogicException("El número máximo de participantes debe ser mayor al número minimo y debe ser positivo.");
         if (paseo.getCondicionFisica()<0 || paseo.getCondicionFisica()>10) throw new BusinessLogicException("Condición física entre 0 y 10");
-        
         return persist.update(paseo);
     }
     
+    // TODO: implementar validaciones de negocio al momento de eliminar
     public void delete (long id){
         persist.delete(id);
     }

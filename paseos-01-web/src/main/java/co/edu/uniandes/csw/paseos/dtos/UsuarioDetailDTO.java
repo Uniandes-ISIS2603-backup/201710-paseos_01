@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -19,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UsuarioDetailDTO extends UsuarioDTO{
     
-    private String login; 
+    
     
     private boolean guia; 
     
@@ -61,13 +62,11 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     {
         UsuarioEntity entity = new UsuarioEntity();
         entity.setId(this.id);
-        entity.setApellidos(this.apellidos);
         entity.setCalificacionPromedio(this.calificacionPromedio);
         entity.setCondicionFisica(this.condicionFisica);
         entity.setFechaNaciemiento(this.fechaNacimiento);
         entity.setExperiencia(this.experiencia);
         entity.setGuia(this.guia);
-        entity.setLogin(this.login);
         entity.setNombres(this.nombres);
         
         List<OfertaEntity> ofertas1 = new ArrayList<OfertaEntity>(); 

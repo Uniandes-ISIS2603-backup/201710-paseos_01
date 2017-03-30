@@ -43,15 +43,15 @@ public class OfertaResource {
     
     @GET
     @Path("{id: \\d+}")
-    public OfertaDetailDTO getOferta(@PathParam("id") Long id) {
+    public OfertaDetailDTO getOferta(@PathParam("id") Long id) throws BusinessLogicException{
         return new OfertaDetailDTO(ofertaLogic.getOferta(id));
     }
     
     @POST
-    public OfertaDTO addOferta(OfertaDTO ofertaDTO)throws BusinessLogicException{
+    public OfertaDetailDTO addOferta(OfertaDetailDTO ofertaDTO)throws BusinessLogicException{
         OfertaEntity oferta = ofertaDTO.toEntity();
         OfertaEntity storedOferta = ofertaLogic.createOferta(oferta);
-        return new OfertaDTO(storedOferta);       
+        return new OfertaDetailDTO(storedOferta);       
     }
     
     @PUT
@@ -64,7 +64,7 @@ public class OfertaResource {
     
    @DELETE
     @Path("{id: \\d+}")
-    public void deleteOferta(@PathParam("id") Long id) {
+    public void deleteOferta(@PathParam("id") Long id) throws BusinessLogicException{
         ofertaLogic.deleteOferta(id);
     }
  }

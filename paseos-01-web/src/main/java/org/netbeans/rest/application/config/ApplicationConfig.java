@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +13,7 @@ import javax.ws.rs.core.Application;
  *
  * @author jma.lovera10
  */
+// TODO: revisar si en realidad  necesitan dos "applicationpath" 
 @javax.ws.rs.ApplicationPath("webresources")
 public class ApplicationConfig extends Application {
 
@@ -29,6 +31,7 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(co.edu.uniandes.csw.paseos.mapper.BussinesLogicExceptionMapper.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.FotoResource.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.OfertaResource.class);
         resources.add(co.edu.uniandes.csw.paseos.resources.PaseoResource.class);

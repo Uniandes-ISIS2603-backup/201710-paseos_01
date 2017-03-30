@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -40,6 +41,11 @@ public class UsuarioDTO {
      * Atributo que modela la condición física del usuario
      */
     protected Integer condicionFisica;
+    
+    /**
+     * Atributo que modela el login del usuario
+     */
+    protected String login; 
 
     /**
      * Constructor por defecto
@@ -54,6 +60,7 @@ public class UsuarioDTO {
             this.apellidos = entity.getApellidos();
             this.fechaNacimiento = entity.getFechaNaciemiento();
             this.condicionFisica = entity.getCondicionFisica();
+            this.login = entity.getLogin(); 
         }
     }
     
@@ -64,6 +71,7 @@ public class UsuarioDTO {
         entity.setApellidos(this.apellidos);
         entity.setFechaNaciemiento(this.fechaNacimiento);
         entity.setCondicionFisica(this.condicionFisica);
+        entity.setLogin(this.login);
         return entity;
     }
 
@@ -121,6 +129,13 @@ public class UsuarioDTO {
 
     public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+    public String getLogin (){
+        return login; 
+    }
+    public void setLogin(String login)
+    {
+        this.login = login; 
     }
     
     /**

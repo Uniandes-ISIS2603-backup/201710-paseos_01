@@ -1,3 +1,4 @@
+// TODO: eliminar los comentarios por defecto
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -47,5 +48,15 @@ public class UsuarioPersistence {
     public void delete(Long id){
         UsuarioEntity entity = em.find(UsuarioEntity.class, id);
         em.remove(entity);
+    }
+    public boolean loginUnico(String login)
+    {
+     boolean res = false; 
+     Query q = em.createQuery("select u from UsuarioEntity u where u.login = :login").setParameter("login", login);
+     if (q.getResultList().isEmpty())
+     {
+         res = true; 
+     }
+     return res;    
     }
 }
