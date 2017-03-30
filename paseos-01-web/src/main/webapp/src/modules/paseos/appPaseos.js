@@ -82,8 +82,43 @@ var appPaseos=ng.module('appPaseos',['ui.router']);
                 
                 
                     }}
-            });
-        }
-    ]);
+            }).state('addPaseo', {
+                // Url que aparecerá en el browser
+                url: '/addPaseo',
+                parent:"paseos",
+                resolve: {
+                    setPaseo: ["$http",'$scope', function($http, $scope ){
+                    return $http.post("/paseos-01-web/api/paseos/",$scope.addPaseo).success(function(data){
+                        return data;
+                    }).error(function(err){
+                        return err;
+                    });
+               }]
+                },
+                
+                views: {
+                'addView': {
+                // Template que se utilizara para ejecutar el estado
+                templateUrl: basePath + 'addPaseo.html',
+                controller: ['$scope', 'postPaseo', function ($scope, setPaseo){
+                        $scope.savePaseo= function(){
+                            $scope.addPaseo={
+                                "destino":window.document.getElementById("destino").getValue(),
+                                "tematica":window.document.getElementById("tematica").getValue(),
+                                "condicionFisica":window.document.getElementById("condicionFisica").getValue(),
+                                "almuerzo":window.document.getElementById("almuerzo").getValue(),
+                                "transporte":window.document.getElementById("transporte").getValue(),
+                                "numeroMinimo":window.document.getElementById("numeroMinimo").getValue(),
+                                "numeroMaximo":window.document.getElementById("numeroMaximo").getValue(),
+                                "costo":window.document.getElementById("costo").getValue()
+                            }
+                        }
+                        
+                }]
+                // El controlador guarda en el scope en la variable booksRecords los datos que trajo el resolve
+                // booksRecords será visible en el template
+               }
+            }});
+    }]);
 
 })(window.angular);
