@@ -1,3 +1,5 @@
 /paseos-01-logic/target/
 /paseos-01-web/target/
 /paseos-01-web/src/main/webapp/bower_components/
+/paseos-01-web/src/main/webapp/bower.json
+/.bowerrc
