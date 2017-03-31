@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="col-sm-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nombres</th>    
+                    <th>Apellidos</th> 
+                    <th>Edad</th>
+                    <th>Login</th>
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="usuario in usuariosRecords">
+                    <td id="{{$index}}-name">   {{usuario.nombres}}</td>
+                    <td id="{{$index}}-descrption">{{usuario.apellidos}}</td>  
+                    <td id="{{$index}}-descrption">{{usuario.edad}}</td> 
+                    <td id="{{$index}}-descrption">{{usuario.login}}</td> 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
