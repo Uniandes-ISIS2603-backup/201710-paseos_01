@@ -1,9 +1,4 @@
-// TODO: eliminar los comentarios por defecto
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.PaseoEntity;
@@ -46,7 +41,8 @@ public class PaseoLogic {
         return persist.update(paseo);
     }
     
-    // TODO: implementar validaciones de negocio al momento de eliminar
+    // Todo paseo se puede eliminar. Uno pasado, uno futuro. No hay restricciones de lógica de negocio 
+    //para eliminar un paseo
     public void delete (long id){
         persist.delete(id);
     }

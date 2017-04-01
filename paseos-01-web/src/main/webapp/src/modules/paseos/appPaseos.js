@@ -78,6 +78,17 @@ var appPaseos=ng.module('appPaseos',['ui.router']);
                 controller: ['$scope','getPaseo', function ($scope, getPaseo) {
                              //   $window.document.getElementById("view").ui-view="detailedView";
                                 $scope.paseoActual = getPaseo.data;
+                                if($scope.paseoActual.almuerzo){
+                                    $scope.paseoActual.almuerzo="Sí";
+                                }else{
+                                    $scope.paseoActual.almuerzo="No";
+                                }
+                                
+                                if($scope.paseoActual.transporte){
+                                    $scope.paseoActual.transporte="Sí";
+                                }else{
+                                    $scope.paseoActual.transporte="No";
+                                }
                             }]
                 
                 
@@ -86,13 +97,20 @@ var appPaseos=ng.module('appPaseos',['ui.router']);
                 // Url que aparecerá en el browser
                 url: '/addPaseo',
                 parent:"paseos",
+                
                 resolve: {
-                    setPaseo: ["$http",'$scope', function($http, $scope ){
-                    return $http.post("/paseos-01-web/api/paseos/",$scope.addPaseo).success(function(data){
+                    setPaseo: ["$http",function($http){
+                          var adicionPaseo =  
+                     function (addPaseo){
+                    $http.post("/paseos-01-web/api/paseos/",addPaseo).success(function(data){
                         return data;
                     }).error(function(err){
                         return err;
                     });
+                }
+                    return adicionPaseo;
+                    
+                    
                }]
                 },
                 
@@ -100,19 +118,30 @@ var appPaseos=ng.module('appPaseos',['ui.router']);
                 'addView': {
                 // Template que se utilizara para ejecutar el estado
                 templateUrl: basePath + 'addPaseo.html',
-                controller: ['$scope', 'postPaseo', function ($scope, setPaseo){
+                controller: ['$scope', 'setPaseo', function ($scope, setPaseo){
+                        $scope.destino="";
+                        $scope.tematica="";
+                        $scope.condicionFisica=10;
+                        $scope.almuerzo="";
+                        $scope.transporte="";
+                        $scope.numeroMinimo=0;
+                        $scope.numeroMaximo=0;
+                        $scope.costo=0.0;
+                        $scope.addPaseo={};
                         $scope.savePaseo= function(){
                             $scope.addPaseo={
-                                "destino":window.document.getElementById("destino").getValue(),
-                                "tematica":window.document.getElementById("tematica").getValue(),
-                                "condicionFisica":window.document.getElementById("condicionFisica").getValue(),
-                                "almuerzo":window.document.getElementById("almuerzo").getValue(),
-                                "transporte":window.document.getElementById("transporte").getValue(),
-                                "numeroMinimo":window.document.getElementById("numeroMinimo").getValue(),
-                                "numeroMaximo":window.document.getElementById("numeroMaximo").getValue(),
-                                "costo":window.document.getElementById("costo").getValue()
+                                "destino":$scope.destino,
+                                "tematica":$scope.tematica,
+                                "condicionFisica":$scope.condicionFisica,
+                                "almuerzo":$scope.almuerzo,
+                                "transporte":$scope.transporte,
+                                "numeroMinimo":$scope.numeroMinimo,
+                                "numeroMaximo":$scope.numeroMaximo,
+                                "costo":$scope.costo
                             }
-                        }
+                        setPaseo($scope.addPaseo);
+
+                        };
                         
                 }]
                 // El controlador guarda en el scope en la variable booksRecords los datos que trajo el resolve
