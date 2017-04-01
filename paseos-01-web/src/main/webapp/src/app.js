@@ -1,6 +1,6 @@
 (function(ng){
 
-var mainApp=ng.module('mainApp',['ui.router','appPaseos','usuarioModule']);
+var mainApp=ng.module('mainApp',['ui.router','paseosModule','usuarioModule']);
 
 // Resuelve problemas de las promesas
    // mainApp.config(['$qProvider', function ($qProvider) {
