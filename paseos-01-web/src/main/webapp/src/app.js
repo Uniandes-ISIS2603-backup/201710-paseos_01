@@ -4,7 +4,5 @@ var mainApp=ng.module('mainApp',['ui.router','paseosModule','usuariosModule']);
    // mainApp.config(['$qProvider', function ($qProvider) {
      //      $qProvider.errorOnUnhandledRejections(false);
        // }]);
-       mainApp.config(['$qProvider', function ($qProvider) {
-            $qProvider.errorOnUnhandledRejections(false);
-        }]);
+
 })(window.angular);

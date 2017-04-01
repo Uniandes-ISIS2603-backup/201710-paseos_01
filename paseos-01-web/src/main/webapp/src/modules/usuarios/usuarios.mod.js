@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("usuarioModule", ['ui.router']);
+    var mod = ng.module("usuariosModule", ['ui.router']);
     mod.constant("usuariosContext", "api/usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/usuarios/';
