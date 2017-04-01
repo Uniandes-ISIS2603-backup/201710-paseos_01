@@ -22,7 +22,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     
     
     
-    private boolean guia; 
+    private Boolean guia; 
     
     private String formacion; 
     
@@ -30,7 +30,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     
     private Double calificacionPromedio; 
     
-    private boolean admin; 
+    private Boolean admin; 
     
     private List<OfertaDetailDTO> ofertas; 
     
@@ -94,7 +94,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         this.login = login;
     }
 
-    public void setGuia(boolean guia) {
+    public void setGuia(Boolean guia) {
         this.guia = guia;
     }
 
@@ -110,7 +110,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         this.calificacionPromedio = calificacionPromedio;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
 
@@ -122,7 +122,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         this.visitas = visitas;
     }
 
-    public boolean isGuia() {
+    public Boolean isGuia() {
         return guia;
     }
 
@@ -138,7 +138,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         return calificacionPromedio;
     }
 
-    public boolean isAdmin() {
+    public Boolean isAdmin() {
         return admin;
     }
 

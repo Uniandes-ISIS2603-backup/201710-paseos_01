@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="col-sm-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                     <th>Login</th>
+                    <th>Nombres</th>    
+                    <th>Apellidos</th> 
+                    <th>Edad</th>
+                    <th>condicionFisica</th>
+                    <th>fechaNacimiento</th>
+                     
+                    
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="usuario in usuariosRecords">
+                    <td id="{{$index}}-name"> <a ui-sref="usuarioDetail({usuarioId: usuario.id})">{{usuario.login}}</a> </td> 
+                    <td id="{{$index}}-description">   {{usuario.nombres}}</td>
+                    <td id="{{$index}}-descrption">{{usuario.apellidos}}</td>  
+                    <td id="{{$index}}-descrption">{{usuario.edad}}</td> 
+                    <td id="{{$index}}-descrption">{{usuario.condicionFisica}}</td> 
+                    <td id="{{$index}}-descrption">{{usuario.fechaNacimiento}}</td> 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
