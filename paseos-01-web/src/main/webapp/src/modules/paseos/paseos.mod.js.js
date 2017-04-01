@@ -1,6 +1,6 @@
 (function(ng){
     //defincicón del modulo
-var appPaseos=ng.module('appPaseos',['ui.router']);
+var appPaseos=ng.module('paseosModule',['ui.router']);
  // Configuración de los estados del módulo
     appPaseos.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
@@ -121,7 +121,7 @@ var appPaseos=ng.module('appPaseos',['ui.router']);
                 controller: ['$scope', 'setPaseo', function ($scope, setPaseo){
                         $scope.destino="";
                         $scope.tematica="";
-                        $scope.condicionFisica=10;
+                        $scope.condicionFisica=0;
                         $scope.almuerzo="";
                         $scope.transporte="";
                         $scope.numeroMinimo=0;
