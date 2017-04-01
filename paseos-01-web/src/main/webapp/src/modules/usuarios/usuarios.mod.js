@@ -3,22 +3,22 @@
     mod.constant("usuariosContext", "api/usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/usuarios/';
-            var basePathBooks = 'src/modules/usuarios/';
+            var basePathUsuarios = 'src/modules/usuarios/';
             $urlRouterProvider.otherwise("/usuariosList");
 
             $stateProvider.state('usuarios', {
                 url: '/usuarios',
                 abstract: true,
                 resolve: {
-                    authors: ['$http', function ($http) {
+                    usuarios: ['$http', function ($http) {
                             return $http.get('data/usuarios.json');
                         }]
                 },
                 views: {
                     'mainView': {
                         templateUrl: basePath + 'usuarios.html',
-                        controller: ['$scope', 'usuarios', function ($scope, authors) {
-                                $scope.authorsRecords = authors.data;
+                        controller: ['$scope', 'usuarios', function ($scope, usuarios) {
+                                $scope.usuariosRecords = usuarios.data;
                             }]
                     }
                 }
@@ -34,25 +34,14 @@
                 url: '/{usuarioId:int}/detail',
                 parent: 'usuarios',
                 param: {
-                    authorId: null
+                    usuarioId: null
                 },
                 views: {
-                    'listView': {
-                        resolve: {
-                            books: ['$http', function ($http) {
-                                    return $http.get('data/books.json');
-                                }]
-                        },
-                        templateUrl: basePathBooks + 'books.list.html',
-                        controller: ['$scope', 'books', '$stateParams', function ($scope, books, $params) {
-                                $scope.booksRecords = books.data;
-                                $scope.currentAuthor = $scope.authorsRecords[$params.authorId - 1];
-                            }]
-                    },
+                    
                     'detailView': {
-                        templateUrl: basePath + 'authors.detail.html',
+                        templateUrl: basePath + 'usuarios.detail.html',
                         controller: ['$scope', '$stateParams', function ($scope, $params) {
-                                $scope.currentAuthor = $scope.authorsRecords[$params.authorId - 1];
+                                $scope.currentUsuario = $scope.usuariosRecords[$params.usuarioId - 1];
                             }]
                     }
                 }
