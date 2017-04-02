@@ -14,7 +14,8 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                 url: '/paseos',
                  resolve: {
                     getPaseos: ["$http",function($http ){
-                    return $http.get("/paseos-01-web/api/paseos").success(function(data){
+                    return $http.get("/paseos-01-web/api/paseos"
+                            ).success(function(data){
                         return data;
                     }).error(function(err){
                         return err;
