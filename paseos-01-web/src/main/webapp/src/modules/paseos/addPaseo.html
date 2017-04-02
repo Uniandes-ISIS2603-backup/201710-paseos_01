@@ -1,17 +1,46 @@
 
-        <h1>Agregar un nuevo paseo</h1>
+<h1 class="text-center">Agregar un nuevo paseo</h1>
         
  <form class="form-horizontal">
   <div class="form-group">
-    <label class="control-label col-sm-2" for="tematica">Tematica</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="tematica" placeholder="tematica">
+    <label class="control-label col-sm-3" for="destino" >Destino</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="destino" placeholder="destino" ng-model="destino">
+    </div>
+    <label class="control-label col-sm-3" for="tematica">Tematica</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="tematica" placeholder="tematica" ng-model="tematica">
+    </div>
+    <label class="control-label col-sm-3" for="condicionFisica">Condicion física requerida (/10)</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="condicionFisica" placeholder="condicionfisica" ng-model="condicionFisica">
+    </div>
+    <label class="control-label col-sm-3" for="almuerzo">Almuerzo</label>
+    <div class="col-sm-9">
+      <input type="checkbox" class="form-control" id="almuerzo" ng-model="almuerzo">
+    </div>
+     <label class="control-label col-sm-3" for="transporte">Transporte</label>
+    <div class="col-sm-9">
+      <input type="checkbox" class="form-control" id="transporte" ng-model="transporte">
+    </div>
+     
+     <label class="control-label col-sm-3" for="numeroMinimo">Número mínimo de participantes</label>
+    <div class="col-sm-9">
+      <input type="number" class="form-control" id="numeroMinimo" ng-model="numeroMinimo" >
+    </div>
+     <label class="control-label col-sm-3" for="numeroMaximo">Número máximo de participantes</label>
+    <div class="col-sm-9">
+      <input type="number" class="form-control" id="numeroMaximo" ng-model="numeroMaximo">
+    </div>
+     <label class="control-label col-sm-3" for="costo">Costo por persona</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" id="costo" ng-model="costo" >
     </div>
   </div>
  
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit</button>
+    <div class="col-sm-offset-3 col-sm-9">
+      <button type="submit" class="btn btn-default" ng-click="savePaseo()">Submit</button>
     </div>
   </div>
 </form>

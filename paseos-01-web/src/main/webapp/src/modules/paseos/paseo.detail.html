@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="well"
+    <h1 class="text-center">Paseo a {{paseoActual.destino}}</h1>
+    <p>Temática: {{paseoActual.tematica}}</p>
+    <p>Condición física requerida: {{paseoActual.condicionFisica}}/10 </p>
+       
+    <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{paseoActual.condicionFisica*10}}" aria-valuemin="0" aria-valuemax="100" style="width:{{paseoActual.condicionFisica*10}}%">
+     
+    </div>
+  </div>
+    <p>Almuerzo incluído : {{paseoActual.almuerzo}}</p>
+    <p>Transporte incluído : {{paseoActual.transporte}}</p>
+    <p>Costo por persona : {{paseoActual.costo}}</p>
+    </div>
+</div>

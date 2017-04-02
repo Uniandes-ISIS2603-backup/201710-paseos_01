@@ -1,8 +1,9 @@
 (function(ng){
 var app = angular.module('mainApp',[
     'ui.router',
-    'appPaseos',
-    'ofertasModule'
+    'paseosModule',
+    'ofertasModule',
+    'usuarioModule'  
 ]);
 // Resuelve problemas de las promesas
    app.config(['$qProvider', function ($qProvider) {
