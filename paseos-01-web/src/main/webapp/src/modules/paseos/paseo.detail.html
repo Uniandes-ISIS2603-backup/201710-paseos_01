@@ -12,5 +12,13 @@
     <p>Almuerzo incluído : {{paseoActual.almuerzo}}</p>
     <p>Transporte incluído : {{paseoActual.transporte}}</p>
     <p>Costo por persona : {{paseoActual.costo}}</p>
+    <div >
+        <div ng-repeat="foto in paseoActual.fotos">
+            <img />
+        </div>
+    </div>
+    <div>Ofertas disponibles:
+        <a ng-repeat="oferta in paseoActual.ofertas" ui-sref="ofertaDetail({ofertaId: oferta.id})"> {{oferta.fecha}}</a>
+    </div>
     </div>
 </div>
