@@ -1,6 +1,19 @@
 [
- {
-  "id": 13,
+
+  {
+  "id": 1,
+  "fecha": "2019-06-18T19:57:18Z",
+  "inscritos": 0,
+  "guia":{
+  "id": 1,
+  "nombres": "Laura",
+  "apellidos": "Matthews",
+  "fechaNacimiento": "1963-09-12T04:14:20Z",
+  "condicionFisica": 3,
+  "login": "lmatthews0@admin.ch"
+  },
+  "paseo":{
+  "id": 1,
   "tematica": "Caminata",
   "destino": "Llorente",
   "condicionFisica": 1,
@@ -10,8 +23,23 @@
   "transporte": true,
   "almuerzo": false
   },
-  {
-  "id": 24,
+
+  "visitas": []
+},
+{
+  "id": 2,
+  "fecha": "2018-04-23T08:22:05Z",
+  "inscritos": 0,
+  "guia":{
+  "id": 2,
+  "nombres": "Beverly",
+  "apellidos": "Lopez",
+  "fechaNacimiento": "1954-02-06T00:27:40Z",
+  "condicionFisica": 4,
+  "login": "blopez1@sciencedaily.com"
+  },
+  "paseo":{
+  "id": 2,
   "tematica": "Caminata",
   "destino": "Gornji Milanovac",
   "condicionFisica": 2,
@@ -22,8 +50,20 @@
   "almuerzo": true
 },
 {
-  "id": 15,
-  "tematica": "Granja",
+  "id": 3,
+  "fecha": "2019-12-07T22:16:00Z",
+  "inscritos": 0,
+  "guia":{
+  "id": 3,
+  "nombres": "Marie",
+  "apellidos": "Graham",
+  "fechaNacimiento": "1967-05-30T07:00:37Z",
+  "condicionFisica": 4,
+  "login": "mgraham2@wikia.com"
+  },
+  "paseo":{
+  "id": 3,
+ "tematica": "Granja",
   "destino": "Chambéry",
   "condicionFisica": 1,
   "numeroMinimo": 9,
@@ -31,8 +71,23 @@
   "costo": 30886,
   "transporte": true,
   "almuerzo": false
-},{
-  "id": 14,
+},
+"visitas": []
+},
+{
+  "id": 4,
+  "fecha": "2019-08-26T18:22:58Z",
+  "inscritos": 0,
+  "guia":{
+  "id": 4,
+  "nombres": "Joan",
+  "apellidos": "White",
+  "fechaNacimiento": "1981-08-16T19:20:13Z",
+  "condicionFisica": 2,
+  "login": "jwhite3@indiegogo.com"
+  },
+  "paseo":{
+  "id": 4,
   "tematica": "Granja",
   "destino": "Guijalo",
   "condicionFisica": 4,
@@ -41,8 +96,24 @@
   "costo": 72110,
   "transporte": true,
   "almuerzo": true
-},{
-  "id": 12,
+
+},
+"visitas": []
+},
+{
+  "id": 5,
+  "fecha": "2018-04-07T02:58:04Z",
+  "inscritos": 0,
+  "guia":{
+  "id": 5,
+  "nombres": "Rose",
+  "apellidos": "Parker",
+  "fechaNacimiento": "1999-05-25T03:00:52Z",
+  "condicionFisica": 5,
+  "login": "rparker4@last.fm"
+  },
+  "paseo":{
+  "id": 5,
   "tematica": "Deportes extremos",
   "destino": "Karangtengah",
   "condicionFisica": 3,
