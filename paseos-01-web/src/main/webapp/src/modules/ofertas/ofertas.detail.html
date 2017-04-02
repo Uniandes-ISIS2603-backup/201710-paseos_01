@@ -1,0 +1,21 @@
+<h1 class="mainTitle">* O F E R T A  -  E S P E C I F I C A *</h1>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Temática</th>
+                    <th>Lugar</th>
+                    <th>Fecha</th>
+                    <th>Cupos disponibles</th>
+                    <th>Paseo</th>
+                    <th>Guía</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <td>{{currentOferta.paseo.tematica}}</td> 
+                    <td>{{currentOferta.paseo.destino}}</td> 
+                    <td>{{currentOferta.fecha}}</td> 
+                    <td>{{currentOferta.paseo.numeroMaximo-currentOferta.inscritos}}</td>
+                    <td><a ui-sref="#">Ver detalle del paseo</a></td>
+                    <td><a ui-sref="#">Ver detalle del guía</a></td>
+            </tbody>
+        </table>
