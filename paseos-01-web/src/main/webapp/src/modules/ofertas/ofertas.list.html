@@ -1,0 +1,24 @@
+<h1 class="mainTitle">* O F E R T A S *</h1>
+<div class="container-fluid">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>                    
+                    <th>Temática</th>
+                    <th>Lugar</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="oferta in ofertasRecords">
+                    <td id="{{$index}}-topic">{{oferta.paseo.tematica}}</td> 
+                    <td id="{{$index}}-place">{{oferta.paseo.destino}}</td> 
+                    <td id="{{$index}}-date">{{oferta.fecha}}</td>
+                    <td><a ui-sref="ofertaDetail({ofertaId: oferta.id})">Ver oferta</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

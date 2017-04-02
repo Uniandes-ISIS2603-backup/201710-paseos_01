@@ -1,7 +1,11 @@
 (function(ng){
-var mainApp=ng.module('mainApp',['ui.router','appPaseos']);
+var app = angular.module('mainApp',[
+    'ui.router',
+    'appPaseos',
+    'ofertasModule'
+]);
 // Resuelve problemas de las promesas
-   // mainApp.config(['$qProvider', function ($qProvider) {
-     //      $qProvider.errorOnUnhandledRejections(false);
-       // }]);
+   app.config(['$qProvider', function ($qProvider) {
+            $qProvider.errorOnUnhandledRejections(false);
+        }]);
 })(window.angular);

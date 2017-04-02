@@ -15,6 +15,9 @@
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- modules -->
 <script src="src/modules/paseos/appPaseos.js"> </script>
+<script src="src/modules/ofertas/ofertas.mod.js"> </script>
+ <!-- stylesheet Internas -->
+<link rel="stylesheet" href="css/app.css" />
 
  <!-- main app-->
 <script src="src/app.js"> </script>
@@ -33,6 +36,7 @@
               <li><a ui-sref="paseosCatalogo">Catálogo de Paseos</a></li>
               <li><a ui-sref="#">Usuarios</a></li>
               <li><a ui-sref="#">Mis paseos</a></li>
+              <li><a ui-sref="ofertasList">Ofertas</a></li>
             </ul>
              <ul class="nav navbar-nav navbar-right">
               <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -41,7 +45,7 @@
           </div>
         </nav>
 
-    <div ui-view> </div>
+    <div ui-view ='mainView'> </div>
  
     </body>
 </html>
