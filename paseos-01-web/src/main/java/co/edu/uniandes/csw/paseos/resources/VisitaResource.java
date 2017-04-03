@@ -73,10 +73,9 @@ public class VisitaResource {
     }
     
     @POST
-    @Path("usuarios/{idUsuario: \\d+}/ofertas/{idOferta: \\d+}/visitas/{id: \\d+}")
-    public VisitaDTO createVisita(@PathParam("id") Long id, @PathParam("idOferta") Long idOferta, @PathParam("idUsuario") Long idUsuario, VisitaDTO dto ) throws BusinessLogicException{
+    @Path("usuarios/{idUsuario: \\d+}/ofertas/{idOferta: \\d+}")
+    public VisitaDTO createVisita(@PathParam("idOferta") Long idOferta, @PathParam("idUsuario") Long idUsuario, VisitaDTO dto ) throws BusinessLogicException{
         VisitaEntity entity = dto.toEntity();
-        entity.setId(id);
         VisitaDTO visita = new VisitaDTO(visitaLogic.createVisita(entity));
         OfertaEntity oferta = ofertaLogic.getOferta(idOferta);
         entity.setOferta(oferta);
