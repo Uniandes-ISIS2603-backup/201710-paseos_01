@@ -119,7 +119,7 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                 'addView': {
                 // Template que se utilizara para ejecutar el estado
                 templateUrl: basePath + 'addPaseo.html',
-                controller: ['$scope', 'setPaseo', function ($scope, setPaseo){
+                controller: ['$scope', 'setPaseo','$state', function ($scope, setPaseo,$state){
                         $scope.destino="";
                         $scope.tematica="";
                         $scope.condicionFisica=0;
@@ -141,6 +141,7 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                                 "costo":$scope.costo
                             }
                         setPaseo($scope.addPaseo);
+                        $state.reload();
 
                         };
                         
@@ -186,10 +187,11 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                 'addView': {
                 // Template que se utilizara para ejecutar el estado
                 templateUrl: basePath + 'paseo.delete.html',
-                controller: ['$scope', 'deletePaseo', function ($scope, deletePaseo){
+                controller: ['$scope', 'deletePaseo','$state', function ($scope, deletePaseo, $state){
                         
                         $scope.deletePaseo= function(id){
                             deletePaseo(id);
+                             $state.reload();
 
                         };
                         
