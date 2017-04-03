@@ -148,6 +148,31 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                 // El controlador guarda en el scope en la variable booksRecords los datos que trajo el resolve
                 // booksRecords será visible en el template
                }
+            }}).state('modificarPaseo', {
+                // Url que aparecerá en el browser
+                url: '/updatePaseo',
+                parent:"paseos",
+                
+             
+                
+                views: {
+                'addView': {
+                // Template que se utilizara para ejecutar el estado
+                templateUrl: basePath + 'paseo.update.html'
+            }
+            }}
+        ).state('eliminarPaseo',{
+                // Url que aparecerá en el browser
+                url: '/deletePaseo',
+                parent:"paseos",
+                
+             
+                
+                views: {
+                'addView': {
+                // Template que se utilizara para ejecutar el estado
+                templateUrl: basePath + 'paseo.delete.html'
+            }
             }});
     }]);
 
