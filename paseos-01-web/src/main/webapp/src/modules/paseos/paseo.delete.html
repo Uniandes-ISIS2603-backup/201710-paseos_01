@@ -1,22 +1,28 @@
   
-<h2 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Paseos disponibles:</h2>
-<div class="container" >
+  <h2 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Paseos disponibles:</h2>
+  <div class="container-fluid" >
+  <div class="col-md-12">
+          <table class="table table-hover">
+	              <thead>
+		                      <tr>                    
+				                          <th>id</th>
+							                      <th>destino</th>
+									                          <th> </th>
+												                      <th> </th>
+														                      </tr>
+																                  </thead>
+																		              <tbody>
+																			                      <tr ng-repeat="paseo in catalogo">
+																					                          <td id="{{$index}}-id">{{paseo.id}}</td> 
+																								                      <td id="{{$index}}-place">{{paseo.destino}}</td> 
+																										                          <td id="{{$index}}-delete"><button ng-click= deletePaseo(paseo.id)> DELETE </button></td>
+																													                      <td><a href="indexAdmin.html#/paseos/updatePaseo">Modificar</a></td>
+																															                      </tr>
+																																	                  </tbody>
+																																			          </table>
+																																				    
 
-<div class="group-list">
-
-    <div class="group-list item"  ng-repeat='paseo in catalogo'>
-    
-        <div id="{{paseo.id}}"> 
-            <h6>{{paseo.destino}}</h6>
-         
-        </div>
-     <button ng-click= deletePaseo(paseo.id)> DELETE </button>
-    <a href="indexAdmin.html#/paseos/updatePaseo"> Modificar </a>
-   
-    </div>
-    
-
-</div>
-      
-</div>
-    
+																																				    </div>
+																																				          
+																																					  </div>
+																																					      
