@@ -165,13 +165,35 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                 // Url que aparecerá en el browser
                 url: '/deletePaseo',
                 parent:"paseos",
-                
+                resolve: {
+                    deletePaseo: ["$http",function($http){
+                     var eliminarPaseo =  
+                     function (id){
+                    $http.delete("/paseos-01-web/api/paseos/"+id.toString()).success(function(data){
+                        return data;
+                    }).error(function(err){
+                        return err;
+                    });
+                }
+                    return eliminarPaseo;
+                    
+                    
+               }]
+                },
              
                 
                 views: {
                 'addView': {
                 // Template que se utilizara para ejecutar el estado
-                templateUrl: basePath + 'paseo.delete.html'
+                templateUrl: basePath + 'paseo.delete.html',
+                controller: ['$scope', 'deletePaseo', function ($scope, deletePaseo){
+                        
+                        $scope.deletePaseo= function(id){
+                            deletePaseo(id);
+
+                        };
+                        
+                }]
             }
             }});
     }]);
