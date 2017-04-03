@@ -1,5 +1,4 @@
 [
-
   {
   "id": 1,
   "fecha": "2019-06-18T19:57:18Z",
@@ -48,6 +47,8 @@
   "costo": 88416,
   "transporte": false,
   "almuerzo": true
+},
+"visitas": []
 },
 {
   "id": 3,
@@ -122,5 +123,7 @@
   "costo": 159159,
   "transporte": false,
   "almuerzo": true
-}
+},
+"visitas": []
+},
 ]
