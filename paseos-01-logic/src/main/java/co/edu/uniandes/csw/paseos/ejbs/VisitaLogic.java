@@ -88,22 +88,7 @@ public class VisitaLogic {
     }
     
     public VisitaEntity createVisita(VisitaEntity entity) throws BusinessLogicException{
-        if(!getVisita(entity.getId()).getUsuario().getGuia()){
-                throw new BusinessLogicException("El usuario que deberia ser guia no es guia");
-        }
-        if(entity.getOferta().getFecha().before(new Date())){
-            throw new BusinessLogicException("La fecha de oferta no puede haber pasado");
-        }
-        UsuarioEntity update = entity.getUsuario();
-        update.addVisita(entity);
-        persistenceUsuario.update(update);
-        
-        OfertaEntity up= entity.getOferta();
-        up.addtVisita(entity);
-        persistenceOferta.update(up);
-        
-        persistenceVisita.create(entity);
-        return entity;
+        return persistenceVisita.create(entity);
     }
 
     public List<VisitaEntity> getVisitaPorPaseo(Long idPaseo) {
@@ -115,5 +100,24 @@ public class VisitaLogic {
             }
         }
         return respuesta;
+    }
+
+    public void setUsuarioYOferta(VisitaEntity entity) throws BusinessLogicException {
+        UsuarioEntity update = entity.getUsuario();
+        update.addVisita(entity);
+        persistenceUsuario.update(update);
+        
+        OfertaEntity up= entity.getOferta();
+        up.addtVisita(entity);
+        persistenceOferta.update(up);
+        
+        if(!entity.getOferta().getGuia().getGuia()){
+            persistenceVisita.delete(entity.getId());
+            throw new BusinessLogicException("El usuario que deberia ser guia no es guia");
+        }
+        if(entity.getOferta().getFecha().before(new Date())){
+            persistenceVisita.delete(entity.getId());
+            throw new BusinessLogicException("La fecha de oferta no puede haber pasado");
+        }
     }
 }
