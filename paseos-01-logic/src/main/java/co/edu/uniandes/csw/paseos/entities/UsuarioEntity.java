@@ -97,6 +97,10 @@ public class UsuarioEntity implements Serializable {
     }
 
     public Boolean getGuia() {
+        if (guia== null)
+        {
+            return false; 
+        }
         return guia;
     }
 
