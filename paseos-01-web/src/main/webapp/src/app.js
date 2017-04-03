@@ -6,8 +6,9 @@ var app = angular.module('mainApp',[
     'usuarioModule',
     'fotosModule'
 ]);
-// Resuelve problemas de las promesas
+/* Resuelve problemas de las promesas
    app.config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
         }]);
+*/
 })(window.angular);
