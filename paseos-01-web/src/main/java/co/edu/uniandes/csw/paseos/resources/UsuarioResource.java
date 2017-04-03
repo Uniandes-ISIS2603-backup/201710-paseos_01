@@ -139,9 +139,9 @@ public class UsuarioResource {
       List<UsuarioDetailDTO> lista1 = listEntity2DTO(usuarioLogic.getUsuarios());
       for (UsuarioDetailDTO usuario : lista1 )
       {
-          if (usuario.isGuia()!=null)
+          if (usuario.getGuia()!=null)
              { 
-          if (usuario.isGuia().booleanValue())
+          if (usuario.getGuia().booleanValue())
           {
               lista.add(usuario); 
           }
