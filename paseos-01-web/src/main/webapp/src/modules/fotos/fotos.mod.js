@@ -1,34 +1,36 @@
 (function(ng){
-    //defincicón del modulo
-    var mod = ng.module("fotoModule",['ui.router']);
-     // Configuración de los estados del módulo
-    mod.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider){
-            // En basePath se encuentran los templates y controladores de módulo
-            var basePath = 'src/modules/fotos/';
-            // Mostrar la lista de libros será el estado por defecto del módulo
-            $urlRouterProvider.otherwhise("/fotos");
-            // Definición del estado 'booksList' donde se listan los libros
-            $stateProvider.state('fotos',{
+    var mod = ng.module("fotosModule", ['ui.router']);
+    mod.constant("fotosContext", "api/fotos");
+   // Configuración de los estados del módulo
+    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+       var basePath = 'src/modules/fotos/';
+       $urlRouterProvider.otherwise("src/index.html");
+       $stateProvider.state('fotos', {
                 // Url que aparecerá en el browser
                 url: '/fotos',
-                 // Se define una variable books (del estado) que toma por valor 
-                // la colección de libros que obtiene utilizando $http.get
-                resolve: {
-                    getFotos: ["&http",function($http) {
-                            return $http.get("/paseos-01-web/api/fotos").success(function(data){
-                                return data;
-                            }).error(function(err){
-                                return err;
-                            });
-                    }]
+                abstract: true,
+                 resolve: {
+                    fotos: ['$http', function ($http) {
+                            return $http.get('data/fotos.json'); // $http retorna una promesa que aquí no se está manejando si viene con error.
+                        }]
                 },
-                // Template que se utilizara para ejecutar el estado
-                templateUrl: basePath + 'paseosCatalogo.html',
-                // El controlador guarda en el scope en la variable fotos los datos que trajo el resolve
-                // fotos será visible en el template
-                controller: ['$scope','getFotos',function($scope,getFotos){
-                        $scope.fotos = getFotos.data;
-                }]
+                views: {
+                    'mainView':{
+                        templateUrl: basePath + 'fotos.html',
+                        controller: ['$scope','fotos',function($scope,fotos){
+                                $scope.fotosRecords = fotos.data;
+                        }]
+                    }
+                }             
+            }).state('fotosList',{
+                url: '/list',
+                parent: 'fotos',
+                views:{
+                    'listView':{
+                        templateUrl: basePath + 'fotos.list.html'
+                    }
+                }
             });
+            
     }]);
 })(window.angular);

@@ -1,0 +1,22 @@
+  
+<h2 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Paseos disponibles:</h2>
+<div class="container" >
+
+<div class="group-list">
+
+    <div class="group-list item"  ng-repeat='paseo in catalogo'>
+    
+        <div id="{{paseo.id}}"> 
+            <h6>{{paseo.destino}}</h6>
+         
+        </div>
+     <button ng-click= deletePaseo(paseo.id)> DELETE </button>
+    <a href="indexAdmin.html#/paseos/updatePaseo"> Modificar </a>
+   
+    </div>
+    
+
+</div>
+      
+</div>
+    

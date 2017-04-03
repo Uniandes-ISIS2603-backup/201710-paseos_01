@@ -27,12 +27,6 @@ public class FotoResource {
     @Inject
     private FotoLogic fotoLogic;
     
-    @Inject
-    private VisitaLogic visistaLogic;
-    
-    @Inject
-    private PaseoLogic paseoLogic;
-    
     /**
      * Convierte una lista de EmployeeEntity a una lista de EmployeeDetailDTO.
      *
