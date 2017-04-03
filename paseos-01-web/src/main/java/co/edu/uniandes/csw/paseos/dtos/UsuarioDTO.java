@@ -46,6 +46,11 @@ public class UsuarioDTO {
      * Atributo que modela el login del usuario
      */
     protected String login; 
+    
+    /**
+     * Atributo que modela el login del usuario
+     */
+    protected Boolean guia; 
 
     /**
      * Constructor por defecto
@@ -61,6 +66,7 @@ public class UsuarioDTO {
             this.fechaNacimiento = entity.getFechaNaciemiento();
             this.condicionFisica = entity.getCondicionFisica();
             this.login = entity.getLogin(); 
+            this.guia = entity.getGuia();
         }
     }
     
@@ -72,6 +78,7 @@ public class UsuarioDTO {
         entity.setFechaNaciemiento(this.fechaNacimiento);
         entity.setCondicionFisica(this.condicionFisica);
         entity.setLogin(this.login);
+        entity.setGuia(this.guia);
         return entity;
     }
 
@@ -152,6 +159,15 @@ public class UsuarioDTO {
      */
     public void setCondicionFisica(Integer condicionFisica) {
         this.condicionFisica = condicionFisica;
+    }
+
+    public Boolean getGuia() {
+        if (guia == null) return false; 
+        return guia;
+    }
+
+    public void setGuia(Boolean guia) {
+        this.guia = guia;
     }
     
     

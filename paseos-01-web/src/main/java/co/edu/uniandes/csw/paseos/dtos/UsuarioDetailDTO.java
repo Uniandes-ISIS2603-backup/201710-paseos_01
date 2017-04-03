@@ -22,7 +22,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     
     
     
-    private boolean guia; 
+   
     
     private String formacion; 
     
@@ -30,7 +30,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
     
     private Double calificacionPromedio; 
     
-    private boolean admin; 
+    private Boolean admin; 
     
     private List<OfertaDetailDTO> ofertas; 
     
@@ -44,6 +44,10 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         super(entity); 
         List<OfertaEntity> ofertasEntities = entity.getOfertas();
         List<VisitaEntity> visitasEntities = entity.getVisitas();
+       
+        formacion = entity.getFormacion(); 
+        experiencia = entity.getExperiencia();
+        calificacionPromedio = entity.getCalificacionPromedio(); 
         ofertas=new ArrayList<OfertaDetailDTO>();
         visitas= new ArrayList<VisitaDetailDTO>(); 
         
@@ -66,7 +70,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         entity.setCondicionFisica(this.condicionFisica);
         entity.setFechaNaciemiento(this.fechaNacimiento);
         entity.setExperiencia(this.experiencia);
-        entity.setGuia(this.guia);
+        
         entity.setNombres(this.nombres);
         
         List<OfertaEntity> ofertas1 = new ArrayList<OfertaEntity>(); 
@@ -94,9 +98,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         this.login = login;
     }
 
-    public void setGuia(boolean guia) {
-        this.guia = guia;
-    }
+    
 
     public void setFormacion(String formacion) {
         this.formacion = formacion;
@@ -110,7 +112,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         this.calificacionPromedio = calificacionPromedio;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setAdmin(Boolean admin) {
         this.admin = admin;
     }
 
@@ -122,9 +124,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         this.visitas = visitas;
     }
 
-    public boolean isGuia() {
-        return guia;
-    }
+   
 
     public String getFormacion() {
         return formacion;
@@ -138,7 +138,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         return calificacionPromedio;
     }
 
-    public boolean isAdmin() {
+    public Boolean isAdmin() {
         return admin;
     }
 
