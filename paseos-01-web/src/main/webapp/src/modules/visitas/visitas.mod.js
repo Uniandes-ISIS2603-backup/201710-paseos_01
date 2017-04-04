@@ -3,14 +3,13 @@
     mod.constant("visitasContext", "api/visitas");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/visitas/';
-            var basePathVisitas = 'src/modules/visitas/';
             $urlRouterProvider.otherwise("/visitasList");
 
             $stateProvider.state('visitas', {
                 url: '/visitas',
                 abstract: true,
                 resolve: {
-                    usuarios: ['$http', function ($http) {
+                    visitas: ['$http', function ($http) {
                             return $http.get('data/visitas.json');
                         }]
                 },
@@ -31,24 +30,25 @@
                     }
                 }
             }).state('visitasDetail', {
-                url: '/{usuarioId:int}',
+                url: '/{visitaId:int}/detail',
                 parent: 'visitas',
                 param: {
-                    usuarioId: null
+                    ofertaId: null
                 },
                 views: {
-                     'listView': {
+                    'listView': {
                         templateUrl: basePath + 'visitas.list.html'
                         
                     },
-                    
                     'detailView': {
                         templateUrl: basePath + 'visitas.detail.html',
                         controller: ['$scope', '$stateParams', function ($scope, $params) {
-                                $scope.currentVisita = $scope.visitasRecords[$params.usuarioId - 1];
+                                $scope.currentVisita = $scope.visitasRecords[$params.visitaId-1];
                             }]
                     }
+
                 }
+
             });
         }]);
 })(window.angular);

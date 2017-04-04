@@ -4,9 +4,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Fecha</th>
-                    <th>Usuario</th>
-                    <th>Destino</th>
+                    <th>visita</th>
                     <th>Comentario</th> 
                     <th>Calificacion</th>
 
@@ -14,9 +12,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="visita in visitasRecords">
-                    <td id="{{$index}}-date">{{visita.oferta.fecha}}</td>
-                    <td id="{{$index}}-user">{{visita.usuario.login}}</td> 
-                    <td id="{{$index}}-place">{{visita.oferta.paseo.destino}}</td> 
+                    <td id="{{$index}}-id">{{visita.id}}</td>
                     <td id="{{$index}}-comment">{{visita.comentario}}</td> 
                     <td id="{{$index}}-rate">{{visita.calificacion}}</td> 
                     <td><a ui-sref="visitaDetail({visitaId: visita.id})">Ver visita detallada</a></td>

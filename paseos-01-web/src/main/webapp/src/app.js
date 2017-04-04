@@ -4,7 +4,8 @@ var app = angular.module('mainApp',[
     'paseosModule',
     'ofertasModule',
     'usuarioModule',
-    'fotosModule'
+    'visitasModule',
+    'fotosModule'    
 ]);
 /* Resuelve problemas de las promesas
    app.config(['$qProvider', function ($qProvider) {
