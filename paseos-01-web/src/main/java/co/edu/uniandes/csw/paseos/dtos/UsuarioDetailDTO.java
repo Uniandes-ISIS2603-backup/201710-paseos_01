@@ -51,6 +51,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         ofertas=new ArrayList<OfertaDetailDTO>();
         visitas= new ArrayList<VisitaDetailDTO>(); 
         
+        
         for (OfertaEntity of : ofertasEntities) {
             ofertas.add(new OfertaDetailDTO(of));
         }
@@ -70,19 +71,26 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         entity.setCondicionFisica(this.condicionFisica);
         entity.setFechaNaciemiento(this.fechaNacimiento);
         entity.setExperiencia(this.experiencia);
-        
+        entity.setGuia(this.guia);
         entity.setNombres(this.nombres);
         
         List<OfertaEntity> ofertas1 = new ArrayList<OfertaEntity>(); 
         List<VisitaEntity> visitas1 = new ArrayList<VisitaEntity>(); 
         
+        
+        if (ofertas != null)
+        {
         for (OfertaDetailDTO of : ofertas)
         {
             ofertas1.add(of.toEntity());
         }
+        }
+        if (visitas != null)
+        {
         for (VisitaDetailDTO vi : visitas)
         {
             visitas1.add(vi.toEntity());
+        }
         }
         
         entity.setOfertas(ofertas1);
