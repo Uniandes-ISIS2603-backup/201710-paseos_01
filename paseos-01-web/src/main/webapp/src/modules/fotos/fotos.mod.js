@@ -52,3 +52,6 @@
             
     }]);
 })(window.angular);
+$scope.incrementado = function(){
+    $index = $index +1;
+}

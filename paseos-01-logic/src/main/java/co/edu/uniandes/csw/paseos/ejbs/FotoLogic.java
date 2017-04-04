@@ -2,6 +2,7 @@
 package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
+import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
 import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
 import co.edu.uniandes.csw.paseos.persistence.VisitaPersistence;
 import java.util.List;
@@ -63,7 +64,9 @@ public class FotoLogic {
      */
     
     public FotoEntity createFotoVisita(FotoEntity entity, Long id) {
-        visitaPersistence.createFoto(entity, id);
+        VisitaEntity visita = visitaPersistence.find(id);
+        entity.setVisita(visita);
+        persistence.create(entity);
         return entity;
     }
     

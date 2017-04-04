@@ -42,12 +42,6 @@ public class VisitaPersistence {
         return entity;
     }
     
-    public VisitaEntity createFoto(FotoEntity entity, Long id){
-        VisitaEntity ent = find(id);
-        ent.addFotos(entity);
-        return em.merge(ent);
-    }
-    
     public VisitaEntity update(VisitaEntity entity){
         return em.merge(entity);
     }
