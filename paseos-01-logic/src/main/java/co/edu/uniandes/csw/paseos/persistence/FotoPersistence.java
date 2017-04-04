@@ -81,4 +81,6 @@ public class FotoPersistence {
         em.remove(find(id));
     }
 
+    
+
 }

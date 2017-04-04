@@ -51,10 +51,17 @@ public class FotoResource {
     
     //Debug
     @GET
-    @Path("/fotos/{id: \\d+}")
+    @Path("fotos/{id: \\d+}")
     // TODO: retornar una excepción / código 404 si no existe
     public FotoDTO getFoto(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
         return new FotoDTO(fotoLogic.getFoto(id));
+    }
+    
+    //Debug
+    @POST
+    @Path("fotos")
+    public FotoDTO addFotoVisita(FotoDTO fotoDTO)throws BusinessLogicException{
+        return new FotoDTO(fotoLogic.createFoto(fotoDTO.toEntity()));
     }
     
     @GET

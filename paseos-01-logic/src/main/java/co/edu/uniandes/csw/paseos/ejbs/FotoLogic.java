@@ -66,6 +66,18 @@ public class FotoLogic {
         visitaPersistence.createFoto(entity, id);
         return entity;
     }
+    
+    /**
+     * Se encarga de crear una Foto en la base de datos.
+     * @param entity Objeto de FotoEntity con los datos nuevos
+     * @return Objeto de FotoEntity con los datos nuevos y su ID.
+     * @generated
+     */
+    
+    public FotoEntity createFoto(FotoEntity entity) {
+        persistence.create(entity);
+        return entity;
+    }
 
     /**
      * Elimina una instancia de Foto de la base de datos.
