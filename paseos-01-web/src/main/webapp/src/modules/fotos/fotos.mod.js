@@ -30,24 +30,25 @@
                         templateUrl: basePath + 'fotos.list.html'
                     }
                 }
-            })/*.state('fotoDetail',{
+            }).state('fotoDetail',{
                 url: '/{fotoId:int}/detail',
-                parent:fotos,
+                parent: 'fotos',
                 param:{
-                    usuarioId: null
+                    fotoId: null
                 },
                 views: {
-                    'listView':{
-                        templateUrl: basePath+'fotos.list.html'
-                    },
                     'detailView':{
                         templateUrl: basePath + 'fotos.detail.html',
                         controller: ['$scope','$stateParams',function($scope,$params){
-                                $scope.currentFoto = $scope.fotosRecords[$params.fotoId-$scope.fotosRecords[0]];
+                                for(var i=0; i<$scope.fotosRecords.length;i++){
+                                    if($scope.fotosRecords[i].id == $params.fotoId){
+                                        $scope.currentFoto = $scope.fotosRecords[i];
+                                    }
+                                }
                         }]
                     }
                 }
-            })*/;
+            });
             
     }]);
 })(window.angular);
