@@ -24,6 +24,11 @@ public class FotoEntity implements Serializable {
      */
     private byte[] valor;
     
+    /**
+     * Formato de la foto
+     */
+    private String formato;
+    
     @ManyToOne
     private VisitaEntity visita;
 
@@ -57,6 +62,14 @@ public class FotoEntity implements Serializable {
      */
     public void setValor(byte[] valor) {
         this.valor = valor;
+    }
+
+    public String getFormato() {
+        return formato;
+    }
+
+    public void setFormato(String formato) {
+        this.formato = formato;
     }
 
     public VisitaEntity getVisita() {
