@@ -1,6 +1,6 @@
 <h1 class="mainTitle">* Mis Paseos *</h1>
 <div class="container-fluid">
-    <div class="col-sm-12">
+    <div class="col-md-12">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -15,7 +15,7 @@
                     <td id="{{$index}}-id">{{visita.id}}</td>
                     <td id="{{$index}}-comment">{{visita.comentario}}</td> 
                     <td id="{{$index}}-rate">{{visita.calificacion}}</td> 
-                    <td><a ui-sref="visitaDetail({visitaId: visita.id})">Ver visita detallada</a></td>
+                    <td><a ui-sref="visitasDetail({visitaId: visita.id})">Ver fotos</a></td>
                 </tr>
             </tbody>
         </table>
