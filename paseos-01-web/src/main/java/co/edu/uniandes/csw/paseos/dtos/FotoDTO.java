@@ -40,14 +40,15 @@ public class FotoDTO {
     public FotoDTO(FotoEntity entity){
         if(entity!=null){
             id = entity.getId();
-            valor = Base64.getEncoder().encodeToString(entity.getValor());
+            valor = "data:image/"+entity.getFormato()+";base64,"+Base64.getEncoder().encodeToString(entity.getValor());
         }
     }
 
     public FotoEntity toEntity(){
         FotoEntity entity = new FotoEntity();
         entity.setId(id);
-        entity.setValor(Base64.getDecoder().decode(valor));
+        entity.setValor(Base64.getDecoder().decode(valor.split(",")[1]));
+        entity.setFormato(valor.split(",")[0].split("/")[1].split(";")[0]);
         return entity;
     }
     

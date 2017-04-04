@@ -11,7 +11,7 @@
                 abstract: true,
                  resolve: {
                     fotos: ['$http', function ($http) {
-                            return $http.get('data/fotos.json'); // $http retorna una promesa que aquí no se está manejando si viene con error.
+                            return $http.get('/paseos-01-web/api/fotos'); // $http retorna una promesa que aquí no se está manejando si viene con error.
                         }]
                 },
                 views: {
@@ -30,7 +30,24 @@
                         templateUrl: basePath + 'fotos.list.html'
                     }
                 }
-            });
+            })/*.state('fotoDetail',{
+                url: '/{fotoId:int}/detail',
+                parent:fotos,
+                param:{
+                    usuarioId: null
+                },
+                views: {
+                    'listView':{
+                        templateUrl: basePath+'fotos.list.html'
+                    },
+                    'detailView':{
+                        templateUrl: basePath + 'fotos.detail.html',
+                        controller: ['$scope','$stateParams',function($scope,$params){
+                                $scope.currentFoto = $scope.fotosRecords[$params.fotoId-$scope.fotosRecords[0]];
+                        }]
+                    }
+                }
+            })*/;
             
     }]);
 })(window.angular);
