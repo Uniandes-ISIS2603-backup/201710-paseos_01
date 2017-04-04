@@ -11,7 +11,7 @@
                 abstract: true,
                  resolve: {
                     fotos: ['$http', function ($http) {
-                            return $http.get('data/fotos.json'); // $http retorna una promesa que aquí no se está manejando si viene con error.
+                            return $http.get('/paseos-01-web/api/fotos'); // $http retorna una promesa que aquí no se está manejando si viene con error.
                         }]
                 },
                 views: {
