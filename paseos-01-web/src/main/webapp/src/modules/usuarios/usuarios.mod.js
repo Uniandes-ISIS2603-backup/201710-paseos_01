@@ -30,6 +30,15 @@
                         templateUrl: basePath + 'usuarios.list.html'
                     }
                 }
+                
+            }).state('agregarUsuario', {
+                url: '/agregarUsuario',
+                parent: 'usuarios',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'agregarUsuario.html'
+                    }
+                }
             }).state('usuarioDetail', {
                 url: '/{usuarioId:int}/detail',
                 parent: 'usuarios',
