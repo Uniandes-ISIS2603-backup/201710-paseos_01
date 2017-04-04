@@ -33,7 +33,7 @@
                 url: '/{visitaId:int}/detail',
                 parent: 'visitas',
                 param: {
-                    ofertaId: null
+                    visitaId: null
                 },
                 views: {
                     'listView': {
