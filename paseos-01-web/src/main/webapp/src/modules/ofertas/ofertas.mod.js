@@ -37,6 +37,22 @@
                         templateUrl: basePath + 'addOferta.html'
                     }
                 }
+            }).state('editarOferta', {
+                url: '/editarOferta',
+                parent: 'ofertas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'editOferta.html'
+                    }
+                }
+            }).state('administrarOfertas', {
+                url: '/administrarOfertas',
+                parent: 'ofertas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'adminOfertas.html'
+                    }
+                }
             }).state('ofertaDetail', {
                 url: '/{ofertaId:int}/detail',
                 parent: 'ofertas',
