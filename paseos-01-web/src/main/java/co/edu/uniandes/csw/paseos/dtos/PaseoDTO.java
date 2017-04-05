@@ -69,6 +69,8 @@ public class PaseoDTO {
             this.costo = entity.getCosto();
             this.transporte = entity.getTransporte();
             this.almuerzo = entity.getAlmuerzo();
+            this.numeroMaximo=entity.getNumeroMaximo();
+            this.numeroMinimo=entity.getNumeroMinimo();
         }
     }
     
