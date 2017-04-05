@@ -29,6 +29,14 @@
                         templateUrl: basePath + 'ofertas.list.html'
                     }
                 }
+            }).state('agregarOferta', {
+                url: '/agregarOferta',
+                parent: 'ofertas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'addOferta.html'
+                    }
+                }
             }).state('ofertaDetail', {
                 url: '/{ofertaId:int}/detail',
                 parent: 'ofertas',
