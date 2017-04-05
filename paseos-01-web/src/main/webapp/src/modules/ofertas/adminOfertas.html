@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <h2 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Administrar ofertas:</h2>    
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>                    
+                    <th>Temática</th>
+                    <th>Lugar</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="oferta in ofertasRecords">
+                    <td id="{{$index}}-topic">{{oferta.paseo.tematica}}</td> 
+                    <td id="{{$index}}-place">{{oferta.paseo.destino}}</td> 
+                    <td id="{{$index}}-date">{{oferta.fecha}}</td>
+                    <td><a ui-sref="editarOferta">Editar oferta</a></td>
+                    <td><a ui-sref="#">Eliminar oferta</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
