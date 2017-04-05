@@ -151,18 +151,74 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                }
             }}).state('modificarPaseo', {
                 // Url que aparecerá en el browser
-                url: '/updatePaseo',
+                url: '/{idPaseo: int}/updatePaseo',
                 parent:"paseos",
-                
-             
+                param : {
+                    idPaseo: null
+                },
+               resolve: {
+                    putPaseo: ["$http",'$stateParams',function($http,$params){
+                          var modificarPaseo =  
+                     function (putPaseo){
+                    $http.put("/paseos-01-web/api/paseos/"+$params.idPaseo.toString(),putPaseo).success(function(data){
+                        return data;
+                    }).error(function(err){
+                        return err;
+                    });
+                }
+                    return modificarPaseo;
+                    
+                    
+               }]
+               /*,
+                    getPaseo: ["$http",'$stateParams', function($http, $params ){
+                    return $http.get("/paseos-01-web/api/paseos/"+ $params.idPaseo.toString()).success(function(data){
+                        return data;
+                    }).error(function(err){
+                        return err;
+                    });
+               }]*/
+                },
                 
                 views: {
                 'addView': {
                 // Template que se utilizara para ejecutar el estado
-                templateUrl: basePath + 'paseo.update.html'
-            }
+                templateUrl: basePath + 'paseo.update.html',
+                controller: ['$scope', 'putPaseo','$state', "$http",'$stateParams', 
+                    function ($scope, putPaseo,$state, $http, $params){
+                        
+                        $http
+                            .get("/paseos-01-web/api/paseos/"+ $params.idPaseo.toString())
+                            .success(function(data){
+                             
+                                $scope.addPaseo = data;
+                        $scope.destino=$scope.addPaseo.destino;
+                        $scope.tematica=$scope.addPaseo.tematica;
+                        $scope.condicionFisica=$scope.addPaseo.condicionFisica;
+                        $scope.almuerzo=$scope.addPaseo.almuerzo;
+                        $scope.transporte=$scope.addPaseo.transporte;
+                        $scope.numeroMinimo=$scope.addPaseo.numeroMinimo;
+                        $scope.numeroMaximo=$scope.addPaseo.numeroMaximo;
+                        $scope.costo=$scope.addPaseo.costo;
+                        });
+                    
+                        $scope.savePaseo= function(){
+                            $scope.addPaseo={
+                                "destino":$scope.destino,
+                                "tematica":$scope.tematica,
+                                "condicionFisica":$scope.condicionFisica,
+                                "almuerzo":$scope.almuerzo,
+                                "transporte":$scope.transporte,
+                                "numeroMinimo":$scope.numeroMinimo,
+                                "numeroMaximo":$scope.numeroMaximo,
+                                "costo":$scope.costo
+                            };
+                            putPaseo($scope.addPaseo);
+                            $state.reload();
+                        };
+            }]
             }}
-        ).state('eliminarPaseo',{
+    }).state('eliminarPaseo',{
                 // Url que aparecerá en el browser
                 url: '/deletePaseo',
                 parent:"paseos",
