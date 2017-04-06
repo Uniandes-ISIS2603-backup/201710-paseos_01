@@ -29,6 +29,30 @@
                         templateUrl: basePath + 'visitas.list.html'
                     }
                 }
+            }).state('addVisita', {
+                url: '/addVisita',
+                parent: 'visitas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'addVisita.html'
+                    }
+                }
+            }).state('deleteVisita', {
+                url: '/deleteVisita',
+                parent: 'visitas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'deleteVisita.html'
+                    }
+                }
+            }).state('updateVisita', {
+                url: '/updateVisita',
+                parent: 'visitas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'updateVisita.html'
+                    }
+                }
             }).state('visitasDetail', {
                 url: '/{visitaId:int}/detail',
                 parent: 'visitas',
