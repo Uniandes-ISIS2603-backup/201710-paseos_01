@@ -85,7 +85,7 @@ public class FotoResource {
    
     
     @DELETE
-    @Path("visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
+    @Path("fotos/{id: \\d+}")
     public void deleteFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita) {
         fotoLogic.deleteFotoVisita(id);
     }
