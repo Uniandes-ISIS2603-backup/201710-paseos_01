@@ -1,4 +1,4 @@
-<div class="container-fluid" aling="center">
+<div class="container-fluid">
     <h1 align="center">Fotos</h1>
     <div ng-repeat="image in fotosRecords">
 	<div class="row form-group im-centered" align="center" >
@@ -9,15 +9,14 @@
                     <label for="toggle-1"></label>
                 </div>
                 <div class="panel-body">
-                    <h4>Title of Image</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper et.</p>
+                    <h4 ui-sref="fotoDetail({fotoId : image.id})" >Title of Image</h4>
+                    <p>Información de visita acá</p>
                 </div>
                 <div class="panel-footer text-center">
                     <a href="#download"><span class="glyphicon glyphicon-download"></span></a>
                     <a href="#facebook"><span class="fa fa-facebook"></span></a>
                     <a href="#twitter"><span class="fa fa-twitter"></span></a>
                     <a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>
-                    <a ui-sref="eliminarFoto({fotoId : image.id})"><span class="glyphicon glyphicon-remove-sign"></span></a>
                 </div>
             </div>
             </div>

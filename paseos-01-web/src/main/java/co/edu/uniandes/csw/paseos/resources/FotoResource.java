@@ -3,8 +3,6 @@ package co.edu.uniandes.csw.paseos.resources;
 
 import co.edu.uniandes.csw.paseos.dtos.FotoDTO;
 import co.edu.uniandes.csw.paseos.ejbs.FotoLogic;
-import co.edu.uniandes.csw.paseos.ejbs.PaseoLogic;
-import co.edu.uniandes.csw.paseos.ejbs.VisitaLogic;
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
 import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.ArrayList;
@@ -64,6 +62,13 @@ public class FotoResource {
         return new FotoDTO(fotoLogic.createFoto(fotoDTO.toEntity()));
     }
     
+    //Debug
+    @DELETE
+    @Path("fotos/{id: \\d+}")
+    public void deleteFotoVisita(@PathParam("id") Long id) {
+        fotoLogic.deleteFotoVisita(id);
+    }
+    
     @GET
     @Path("visitas/{idVisita: \\d+}/fotos")
     public List<FotoDTO> getFotosVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
@@ -85,7 +90,7 @@ public class FotoResource {
    
     
     @DELETE
-    @Path("fotos/{id: \\d+}")
+    @Path("visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
     public void deleteFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita) {
         fotoLogic.deleteFotoVisita(id);
     }

@@ -30,6 +30,14 @@
                         templateUrl: basePath + 'fotos.list.html'
                     }
                 }
+            }).state('fotosListUsuario',{
+                url: '/listUsuario',
+                parent: 'fotos',
+                views:{
+                    'listViewUsuario': {
+                        templateUrl: basePath + 'fotos.list.vistausuario.html'
+                    }
+                }
             }).state('fotoDetail',{
                 url: '/{fotoId:int}/detail',
                 parent: 'fotos',
@@ -48,26 +56,53 @@
                         }]
                     }
                 }
+            }).state('fotoDetailUsuario',{
+                url: '/{fotoId:int}/detailUsuario',
+                parent: 'fotos',
+                param:{
+                    fotoId: null
+                },
+                views: {
+                    'detailViewUsuario':{
+                        templateUrl: basePath + 'fotos.detail.vistausuario.html',
+                        controller: ['$scope','$stateParams',function($scope,$params){
+                                for(var i=0; i<$scope.fotosRecords.length;i++){
+                                    if($scope.fotosRecords[i].id == $params.fotoId){
+                                        $scope.currentFoto = $scope.fotosRecords[i];
+                                    }
+                                }
+                        }]
+                    }
+                }
             }).state('eliminarFoto',{
                 // Url que aparecerá en el browser
-                url: '/{fotoId:int}/deleteFoto',
+                url: '/deleteFoto',
                 parent:"fotos",
                 resolve: {
-                    deletePaseo: ["$http","$stateParams",function($http){
+                    deleteFoto: ["$http","$stateParams",function($http){
                      var eliminarFoto =  
-                     function (){
-                        $http.delete("/paseos-01-web/api/fotos/$params.fotoId".success(function(data){
+                     function (id){
+                        $http.delete("/paseos-01-web/api/fotos/"+id.toString()).success(function(data){
                             return data;
                         }).error(function(err){
                             return err;
-                        })
-                    )}
+                        });
+                    }
                     return eliminarFoto;
                     }]
                 },
                 views: {
-                    'listView':{
-                        templateUrl: basePath + 'fotos.list.html',
+                    'listViewUsuario':{
+                        templateUrl: basePath + 'fotos.list.vistausuario.html',
+                        controller: ['$scope', 'deleteFoto','$state', function ($scope, deleteFoto, $state){
+                        
+                        $scope.deleteFoto= function(id){
+                            deleteFoto(id);
+                             $state.reload();
+
+                        };
+                        
+                }]
                     }
                 }
             })
