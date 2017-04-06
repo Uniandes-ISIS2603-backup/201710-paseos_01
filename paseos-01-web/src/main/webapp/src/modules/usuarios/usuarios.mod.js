@@ -30,6 +30,14 @@
                         templateUrl: basePath + 'usuarios.list.html'
                     }
                 }
+            }).state('editarUsuario', {
+                url: '/editarUsuario',
+                parent: 'usuarios',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'editarUsuario.html'
+                    }
+                }
                 
             }).state('agregarUsuario', {
                 url: '/agregarUsuario',
@@ -39,12 +47,12 @@
                         templateUrl: basePath + 'agregarUsuario.html'
                     }
                 }
-            }).state('administrarUsuarios', {
-                url: '/administrarUsuarios',
+            }).state('administrarGuias', {
+                url: '/administrarGuias',
                 parent: 'usuarios',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'administrarUsuarios.html'
+                        templateUrl: basePath + 'administrarGuias.html'
                     }
                 }
             }).state('usuarioDetail', {
