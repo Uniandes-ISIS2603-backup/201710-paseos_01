@@ -1,51 +1,30 @@
 <div class="container-fluid" aling="center">
-    <h1 align="center">*Fotos*</h1><br>
-	<div class="row equal im-centered" align="center" ng-repeat="image in fotosRecords" >
-        <div ng-if="$index % 2 == 0">
-            {{incIndex()}}
-        <div class="col-xs-12 col-sm-6 col-sm-height equal" align="center" >
+    <h1 align="center">Fotos</h1>
+    <div ng-repeat="image in fotosRecords">
+	<div class="row form-group im-centered" align="center" >
+            <div class="col-xs-12 col-md-6 im-centered">
             <div class="panel panel-default">
                 <div class="panel-image">
-                    <img src="{{image.valor}}" class="panel-image-preview" ui-sref="fotoDetail({fotoId: image.id})"/>
+                    <img src="{{image.valor}}" class="panel-image-preview" />
                     <label for="toggle-1"></label>
                 </div>
                 <div class="panel-body">
-                    <a ui-sref="fotoDetail({fotoId: image.id})"><h4>Title of Image</h4></a>
-                    <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper et.</p>
+                    <h4>Title of Image</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper et.</p>
                 </div>
                 <div class="panel-footer text-center">
                     <a href="#download"><span class="glyphicon glyphicon-download"></span></a>
                     <a href="#facebook"><span class="fa fa-facebook"></span></a>
                     <a href="#twitter"><span class="fa fa-twitter"></span></a>
                     <a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>
-                    <a ><span class="glyphicon glyphicon-remove-sign"></span></a>
+                    <a ui-sref="eliminarFoto({fotoId : image.id})"><span class="glyphicon glyphicon-remove-sign"></span></a>
                 </div>
             </div>
-        </div>
-        </div>
-        <div ng-if="($index+1) % 2 == 1">
-        <div class="col-xs-12 col-sm-6 col-sm-height equal" align="center" >
-            <div class="panel panel-default">
-                <div class="panel-image hide-panel-body">
-                    <img src="{{fotosRecords[$index+1].valor}}" class="panel-image-preview" ui-sref="fotoDetail({fotoId: image.id})"/>
-                    <label for="toggle-2"></label>
-                </div>
-                <div class="panel-body">
-                    <a ui-sref="fotoDetail({fotoId: image.id})"><h4>Title of Image</h4></a>
-                    <p align="justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in lobortis nisl, vitae iaculis sapien. Phasellus ultrices gravida massa luctus ornare. Suspendisse blandit quam elit, eu imperdiet neque semper et.</p>
-                </div>
-                <div class="panel-footer text-center">
-                    <a href="#download"><span class="glyphicon glyphicon-download"></span></a>
-                    <a href="#facebook"><span class="fa fa-facebook"></span></a>
-                    <a href="#twitter"><span class="fa fa-twitter"></span></a>
-                    <a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>
-                    <a ><span class="glyphicon glyphicon-remove-sign"></span></a>
-                </div>
             </div>
         </div>
-	</div>
-        </div>
+    </div>
 </div>
+
 <!--
 <div class="container-fluid" style="margin-top:10px;">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">

@@ -48,10 +48,28 @@
                         }]
                     }
                 }
-            });
-            
+            }).state('eliminarFoto',{
+                // Url que aparecerá en el browser
+                url: '/{fotoId:int}/deleteFoto',
+                parent:"fotos",
+                resolve: {
+                    deletePaseo: ["$http","$stateParams",function($http){
+                     var eliminarFoto =  
+                     function (){
+                        $http.delete("/paseos-01-web/api/fotos/$params.fotoId".success(function(data){
+                            return data;
+                        }).error(function(err){
+                            return err;
+                        })
+                    )}
+                    return eliminarFoto;
+                    }]
+                },
+                views: {
+                    'listView':{
+                        templateUrl: basePath + 'fotos.list.html',
+                    }
+                }
+            })
     }]);
 })(window.angular);
-$scope.incrementado = function(){
-    $index = $index +1;
-}

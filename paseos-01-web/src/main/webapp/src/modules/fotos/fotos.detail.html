@@ -1,5 +1,5 @@
-<div class="row equal im-centered" align="center" >
-    <div class="col-xs-12 col-sm-6 col-sm-height equal" align="center" >
+<div class="row form-group im-centered" align="center" >
+    <div class="col-xs-12 col-md-6">
     <div class="panel panel-default">
         <div class="panel-image hide-panel-body">
             <img src="{{currentFoto.valor}}" class="panel-image-preview" />
@@ -10,7 +10,7 @@
                 <a href="#facebook"><span class="fa fa-facebook"></span></a>
                 <a href="#twitter"><span class="fa fa-twitter"></span></a>
                 <a href="#share"><span class="glyphicon glyphicon-share-alt"></span></a>
-                <a ><span class="glyphicon glyphicon-remove-sign"></span></a>
+                <a ui-sref="eliminarFoto({fotoId : image.id})"><span class="glyphicon glyphicon-remove-sign"></span></a>
             </div>
     </div>
     </div>
