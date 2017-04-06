@@ -10,7 +10,6 @@
                     <th>Cupos disponibles</th>
                     <th>Paseo</th>
                     <th>Guía</th>
-                    <th>Visitas</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +19,6 @@
                     <td>{{currentOferta.paseo.numeroMaximo-currentOferta.inscritos}}</td>
                     <td><a ui-sref="paseoDetail({idPaseo: currentOferta.paseo.id})">Ver detalle del paseo</a></td>
                     <td><a ui-sref="usuarioDetail({usuarioId: currentOferta.guia.id})">Ver detalle del guía</a></td>
-                    <td><a ui-sref="visitasList">Ver visitas de esta oferta</a></td>
             </tbody>
         </table>
 </div>
