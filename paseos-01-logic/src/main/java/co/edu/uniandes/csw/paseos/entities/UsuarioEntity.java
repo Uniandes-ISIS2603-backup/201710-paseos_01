@@ -49,6 +49,8 @@ public class UsuarioEntity implements Serializable {
     
     private int cuantasCalificaciones; 
     
+    private Boolean admin; 
+    
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)    
     private List<VisitaEntity> visitas;
     
@@ -62,6 +64,15 @@ public class UsuarioEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+    
 
     public String getNombres() {
         return nombres;

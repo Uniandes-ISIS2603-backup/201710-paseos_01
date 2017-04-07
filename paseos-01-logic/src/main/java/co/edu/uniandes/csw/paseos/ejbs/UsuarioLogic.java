@@ -87,7 +87,14 @@ public class UsuarioLogic {
     // TODO: revisar las validaciones al momento de actualizar
     public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException {
         UsuarioEntity ue = getUsuario(entity.getId()); 
+        if (persistence.loginUnico(entity.getLogin()))
+        {
         return persistence.update(entity);
+        }
+        else 
+        {
+            throw new BusinessLogicException("Ya hay un usuario con ese login"); 
+        }
     }
     
     /**
