@@ -72,12 +72,14 @@
                         
                          resolve: {
                     currentUsuario: ['$http','usuariosContext','$stateParams', function ($http,usuariosContext,$params) {
+                            var i =(usuariosContext+'/'+$params.usuarioId);
                             return $http.get(usuariosContext+'/'+$params.usuarioId)
+                            
                             //return $http.get('data/usuarios.json');
                         }]
                 },
                         templateUrl: basePath + 'usuarios.detail.html',
-                        controller: ['$scope', '$stateParams', function ($scope, $params) {
+                        controller: ['$scope', 'currentUsuario', function ($scope, currentUsuario) {
                                 $scope.currentUsuario = currentUsuario.data;
                             }]
                     }
