@@ -78,7 +78,7 @@
                 },
                         templateUrl: basePath + 'usuarios.detail.html',
                         controller: ['$scope', '$stateParams', function ($scope, $params) {
-                                $scope.currentUsuario = $scope.usuariosRecords[$params.usuarioId - 1];
+                                $scope.currentUsuario = currentUsuario.data;
                             }]
                     }
                 }
