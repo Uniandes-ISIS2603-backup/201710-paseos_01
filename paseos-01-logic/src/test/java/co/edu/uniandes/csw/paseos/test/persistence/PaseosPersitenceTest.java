@@ -59,7 +59,7 @@ public class PaseosPersitenceTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
-                .addClass(PaseoEntity.class)
+                .addPackage(PaseoEntity.class.getPackage())
                 .addClass(PaseoPersistence.class)
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
@@ -68,25 +68,13 @@ public class PaseosPersitenceTest {
     @Inject
     private PaseoPersistence persitence;
     
-    @PersistenceContext
+    @PersistenceContext(unitName = "paseosPU")
     private EntityManager em;
     
     @Inject
     UserTransaction utx;
     
     private List<PaseoEntity> data = new ArrayList<PaseoEntity>();
-    
-    
-    public PaseosPersitenceTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
     
     @Before
     public void setUp() {
