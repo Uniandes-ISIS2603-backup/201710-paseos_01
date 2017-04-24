@@ -9,8 +9,9 @@
                 url: '/visitas',
                 abstract: true,
                 resolve: {
-                    visitas: ['$http', function ($http) {
-                            return $http.get('data/visitas.json');
+                    visitas: ['$http','visitasContext', function ($http, visitasContext) {
+                            return $http.get(visitasContext);
+                            //return $http.get('data/visitas.json');
                         }]
                 },
                 views: {
@@ -29,6 +30,30 @@
                         templateUrl: basePath + 'visitas.list.html'
                     }
                 }
+            }).state('addVisita', {
+                url: '/addVisita',
+                parent: 'visitas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'addVisita.html'
+                    }
+                }
+            }).state('deleteVisita', {
+                url: '/deleteVisita',
+                parent: 'visitas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'deleteVisita.html'
+                    }
+                }
+            }).state('updateVisita', {
+                url: '/updateVisita',
+                parent: 'visitas',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'updateVisita.html'
+                    }
+                }
             }).state('visitasDetail', {
                 url: '/{visitaId:int}/detail',
                 parent: 'visitas',
@@ -41,9 +66,15 @@
                         
                     },
                     'detailView': {
+                                      resolve: {
+                    currentVisita: ['$http','visitasContext','$stateParams', function ($http,visitasContext,$params) {
+                            return $http.get(visitasContext+'/'+$params.visitaId)
+                            //return $http.get('data/ofertas.json');
+                        }]
+                },
                         templateUrl: basePath + 'visitas.detail.html',
-                        controller: ['$scope', '$stateParams', function ($scope, $params) {
-                                $scope.currentVisita = $scope.visitasRecords[$params.visitaId-1];
+                        controller: ['$scope', 'currentVisita', function ($scope, currentVisita) {
+                                $scope.currentVisita = currentVisita.data;
                             }]
                     }
 

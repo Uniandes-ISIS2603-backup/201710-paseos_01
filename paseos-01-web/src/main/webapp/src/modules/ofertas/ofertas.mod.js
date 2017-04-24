@@ -9,8 +9,9 @@
                 url: '/ofertas',
                 abstract: true,
                 resolve: {
-                    ofertas: ['$http', function ($http) {
-                            return $http.get('data/ofertas.json');
+                    ofertas: ['$http','ofertasContext', function ($http,ofertasContext) {
+                            return $http.get(ofertasContext)
+                            //return $http.get('data/ofertas.json');
                         }]
                 },
                 views: {
@@ -65,9 +66,15 @@
                         
                     },
                     'detailView': {
+                                       resolve: {
+                    currentOferta: ['$http','ofertasContext','$stateParams', function ($http,ofertasContext,$params) {
+                            return $http.get(ofertasContext+'/'+$params.ofertaId)
+                            //return $http.get('data/ofertas.json');
+                        }]
+                },
                         templateUrl: basePath + 'ofertas.detail.html',
-                        controller: ['$scope', '$stateParams', function ($scope, $params) {
-                                $scope.currentOferta = $scope.ofertasRecords[$params.ofertaId-1];
+                        controller: ['$scope','currentOferta', function ($scope,currentOferta) {
+                                $scope.currentOferta = currentOferta.data;
                             }]
                     }
 

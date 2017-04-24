@@ -50,7 +50,7 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         calificacionPromedio = entity.getCalificacionPromedio(); 
         ofertas=new ArrayList<OfertaDetailDTO>();
         visitas= new ArrayList<VisitaDetailDTO>(); 
-        
+        admin = entity.getAdmin(); 
         
         for (OfertaEntity of : ofertasEntities) {
             ofertas.add(new OfertaDetailDTO(of));
@@ -73,11 +73,11 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         entity.setExperiencia(this.experiencia);
         entity.setGuia(this.guia);
         entity.setNombres(this.nombres);
-        
+        entity.setLogin(this.login);
         List<OfertaEntity> ofertas1 = new ArrayList<OfertaEntity>(); 
         List<VisitaEntity> visitas1 = new ArrayList<VisitaEntity>(); 
         
-        
+        entity.setAdmin(this.admin);
         if (ofertas != null)
         {
         for (OfertaDetailDTO of : ofertas)
@@ -156,6 +156,10 @@ public class UsuarioDetailDTO extends UsuarioDTO{
 
     public List<VisitaDetailDTO> getVisitas() {
         return visitas;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
     }
     
     

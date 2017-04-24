@@ -4,15 +4,15 @@
         <table class="table table-hover">
             <thead>
                 <tr>                    
-                    <th>Temática</th>
-                    <th>Lugar</th>
+                    <th>Inscritos</th>
+                    <th>Id</th>
                     <th>Fecha</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="oferta in ofertasRecords">
-                    <td id="{{$index}}-topic">{{oferta.paseo.tematica}}</td> 
-                    <td id="{{$index}}-place">{{oferta.paseo.destino}}</td> 
+                    <td id="{{$index}}-topic">{{oferta.inscritos}}</td> 
+                    <td id="{{$index}}-place">{{oferta.id}}</td> 
                     <td id="{{$index}}-date">{{oferta.fecha}}</td>
                     <td><a ui-sref="ofertaDetail({ofertaId: oferta.id})">Ver oferta</a></td>
                 </tr>

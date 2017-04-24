@@ -3,15 +3,15 @@
     mod.constant("usuariosContext", "api/usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/usuarios/';
-            var basePathUsuarios = 'src/modules/usuarios/';
+           
             $urlRouterProvider.otherwise("/usuariosList");
 
             $stateProvider.state('usuarios', {
                 url: '/usuarios',
                 abstract: true,
                 resolve: {
-                    usuarios: ['$http', function ($http) {
-                            return $http.get('data/usuarios.json');
+                    usuarios: ['$http','usuariosContext', function ($http, usuariosContext) {
+                            return $http.get(usuariosContext);
                         }]
                 },
                 views: {
@@ -30,6 +30,14 @@
                         templateUrl: basePath + 'usuarios.list.html'
                     }
                 }
+            }).state('editarUsuario', {
+                url: '/editarUsuario',
+                parent: 'usuarios',
+                views: {
+                    'listView': {
+                        templateUrl: basePath + 'editarUsuario.html'
+                    }
+                }
                 
             }).state('agregarUsuario', {
                 url: '/agregarUsuario',
@@ -39,12 +47,12 @@
                         templateUrl: basePath + 'agregarUsuario.html'
                     }
                 }
-            }).state('administrarUsuarios', {
-                url: '/administrarUsuarios',
+            }).state('administrarGuias', {
+                url: '/administrarGuias',
                 parent: 'usuarios',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'administrarUsuarios.html'
+                        templateUrl: basePath + 'administrarGuias.html'
                     }
                 }
             }).state('usuarioDetail', {
@@ -59,10 +67,20 @@
                         
                     },
                     
+                    
                     'detailView': {
+                        
+                         resolve: {
+                    currentUsuario: ['$http','usuariosContext','$stateParams', function ($http,usuariosContext,$params) {
+                            var i =(usuariosContext+'/'+$params.usuarioId);
+                            return $http.get(usuariosContext+'/'+$params.usuarioId)
+                            
+                            //return $http.get('data/usuarios.json');
+                        }]
+                },
                         templateUrl: basePath + 'usuarios.detail.html',
-                        controller: ['$scope', '$stateParams', function ($scope, $params) {
-                                $scope.currentUsuario = $scope.usuariosRecords[$params.usuarioId - 1];
+                        controller: ['$scope', 'currentUsuario', function ($scope, currentUsuario) {
+                                $scope.currentUsuario = currentUsuario.data;
                             }]
                     }
                 }

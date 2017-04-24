@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <h2 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Administrar guias</h2>    
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <thead>
+                <tr>                    
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Formacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="usuario in usuariosRecords">
+                    <td id="{{$index}}-topic">{{usuario.nombres}}</td> 
+                    <td id="{{$index}}-place">{{usuario.apellidos}}</td> 
+                    <td id="{{$index}}-date">{{usuario.formacion}}</td>
+                    <td><a ui-sref="editarUsuario">Editar guia</a></td>
+                    <td><a ui-sref="#">Eliminar guia</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
