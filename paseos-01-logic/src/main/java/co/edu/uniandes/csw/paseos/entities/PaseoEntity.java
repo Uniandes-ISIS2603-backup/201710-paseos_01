@@ -31,6 +31,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -41,6 +42,7 @@ public class PaseoEntity implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @PodamExclude
     private Long id;
     
     private String tematica;
@@ -61,9 +63,11 @@ public class PaseoEntity implements Serializable{
      
     private String descripcion;
     
+    @PodamExclude
     @OneToMany(mappedBy = "paseo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OfertaEntity> ofertas;
     
+    @PodamExclude
     @OneToMany
     private List<FotoEntity> fotos;
 
