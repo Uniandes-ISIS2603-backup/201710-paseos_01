@@ -56,17 +56,20 @@ public class PaseoDetailDTO extends PaseoDTO{
     public void llenarListas(PaseoEntity entity){
         ofertas=new ArrayList<OfertaDTO>();
         List<OfertaEntity> ofertasEntities = entity.getOfertas();
-        if(ofertasEntities==null) return;
+        if(ofertasEntities==null) {
+            return;
+        }
         for (OfertaEntity of : ofertasEntities) {
             ofertas.add(new OfertaDTO(of));
         }
-   
-            if (entity==null) return;
-       
-            fotos= new ArrayList<FotoDTO>();
-        if (entity.getOfertas()==null || entity.getOfertas().isEmpty() || entity.getOfertas().get(0)==null || entity.getOfertas().get(0).getVisitas()==null || entity.getOfertas().get(0).getVisitas().isEmpty()) return;
+           fotos= new ArrayList<FotoDTO>();
+        if (entity.getOfertas()==null || entity.getOfertas().isEmpty() || entity.getOfertas().get(0)==null || entity.getOfertas().get(0).getVisitas()==null || entity.getOfertas().get(0).getVisitas().isEmpty()){
+            return;
+        }
             List<FotoEntity> lista = entity.getOfertas().get(0).getVisitas().get(0).getFotos();
-            if (lista==null) return;
+            if (lista==null){
+                return;
+            }
             for (FotoEntity fotoEntity : lista) {
                 fotos.add( new FotoDTO(fotoEntity));
             }

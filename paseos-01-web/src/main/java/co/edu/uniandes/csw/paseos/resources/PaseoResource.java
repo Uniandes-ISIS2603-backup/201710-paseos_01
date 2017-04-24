@@ -88,7 +88,9 @@ public class PaseoResource {
     @POST
     @Path("/paseos")
     public PaseoDTO crearPaseo(PaseoDTO paseo) throws BusinessLogicException{
-        if (paseo==null) throw new BusinessLogicException();
+        if (paseo==null){
+            throw new BusinessLogicException();
+        }
         return new PaseoDTO(logic.createPaseo(paseo.toEntity()));
     }
     
