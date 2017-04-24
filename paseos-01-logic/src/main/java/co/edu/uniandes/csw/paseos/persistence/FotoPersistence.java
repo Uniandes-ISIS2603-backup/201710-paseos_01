@@ -64,15 +64,14 @@ public class FotoPersistence {
         return q.getResultList();
     }
     
+    /**
+     * Método que encuentra las fotos para una visita específica
+     * @param id de la visita
+     * @return Lista de las fotos asociadas a la visita
+     */
     public List<FotoEntity> findFotosVisita(Long id) {
         Query q = em.createQuery("select u from FotoEntity u where u.visita.id = "+id);
         return q.getResultList();
-    }
-    
-    public FotoEntity findFotoVisita(Long idVisita , Long id) {
-        Query q = em.createQuery("select u from FotoEntity u where u.id = "+id+" and u.visita.id = "+idVisita);
-        List<FotoEntity> lista = q.getResultList();
-        return lista.size()!=0?lista.get(0):null;
     }
     
     /**

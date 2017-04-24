@@ -17,7 +17,9 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -114,5 +116,60 @@ public class FotoPersistenceTest {
             em.persist(entity);
             data.add(entity);
         }
+    }
+    
+    /**
+     * Prueba para crear una Foto.
+     *
+     * @generated
+     */
+    @Test
+    public void createFotoTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        FotoEntity newEntity = factory.manufacturePojo(FotoEntity.class);
+        FotoEntity result = fotoPersistence.create(newEntity);
+
+        Assert.assertNotNull("El resultado no puede ser nulo",result);
+
+        FotoEntity entity = em.find(FotoEntity.class, result.getId());
+
+        Assert.assertEquals("El formato de la foto no coincide",newEntity.getFormato(), entity.getFormato());
+        Assert.assertEquals("Los bytes de la imagen no coinciden",new String(newEntity.getValor()), new String(entity.getValor()));
+        Assert.assertEquals("La referencia a la visita no coincide",newEntity.getVisita().getId(), entity.getVisita().getId());
+    }
+    
+    /**
+     * Prueba para consultar la lista de Fotos.
+     *
+     * @generated
+     */
+    @Test
+    public void getFotosTest() {
+        List<FotoEntity> list = fotoPersistence.findAll();
+        Assert.assertEquals(data.size(), list.size());
+        for (FotoEntity ent : list) {
+            boolean found = false;
+            for (FotoEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue("No se esta obteniendo todas las fotos de la bd",found);
+        }
+    }
+    
+     /**
+     * Prueba para consultar una Foto.
+     *
+     * @generated
+     */
+    @Test
+    public void getBookTest() {
+        FotoEntity entity = data.get(0);
+        FotoEntity newEntity = fotoPersistence.find(entity.getId());
+        Assert.assertNotNull("El resultado no puede ser nulo",newEntity);
+        Assert.assertEquals("El formato de la foto no coincide",entity.getFormato(), newEntity.getFormato());
+        Assert.assertEquals("Los bytes de la imagen no coinciden",new String(entity.getValor()), new String(newEntity.getValor()));
+        Assert.assertEquals("La referencia a la visita no coincide",entity.getVisita().getId(), newEntity.getVisita().getId());
     }
 }

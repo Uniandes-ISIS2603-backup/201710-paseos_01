@@ -65,8 +65,8 @@ public class FotoLogic {
      * @param id Identificador de la instancia a consultar
      * @return Instancia de FotoEntity con los datos de la Foto consultada.
      */
-    public FotoEntity getFotoVisita(Long id,Long idVisita) {
-        return persistence.findFotoVisita(idVisita, id );
+    public FotoEntity getFotoVisita(Long id) {
+        return persistence.find(id);
     }
     
     /**
