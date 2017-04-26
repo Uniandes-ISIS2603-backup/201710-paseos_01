@@ -3,24 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.csw.paseos.test.persistence;
+package co.edu.uniandes.csw.paseos.test.logic;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
-import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
-import java.util.ArrayList;
-import java.util.List;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.runner.RunWith;
+import co.edu.uniandes.csw.paseos.ejbs.FotoLogic;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -29,45 +29,45 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author jma.lovera10
  */
 @RunWith(Arquillian.class)
-public class FotoPersistenceTest {
-    
+public class FotoLogicTest {
+     
     /**
      * Nombre del war
      */
     public static final String DEPLOY = "Prueba";
     
     /**
-     * 
-     * @return 
+     * @generated
      */
     @Deployment
-    public static WebArchive createDeployment(){
+    public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
                 .addPackage(FotoEntity.class.getPackage())
-                .addPackage(FotoPersistenceTest.class.getPackage())
+                .addPackage(FotoEntity.class.getPackage())
+                .addPackage(FotoEntity.class.getPackage())
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
     }
     
     /**
-     * La persistencia de la foto
+     * @generated
      */
     @Inject
-    private FotoPersistence fotoPersistence;
+    private FotoLogic fotoLogic;
     
     /**
-     * Manejador de entidades
+     * @generated
      */
     @PersistenceContext
     private EntityManager em;
     
     /**
-     * User transaction
+     * @generated
      */
     @Inject
     UserTransaction utx;
     
-     /**
+    /**
      * Configuración inicial de la prueba.
      *
      * @generated
@@ -113,29 +113,10 @@ public class FotoPersistenceTest {
         for (int i = 0; i < 3; i++) {
             PodamFactory factory = new PodamFactoryImpl();
             FotoEntity entity = factory.manufacturePojo(FotoEntity.class);
+
             em.persist(entity);
             data.add(entity);
         }
-    }
-    
-    /**
-     * Prueba para crear una Foto.
-     *
-     * @generated
-     */
-    @Test
-    public void createFotoTest() {
-        PodamFactory factory = new PodamFactoryImpl();
-        FotoEntity newEntity = factory.manufacturePojo(FotoEntity.class);
-        FotoEntity result = fotoPersistence.create(newEntity);
-
-        Assert.assertNotNull("El resultado no puede ser nulo",result);
-
-        FotoEntity entity = em.find(FotoEntity.class, result.getId());
-
-        Assert.assertEquals("El formato de la foto no coincide",newEntity.getFormato(), entity.getFormato());
-        Assert.assertEquals("Los bytes de la imagen no coinciden",new String(newEntity.getValor()), new String(entity.getValor()));
-        Assert.assertEquals("La referencia a la visita no coincide",newEntity.getVisita().getId(), entity.getVisita().getId());
     }
     
     /**
@@ -144,45 +125,33 @@ public class FotoPersistenceTest {
      * @generated
      */
     @Test
-    public void getFotosTest() {
-        List<FotoEntity> list = fotoPersistence.findAll();
+    public void getBooksTest() {
+        List<FotoEntity> list = fotoLogic.getFotos();
         Assert.assertEquals(data.size(), list.size());
-        for (FotoEntity ent : list) {
+        for (FotoEntity entity : list) {
             boolean found = false;
-            for (FotoEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
+            for (FotoEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
             }
-            Assert.assertTrue("No se esta obteniendo todas las fotos de la bd",found);
+            Assert.assertTrue(found);
         }
     }
     
-     /**
+    /**
      * Prueba para consultar una Foto.
      *
      * @generated
      */
     @Test
-    public void getFotoTest() {
+    public void getBookTest() {
         FotoEntity entity = data.get(0);
-        FotoEntity newEntity = fotoPersistence.find(entity.getId());
-        Assert.assertNotNull("El resultado no puede ser nulo",newEntity);
-        Assert.assertEquals("El formato de la foto no coincide",entity.getFormato(), newEntity.getFormato());
-        Assert.assertEquals("Los bytes de la imagen no coinciden",new String(entity.getValor()), new String(newEntity.getValor()));
-        Assert.assertEquals("La referencia a la visita no coincide",entity.getVisita().getId(), newEntity.getVisita().getId());
-    }
-    
-    /**
-     * Prueba para eliminar una Foto.
-     *
-     * @generated
-     */
-    @Test
-    public void deleteFotoTest() {
-        FotoEntity entity = data.get(0);
-        fotoPersistence.delete(entity.getId());
-        FotoEntity deleted = em.find(FotoEntity.class, entity.getId());
-        Assert.assertNull(deleted);
+        FotoEntity resultEntity = fotoLogic.getBook(entity.getId());
+        Assert.assertNotNull(resultEntity);
+        Assert.assertEquals(entity.getName(), resultEntity.getName());
+        Assert.assertEquals(entity.getIsbn(), resultEntity.getIsbn());
+        Assert.assertEquals(entity.getImage(), resultEntity.getImage());
+        Assert.assertEquals(entity.getDescription(), resultEntity.getDescription());
     }
 }
