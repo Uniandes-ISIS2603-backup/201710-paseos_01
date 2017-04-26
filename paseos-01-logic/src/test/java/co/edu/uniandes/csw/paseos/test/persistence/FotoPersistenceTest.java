@@ -6,12 +6,18 @@
 package co.edu.uniandes.csw.paseos.test.persistence;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
+import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
 import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -79,11 +85,11 @@ public class FotoPersistenceTest {
             clearData();
             insertData();
             utx.commit();
-        } catch (Exception e) {
+        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
             e.printStackTrace();
             try {
                 utx.rollback();
-            } catch (Exception e1) {
+            } catch (IllegalStateException | SecurityException | SystemException e1) {
                 e1.printStackTrace();
             }
         }
@@ -96,6 +102,7 @@ public class FotoPersistenceTest {
      */
     private void clearData() {
         em.createQuery("delete from FotoEntity").executeUpdate();
+        em.createQuery("delete from VisitaEntity").executeUpdate();
     }
     
     /**
@@ -104,18 +111,29 @@ public class FotoPersistenceTest {
     private List<FotoEntity> data = new ArrayList<FotoEntity>();
     
     /**
+     * @generated
+     */
+    private VisitaEntity visit = null;
+    
+    /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      *
      * @generated
      */
     private void insertData() {
+        PodamFactory fac = new PodamFactoryImpl();
+        VisitaEntity vis = fac.manufacturePojo(VisitaEntity.class);
+        em.persist(vis);
+        visit = vis;
         for (int i = 0; i < 3; i++) {
             PodamFactory factory = new PodamFactoryImpl();
             FotoEntity entity = factory.manufacturePojo(FotoEntity.class);
+            entity.setVisita(visit);
             em.persist(entity);
             data.add(entity);
         }
+        
     }
     
     /**
@@ -127,6 +145,7 @@ public class FotoPersistenceTest {
     public void createFotoTest() {
         PodamFactory factory = new PodamFactoryImpl();
         FotoEntity newEntity = factory.manufacturePojo(FotoEntity.class);
+        newEntity.setVisita(visit);
         FotoEntity result = fotoPersistence.create(newEntity);
 
         Assert.assertNotNull("El resultado no puede ser nulo",result);
