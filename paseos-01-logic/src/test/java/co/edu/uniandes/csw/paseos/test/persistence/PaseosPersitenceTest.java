@@ -32,15 +32,12 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
-import junit.framework.Assert;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
@@ -113,7 +110,8 @@ public class PaseosPersitenceTest {
      * @generated
      */
     private void insertData(int n) {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
+        {
             PodamFactory factory = new PodamFactoryImpl();
             PaseoEntity entity = factory.manufacturePojo(PaseoEntity.class);
             em.persist(entity);

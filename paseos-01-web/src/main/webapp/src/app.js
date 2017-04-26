@@ -1,5 +1,5 @@
 (function(ng){
-var app = angular.module('mainApp',[
+const app = angular.module('mainApp',[
     'ui.router',
     'paseosModule',
     'ofertasModule',

@@ -60,12 +60,14 @@ public class PaseoResource {
         List<PaseoDTO> lista= new ArrayList<PaseoDTO>();
             for (PaseoEntity entity : listEntities) {
                 //.llenarisaje()
-                if (cat==1){
+                if (cat==1)
+                {
                     PaseoDetailDTO p=new PaseoDetailDTO(entity);
                     p.llenarListas(entity);
                     lista.add(p);
                 }
-                else if (cat==0){
+                else if (cat==0)
+                {
                 lista.add(new PaseoDTO(entity));
                 }
                 
@@ -88,7 +90,8 @@ public class PaseoResource {
     @POST
     @Path("/paseos")
     public PaseoDTO crearPaseo(PaseoDTO paseo) throws BusinessLogicException{
-        if (paseo==null){
+        if (paseo==null)
+        {
             throw new BusinessLogicException();
         }
         return new PaseoDTO(logic.createPaseo(paseo.toEntity()));

@@ -33,6 +33,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -43,6 +44,7 @@ public class UsuarioEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @PodamExclude
     private Long id;
     
     private String nombres;
@@ -68,9 +70,11 @@ public class UsuarioEntity implements Serializable {
     
     private Boolean admin; 
     
+    @PodamExclude
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)    
     private List<VisitaEntity> visitas;
     
+    @PodamExclude
     @OneToMany(mappedBy = "guia", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OfertaEntity> ofertas;
 
