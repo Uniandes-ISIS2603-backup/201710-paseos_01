@@ -10,7 +10,7 @@
                 abstract: true,
                 resolve: {
                     ofertas: ['$http','ofertasContext', function ($http,ofertasContext) {
-                            return $http.get(ofertasContext)
+                            return $http.get(ofertasContext);
                             //return $http.get('data/ofertas.json');
                         }]
                 },
@@ -62,14 +62,12 @@
                 },
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'ofertas.list.html'
-                        
+                        templateUrl: basePath + 'ofertas.list.html'                       
                     },
                     'detailView': {
-                                       resolve: {
-                    currentOferta: ['$http','ofertasContext','$stateParams', function ($http,ofertasContext,$params) {
-                            return $http.get(ofertasContext+'/'+$params.ofertaId)
-                            //return $http.get('data/ofertas.json');
+                                resolve: {
+                                        currentOferta: ['$http','ofertasContext','$stateParams', function ($http,ofertasContext,$params) {
+                                        return $http.get(ofertasContext+'/'+$params.ofertaId);
                         }]
                 },
                         templateUrl: basePath + 'ofertas.detail.html',
