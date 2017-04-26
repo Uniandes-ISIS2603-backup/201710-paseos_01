@@ -110,7 +110,8 @@ public class PaseosPersitenceTest {
      * @generated
      */
     private void insertData(int n) {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++)
+        {
             PodamFactory factory = new PodamFactoryImpl();
             PaseoEntity entity = factory.manufacturePojo(PaseoEntity.class);
             em.persist(entity);
