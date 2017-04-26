@@ -29,6 +29,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -37,8 +38,12 @@ import javax.persistence.ManyToOne;
 @Entity
 public class FotoEntity implements Serializable {
     
+    /**
+     * Id único de la foto
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @PodamExclude
     private Long id;
     
     /**
@@ -51,6 +56,9 @@ public class FotoEntity implements Serializable {
      */
     private String formato;
     
+    /**
+     * Relación con la visita
+     */
     @ManyToOne
     private VisitaEntity visita;
 
@@ -86,18 +94,34 @@ public class FotoEntity implements Serializable {
         this.valor = valor;
     }
 
+    /**
+     * Método que obtiene el formato de la foto
+     * @return formato de la foto
+     */
     public String getFormato() {
         return formato;
     }
 
+    /**
+     * Método que establece el formato de la foto
+     * @param formato formato de la foto
+     */
     public void setFormato(String formato) {
         this.formato = formato;
     }
 
+    /**
+     * Método que obtiene la visita de la foto
+     * @return visita de la foto
+     */
     public VisitaEntity getVisita() {
         return visita;
     }
 
+    /**
+     * Método que establece la visita de la foto
+     * @param visita visita de la foto
+     */
     public void setVisita(VisitaEntity visita) {
         this.visita = visita;
     }
