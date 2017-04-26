@@ -1,4 +1,26 @@
-
+/* 
+ * The MIT License
+ *
+ * Copyright 2017 jma.lovera10.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package co.edu.uniandes.csw.paseos.persistence;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
@@ -42,15 +64,14 @@ public class FotoPersistence {
         return q.getResultList();
     }
     
+    /**
+     * Método que encuentra las fotos para una visita específica
+     * @param id de la visita
+     * @return Lista de las fotos asociadas a la visita
+     */
     public List<FotoEntity> findFotosVisita(Long id) {
         Query q = em.createQuery("select u from FotoEntity u where u.visita.id = "+id);
         return q.getResultList();
-    }
-    
-    public FotoEntity findFotoVisita(Long idVisita , Long id) {
-        Query q = em.createQuery("select u from FotoEntity u where u.id = "+id+" and u.visita.id = "+idVisita);
-        List<FotoEntity> lista = q.getResultList();
-        return lista.size()!=0?lista.get(0):null;
     }
     
     /**
