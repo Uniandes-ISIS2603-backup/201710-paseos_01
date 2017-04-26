@@ -1,10 +1,10 @@
 (function(ng){
     //defincicón del modulo
-var appPaseos=ng.module('paseosModule',['ui.router']);
+const appPaseos=ng.module('paseosModule',['ui.router']);
  // Configuración de los estados del módulo
     appPaseos.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             // En basePath se encuentran los templates y controladores de módulo
-            var basePath = 'src/modules/paseos/';
+            const basePath = 'src/modules/paseos/';
             // Mostrar la lista de libros será el estado por defecto del módulo
             $urlRouterProvider.otherwise("paseos/catalogo");
            //Definición de un estado abstracto
@@ -101,7 +101,7 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                 
                 resolve: {
                     setPaseo: ["$http",function($http){
-                          var adicionPaseo =  
+                          const adicionPaseo =  
                      function (addPaseo){
                     $http.post("/paseos-01-web/api/paseos/",addPaseo).success(function(data){
                         return data;
@@ -158,7 +158,7 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                 },
                resolve: {
                     putPaseo: ["$http",'$stateParams',function($http,$params){
-                          var modificarPaseo =  
+                          const modificarPaseo =  
                      function (putPaseo){
                     $http.put("/paseos-01-web/api/paseos/"+$params.idPaseo.toString(),putPaseo).success(function(data){
                         return data;
@@ -224,7 +224,7 @@ var appPaseos=ng.module('paseosModule',['ui.router']);
                 parent:"paseos",
                 resolve: {
                     deletePaseo: ["$http",function($http){
-                     var eliminarPaseo =  
+                     const eliminarPaseo =  
                      function (id){
                     $http.delete("/paseos-01-web/api/paseos/"+id.toString()).success(function(data){
                         return data;
