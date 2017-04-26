@@ -55,7 +55,7 @@ public class UsuarioPersistenceTest {
     /**
      * @generated
      */
-    @PersistenceContext
+    @PersistenceContext(unitName="paseosPU")
     private EntityManager em;
 
     /**
@@ -92,7 +92,7 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     private void clearData() {
-        em.createQuery("delete from BookEntity").executeUpdate();
+        em.createQuery("delete from UsuarioEntity").executeUpdate();
     }
 
     /**
