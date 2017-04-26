@@ -70,9 +70,11 @@ public class UsuarioEntity implements Serializable {
     
     private Boolean admin; 
     
+    @PodamExclude
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)    
     private List<VisitaEntity> visitas;
     
+    @PodamExclude
     @OneToMany(mappedBy = "guia", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OfertaEntity> ofertas;
 
