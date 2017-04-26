@@ -15,7 +15,7 @@
                     <td id="{{$index}}-place">{{usuario.apellidos}}</td> 
                     <td id="{{$index}}-date">{{usuario.formacion}}</td>
                     <td><a ui-sref="editarUsuario">Editar guia</a></td>
-                    <td><a ui-sref="#">Eliminar guia</a></td>
+                    <td id="{{$index}}-id"> <a ui-sref="eliminarUsuario({usuarioId: usuario.id})">{{usuario.login}}</a> </td>
                 </tr>
             </tbody>
         </table>
