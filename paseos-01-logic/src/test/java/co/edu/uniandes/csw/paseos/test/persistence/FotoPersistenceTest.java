@@ -164,12 +164,25 @@ public class FotoPersistenceTest {
      * @generated
      */
     @Test
-    public void getBookTest() {
+    public void getFotoTest() {
         FotoEntity entity = data.get(0);
         FotoEntity newEntity = fotoPersistence.find(entity.getId());
         Assert.assertNotNull("El resultado no puede ser nulo",newEntity);
         Assert.assertEquals("El formato de la foto no coincide",entity.getFormato(), newEntity.getFormato());
         Assert.assertEquals("Los bytes de la imagen no coinciden",new String(entity.getValor()), new String(newEntity.getValor()));
         Assert.assertEquals("La referencia a la visita no coincide",entity.getVisita().getId(), newEntity.getVisita().getId());
+    }
+    
+    /**
+     * Prueba para eliminar una Foto.
+     *
+     * @generated
+     */
+    @Test
+    public void deleteFotoTest() {
+        FotoEntity entity = data.get(0);
+        fotoPersistence.delete(entity.getId());
+        FotoEntity deleted = em.find(FotoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 }
