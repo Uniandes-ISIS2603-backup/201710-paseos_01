@@ -55,6 +55,27 @@
                         templateUrl: basePath + 'administrarGuias.html'
                     }
                 }
+            }).state('eliminarUsuario', {
+                url: '/eliminarUsuario',
+                parent: 'usuarios',
+                param: {
+                    usuarioId: null
+                },
+                resolve: {
+                    'listView': {
+                        deleteUsuario: [ '$http','usuariosContext','$stateParams', function ($http,$params){
+                                
+                                  $http.delete(basePath + $params.usuarioId);  
+                                 
+                                
+                        }
+                            
+                            
+                            
+                        ]
+                    }
+                }
+                
             }).state('usuarioDetail', {
                 url: '/{usuarioId:int}/detail',
                 parent: 'usuarios',
