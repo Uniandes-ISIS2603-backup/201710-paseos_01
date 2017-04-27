@@ -43,24 +43,6 @@ public class FotoLogic {
     @Inject private VisitaPersistence visitaPersistence;
     
     /**
-     * Obtiene la lista de los registros de Foto para una visita.
-     * @return Colección de objetos de FotoEntity.
-     */
-   
-    public List<FotoEntity> getFotos() {
-        return persistence.findAll();
-    }
-
-    /**
-     * Obtiene los datos de una instancia de Foto a partir de su ID.
-     * @param id Identificador de la instancia a consultar
-     * @return Instancia de FotoEntity con los datos de la Foto consultada.
-     */
-    public FotoEntity getFoto(Long id) {
-        return persistence.find(id);
-    }
-    
-    /**
      * Obtiene los datos de una instancia de Foto a partir de su ID.
      * @param id Identificador de la instancia a consultar
      * @return Instancia de FotoEntity con los datos de la Foto consultada.
@@ -71,7 +53,7 @@ public class FotoLogic {
     
     /**
      * Obtiene los datos de una instancia de Foto a partir de su ID.
-     * @param id Identificador de la instancia a consultar
+     * @param idVisita Identificador de la instancia a consultar
      * @return Instancia de FotoEntity con los datos de la Foto consultada.
      */
     public List<FotoEntity> getFotosVisita(Long idVisita) {
@@ -81,6 +63,7 @@ public class FotoLogic {
     /**
      * Se encarga de crear una Foto en la base de datos.
      * @param entity Objeto de FotoEntity con los datos nuevos
+     * @param id id de la visita
      * @return Objeto de FotoEntity con los datos nuevos y su ID.
      * @generated
      */
@@ -88,18 +71,6 @@ public class FotoLogic {
     public FotoEntity createFotoVisita(FotoEntity entity, Long id) {
         VisitaEntity visita = visitaPersistence.find(id);
         entity.setVisita(visita);
-        persistence.create(entity);
-        return entity;
-    }
-    
-    /**
-     * Se encarga de crear una Foto en la base de datos.
-     * @param entity Objeto de FotoEntity con los datos nuevos
-     * @return Objeto de FotoEntity con los datos nuevos y su ID.
-     * @generated
-     */
-    
-    public FotoEntity createFoto(FotoEntity entity) {
         persistence.create(entity);
         return entity;
     }

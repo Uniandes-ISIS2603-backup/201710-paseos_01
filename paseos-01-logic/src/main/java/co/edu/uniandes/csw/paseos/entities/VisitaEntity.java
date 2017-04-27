@@ -35,6 +35,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -45,6 +46,7 @@ public class VisitaEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @PodamExclude
     private Long id;
     
     private Integer calificacion;
@@ -52,12 +54,15 @@ public class VisitaEntity implements Serializable {
     private String comentario;
     
     @OneToMany
+    @PodamExclude
     private List<FotoEntity> fotos;
     
     @ManyToOne
+    @PodamExclude
     private UsuarioEntity usuario;
     
     @ManyToOne
+    @PodamExclude
     private OfertaEntity oferta;
 
     public OfertaEntity getOferta() {

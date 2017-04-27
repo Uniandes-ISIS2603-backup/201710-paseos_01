@@ -60,6 +60,7 @@ public class FotoEntity implements Serializable {
      * Relación con la visita
      */
     @ManyToOne
+    @PodamExclude
     private VisitaEntity visita;
 
     /**
