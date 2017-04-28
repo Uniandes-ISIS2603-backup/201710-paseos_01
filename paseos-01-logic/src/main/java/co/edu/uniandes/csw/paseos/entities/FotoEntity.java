@@ -38,6 +38,10 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class FotoEntity implements Serializable 
 {
+    /**
+     * UID serial
+     */
+    private static final long serialVersionUID = 1L;
     
     /**
      * Id único de la foto
@@ -64,6 +68,14 @@ public class FotoEntity implements Serializable
     @PodamExclude
     private VisitaEntity visita;
 
+    /**
+     * Default constructor
+     */
+    public FotoEntity() 
+    {
+        
+    }
+    
     /**
      * Método que obtiene el id
      * @return id
