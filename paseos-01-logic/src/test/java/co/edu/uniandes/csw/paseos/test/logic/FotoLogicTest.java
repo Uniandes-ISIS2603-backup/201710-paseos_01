@@ -36,7 +36,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author jma.lovera10
  */
 @RunWith(Arquillian.class)
-public class FotoLogicTest {
+public class FotoLogicTest 
+{
      
     /**
      * Nombre del war
@@ -47,7 +48,8 @@ public class FotoLogicTest {
      * @generated
      */
     @Deployment
-    public static WebArchive createDeployment() {
+    public static WebArchive createDeployment()
+    {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
                 .addPackage(FotoEntity.class.getPackage())
                 .addPackage(FotoPersistence.class.getPackage())
@@ -80,7 +82,8 @@ public class FotoLogicTest {
      * @generated
      */
     @Before
-    public void configTest() {
+    public void configTest() 
+    {
         try {
             utx.begin();
             clearData();
@@ -101,7 +104,8 @@ public class FotoLogicTest {
      *
      * @generated
      */
-    private void clearData() {
+    private void clearData() 
+    {
         em.createQuery("delete from FotoEntity").executeUpdate();
         em.createQuery("delete from VisitaEntity").executeUpdate();
     }
@@ -122,7 +126,8 @@ public class FotoLogicTest {
      *
      * @generated
      */
-    private void insertData() {
+    private void insertData() 
+    {
         PodamFactory fac = new PodamFactoryImpl();
         VisitaEntity vis = fac.manufacturePojo(VisitaEntity.class);
         em.persist(vis);
@@ -142,7 +147,8 @@ public class FotoLogicTest {
      * @generated
      */
     @Test
-    public void createFotoTest() {
+    public void createFotoTest() 
+    {
         PodamFactory factory = new PodamFactoryImpl();
         FotoEntity newEntity = factory.manufacturePojo(FotoEntity.class);
         newEntity.setVisita(visit);
@@ -163,7 +169,8 @@ public class FotoLogicTest {
      * @generated
      */
     @Test
-    public void getFotosTest() {
+    public void getFotosTest() 
+    {
         List<FotoEntity> list = fotoLogic.getFotosVisita(visit.getId());
         Assert.assertEquals(data.size(), list.size());
         for (FotoEntity entity : list) {
@@ -183,7 +190,8 @@ public class FotoLogicTest {
      * @generated
      */
     @Test
-    public void getFotoTest() {
+    public void getFotoTest() 
+    {
         FotoEntity entity = data.get(0);
         FotoEntity newEntity = fotoLogic.getFotoVisita(entity.getId());
         Assert.assertNotNull("El resultado no puede ser nulo",newEntity);
@@ -198,7 +206,8 @@ public class FotoLogicTest {
      * @generated
      */
     @Test
-    public void deleteFotoTest() {
+    public void deleteFotoTest() 
+    {
         FotoEntity entity = data.get(0);
         fotoLogic.deleteFotoVisita(entity.getId());
         FotoEntity deleted = em.find(FotoEntity.class, entity.getId());
