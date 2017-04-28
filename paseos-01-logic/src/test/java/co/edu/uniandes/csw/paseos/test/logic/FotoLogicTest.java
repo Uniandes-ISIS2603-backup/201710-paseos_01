@@ -14,6 +14,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 import co.edu.uniandes.csw.paseos.ejbs.FotoLogic;
 import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
+import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -49,8 +50,8 @@ public class FotoLogicTest {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
                 .addPackage(FotoEntity.class.getPackage())
-                .addPackage(FotoEntity.class.getPackage())
-                .addPackage(FotoEntity.class.getPackage())
+                .addPackage(FotoPersistence.class.getPackage())
+                .addPackage(FotoLogic.class.getPackage())
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
     }
