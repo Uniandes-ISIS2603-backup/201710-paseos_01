@@ -32,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class UsuarioPersistenceTest {
     
-     public static final String DEPLOY = "PrubaUsuarioPersistence";
+     public static final String DEPLOY = "PruebaUsuarioPersistence";
 
     /**
      * @generated
@@ -41,7 +41,7 @@ public class UsuarioPersistenceTest {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
                 .addPackage(UsuarioEntity.class.getPackage())
-                .addPackage(UsuarioEntity.class.getPackage())
+                .addPackage(UsuarioPersistence.class.getPackage())
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
     }
