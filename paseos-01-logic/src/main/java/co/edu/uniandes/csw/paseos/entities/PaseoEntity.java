@@ -40,6 +40,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class PaseoEntity implements Serializable{
     
+    private static final long serialVersionUID = 1;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @PodamExclude

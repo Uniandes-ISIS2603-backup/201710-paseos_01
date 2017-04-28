@@ -13,10 +13,17 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 import co.edu.uniandes.csw.paseos.ejbs.FotoLogic;
+import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
+import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import org.junit.Assert;
 import org.junit.Before;
@@ -43,8 +50,8 @@ public class FotoLogicTest {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
                 .addPackage(FotoEntity.class.getPackage())
-                .addPackage(FotoEntity.class.getPackage())
-                .addPackage(FotoEntity.class.getPackage())
+                .addPackage(FotoPersistence.class.getPackage())
+                .addPackage(FotoLogic.class.getPackage())
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
     }
@@ -79,11 +86,11 @@ public class FotoLogicTest {
             clearData();
             insertData();
             utx.commit();
-        } catch (Exception e) {
+        } catch (IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | RollbackException | SystemException e) {
             e.printStackTrace();
             try {
                 utx.rollback();
-            } catch (Exception e1) {
+            } catch (IllegalStateException | SecurityException | SystemException e1) {
                 e1.printStackTrace();
             }
         }
@@ -96,6 +103,7 @@ public class FotoLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from FotoEntity").executeUpdate();
+        em.createQuery("delete from VisitaEntity").executeUpdate();
     }
     
     /**
@@ -104,19 +112,49 @@ public class FotoLogicTest {
     private List<FotoEntity> data = new ArrayList<FotoEntity>();
     
     /**
+     * @generated
+     */
+    private VisitaEntity visit = null;
+    
+    /**
      * Inserta los datos iniciales para el correcto funcionamiento de las
      * pruebas.
      *
      * @generated
      */
     private void insertData() {
+        PodamFactory fac = new PodamFactoryImpl();
+        VisitaEntity vis = fac.manufacturePojo(VisitaEntity.class);
+        em.persist(vis);
+        visit = vis;
         for (int i = 0; i < 3; i++) {
             PodamFactory factory = new PodamFactoryImpl();
             FotoEntity entity = factory.manufacturePojo(FotoEntity.class);
-
+            entity.setVisita(visit);
             em.persist(entity);
             data.add(entity);
         }
+    }
+    
+    /**
+     * Prueba para crear una Foto.
+     *
+     * @generated
+     */
+    @Test
+    public void createFotoTest() {
+        PodamFactory factory = new PodamFactoryImpl();
+        FotoEntity newEntity = factory.manufacturePojo(FotoEntity.class);
+        newEntity.setVisita(visit);
+        FotoEntity result = fotoLogic.createFotoVisita(newEntity,visit.getId());
+
+        Assert.assertNotNull("El resultado no puede ser nulo",result);
+
+        FotoEntity entity = em.find(FotoEntity.class, result.getId());
+
+        Assert.assertEquals("El formato de la foto no coincide",newEntity.getFormato(), entity.getFormato());
+        Assert.assertEquals("Los bytes de la imagen no coinciden",new String(newEntity.getValor()), new String(entity.getValor()));
+        Assert.assertEquals("La referencia a la visita no coincide",newEntity.getVisita().getId(), entity.getVisita().getId());
     }
     
     /**
@@ -125,8 +163,8 @@ public class FotoLogicTest {
      * @generated
      */
     @Test
-    public void getBooksTest() {
-        List<FotoEntity> list = fotoLogic.getFotos();
+    public void getFotosTest() {
+        List<FotoEntity> list = fotoLogic.getFotosVisita(visit.getId());
         Assert.assertEquals(data.size(), list.size());
         for (FotoEntity entity : list) {
             boolean found = false;
@@ -145,13 +183,25 @@ public class FotoLogicTest {
      * @generated
      */
     @Test
-    public void getBookTest() {
+    public void getFotoTest() {
         FotoEntity entity = data.get(0);
-        FotoEntity resultEntity = fotoLogic.getBook(entity.getId());
-        Assert.assertNotNull(resultEntity);
-        Assert.assertEquals(entity.getName(), resultEntity.getName());
-        Assert.assertEquals(entity.getIsbn(), resultEntity.getIsbn());
-        Assert.assertEquals(entity.getImage(), resultEntity.getImage());
-        Assert.assertEquals(entity.getDescription(), resultEntity.getDescription());
+        FotoEntity newEntity = fotoLogic.getFotoVisita(entity.getId());
+        Assert.assertNotNull("El resultado no puede ser nulo",newEntity);
+        Assert.assertEquals("El formato de la foto no coincide",entity.getFormato(), newEntity.getFormato());
+        Assert.assertEquals("Los bytes de la imagen no coinciden",new String(entity.getValor()), new String(newEntity.getValor()));
+        Assert.assertEquals("La referencia a la visita no coincide",entity.getVisita().getId(), newEntity.getVisita().getId());
+    }
+    
+    /**
+     * Prueba para eliminar una Foto.
+     *
+     * @generated
+     */
+    @Test
+    public void deleteFotoTest() {
+        FotoEntity entity = data.get(0);
+        fotoLogic.deleteFotoVisita(entity.getId());
+        FotoEntity deleted = em.find(FotoEntity.class, entity.getId());
+        Assert.assertNull(deleted);
     }
 }

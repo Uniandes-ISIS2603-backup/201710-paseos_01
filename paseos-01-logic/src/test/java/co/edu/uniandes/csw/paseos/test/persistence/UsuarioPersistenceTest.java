@@ -32,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class UsuarioPersistenceTest {
     
-     public static final String DEPLOY = "Prueba";
+     public static final String DEPLOY = "PruebaUsuarioPersistence";
 
     /**
      * @generated
@@ -41,7 +41,7 @@ public class UsuarioPersistenceTest {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
                 .addPackage(UsuarioEntity.class.getPackage())
-                .addPackage(UsuarioEntity.class.getPackage())
+                .addPackage(UsuarioPersistence.class.getPackage())
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
     }
@@ -121,7 +121,7 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     @Test
-    public void createBookTest() {
+    public void createUsuarioTest() {
         PodamFactory factory = new PodamFactoryImpl();
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
         UsuarioEntity result = usuarioPersistence.create(newEntity);
@@ -146,7 +146,7 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     @Test
-    public void getBooksTest() {
+    public void getUsuariosTest() {
         List<UsuarioEntity> list = usuarioPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (UsuarioEntity ent : list) {
@@ -166,7 +166,7 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     @Test
-    public void getBookTest() {
+    public void getUsuarioTest() {
         UsuarioEntity entity = data.get(0);
         UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
@@ -191,7 +191,7 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     @Test
-    public void deleteBookTest() {
+    public void deleteUsuarioTest() {
         UsuarioEntity entity = data.get(0);
         usuarioPersistence.delete(entity.getId());
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
@@ -204,7 +204,7 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     @Test
-    public void updateBookTest() {
+    public void updateUsuarioTest() {
         UsuarioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);

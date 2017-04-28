@@ -63,28 +63,6 @@ public class FotoResource {
     }
     
     //Debug
-    @GET
-    @Path("fotos")
-    public List <FotoDTO> getFotos(){
-        return listEntity2DTO(fotoLogic.getFotos());
-    }
-    
-    //Debug
-    @GET
-    @Path("fotos/{id: \\d+}")
-    // TODO: retornar una excepción / código 404 si no existe
-    public FotoDTO getFoto(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
-        return new FotoDTO(fotoLogic.getFoto(id));
-    }
-    
-    //Debug
-    @POST
-    @Path("fotos")
-    public FotoDTO addFotoVisita(FotoDTO fotoDTO)throws BusinessLogicException{
-        return new FotoDTO(fotoLogic.createFoto(fotoDTO.toEntity()));
-    }
-    
-    //Debug
     @DELETE
     @Path("fotos/{id: \\d+}")
     public void deleteFotoVisita(@PathParam("id") Long id) {
@@ -98,9 +76,9 @@ public class FotoResource {
     }
     
     @GET
-    @Path("visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
-    public FotoDTO getFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
-        return new FotoDTO(fotoLogic.getFotoVisita(id,idVisita));
+    @Path("visita/fotos/{id: \\d+}")
+    public FotoDTO getFotoVisita(@PathParam("id") Long id){
+        return new FotoDTO(fotoLogic.getFotoVisita(id));
     }
     
     //POST /companies -- agrega una habitacion

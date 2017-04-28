@@ -36,7 +36,12 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author jma.lovera10
  */
 @Entity
-public class FotoEntity implements Serializable {
+public class FotoEntity implements Serializable 
+{
+    /**
+     * UID serial
+     */
+    private static final long serialVersionUID = 1L;
     
     /**
      * Id único de la foto
@@ -60,13 +65,23 @@ public class FotoEntity implements Serializable {
      * Relación con la visita
      */
     @ManyToOne
+    @PodamExclude
     private VisitaEntity visita;
 
+    /**
+     * Default constructor
+     */
+    public FotoEntity() 
+    {
+        
+    }
+    
     /**
      * Método que obtiene el id
      * @return id
      */
-    public Long getId() {
+    public Long getId() 
+    {
         return id;
     }
 
@@ -74,7 +89,8 @@ public class FotoEntity implements Serializable {
      * Método que establece el id de la foto
      * @param id de la foto
      */
-    public void setId(Long id) {
+    public void setId(Long id) 
+    {
         this.id = id;
     }
 
@@ -82,7 +98,8 @@ public class FotoEntity implements Serializable {
      * Método que obtiene el valor codificado
      * @return valor de la foto
      */
-    public byte[] getValor() {
+    public byte[] getValor() 
+    {
         return valor;
     }
 
@@ -90,7 +107,8 @@ public class FotoEntity implements Serializable {
      * Método que establece el valor codificado de la foto
      * @param valor de la foto
      */
-    public void setValor(byte[] valor) {
+    public void setValor(byte[] valor) 
+    {
         this.valor = valor;
     }
 
@@ -98,7 +116,8 @@ public class FotoEntity implements Serializable {
      * Método que obtiene el formato de la foto
      * @return formato de la foto
      */
-    public String getFormato() {
+    public String getFormato() 
+    {
         return formato;
     }
 
@@ -106,7 +125,8 @@ public class FotoEntity implements Serializable {
      * Método que establece el formato de la foto
      * @param formato formato de la foto
      */
-    public void setFormato(String formato) {
+    public void setFormato(String formato) 
+    {
         this.formato = formato;
     }
 
@@ -114,7 +134,8 @@ public class FotoEntity implements Serializable {
      * Método que obtiene la visita de la foto
      * @return visita de la foto
      */
-    public VisitaEntity getVisita() {
+    public VisitaEntity getVisita() 
+    {
         return visita;
     }
 
@@ -122,7 +143,8 @@ public class FotoEntity implements Serializable {
      * Método que establece la visita de la foto
      * @param visita visita de la foto
      */
-    public void setVisita(VisitaEntity visita) {
+    public void setVisita(VisitaEntity visita) 
+    {
         this.visita = visita;
     }
     
