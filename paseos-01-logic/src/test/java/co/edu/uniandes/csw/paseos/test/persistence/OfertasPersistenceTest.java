@@ -123,7 +123,9 @@ public class OfertasPersistenceTest {
 
         OfertaEntity entity = em.find(OfertaEntity.class, result.getId());
 
-        //Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getFecha().getDay(), entity.getFecha().getDay());
+        Assert.assertEquals(newEntity.getFecha().getMonth(), entity.getFecha().getMonth());
+        Assert.assertEquals(newEntity.getFecha().getYear(), entity.getFecha().getYear());
         Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getInscritos(), entity.getInscritos());
@@ -161,7 +163,9 @@ public class OfertasPersistenceTest {
         OfertaEntity entity = data.get(0);
         OfertaEntity newEntity = ofertaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        //Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getFecha().getDay(), entity.getFecha().getDay());
+        Assert.assertEquals(newEntity.getFecha().getMonth(), entity.getFecha().getMonth());
+        Assert.assertEquals(newEntity.getFecha().getYear(), entity.getFecha().getYear());
         Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getInscritos(), entity.getInscritos());
@@ -198,7 +202,9 @@ public class OfertasPersistenceTest {
 
         OfertaEntity resp = em.find(OfertaEntity.class, entity.getId());
 
-        //Assert.assertEquals(newEntity.getFecha(), entity.getFecha());
+        Assert.assertEquals(newEntity.getFecha().getDay(), entity.getFecha().getDay());
+        Assert.assertEquals(newEntity.getFecha().getMonth(), entity.getFecha().getMonth());
+        Assert.assertEquals(newEntity.getFecha().getYear(), entity.getFecha().getYear());
         Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
         Assert.assertEquals(newEntity.getId(), entity.getId());
         Assert.assertEquals(newEntity.getInscritos(), entity.getInscritos());
