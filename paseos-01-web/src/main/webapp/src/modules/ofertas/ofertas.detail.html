@@ -15,7 +15,7 @@
             <tbody>
                     <td>{{currentOferta.paseo.tematica}}</td> 
                     <td>{{currentOferta.paseo.destino}}</td> 
-                    <td>{{currentOferta.fecha}}</td> 
+                    <td>{{currentOferta.fecha|date:'yyyy-MM-dd'}}</td> 
                     <td>{{currentOferta.paseo.numeroMaximo-currentOferta.inscritos}}</td>
                     <td><a ui-sref="paseoDetail({idPaseo: currentOferta.paseo.id})">Ver detalle del paseo</a></td>
                     <td><a ui-sref="usuarioDetail({usuarioId: currentOferta.guia.id})">Ver detalle del guía</a></td>
