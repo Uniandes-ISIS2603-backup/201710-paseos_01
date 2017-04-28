@@ -36,18 +36,30 @@ import javax.inject.Inject;
  * @author jma.lovera10
  */
 @Stateless
-public class FotoLogic {
+public class FotoLogic 
+{
     
-    @Inject private FotoPersistence persistence;
+    @Inject 
+    private FotoPersistence persistence;
     
-    @Inject private VisitaPersistence visitaPersistence;
+    @Inject 
+    private VisitaPersistence visitaPersistence;
+
+    /**
+     * Default constructor
+     */
+    public FotoLogic() 
+    {
+        
+    }
     
     /**
      * Obtiene los datos de una instancia de Foto a partir de su ID.
      * @param id Identificador de la instancia a consultar
      * @return Instancia de FotoEntity con los datos de la Foto consultada.
      */
-    public FotoEntity getFotoVisita(Long id) {
+    public FotoEntity getFotoVisita(Long id) 
+    {
         return persistence.find(id);
     }
     
@@ -56,7 +68,8 @@ public class FotoLogic {
      * @param idVisita Identificador de la instancia a consultar
      * @return Instancia de FotoEntity con los datos de la Foto consultada.
      */
-    public List<FotoEntity> getFotosVisita(Long idVisita) {
+    public List<FotoEntity> getFotosVisita(Long idVisita) 
+    {
         return persistence.findFotosVisita(idVisita);
     }
 
@@ -68,7 +81,8 @@ public class FotoLogic {
      * @generated
      */
     
-    public FotoEntity createFotoVisita(FotoEntity entity, Long id) {
+    public FotoEntity createFotoVisita(FotoEntity entity, Long id) 
+    {
         VisitaEntity visita = visitaPersistence.find(id);
         entity.setVisita(visita);
         persistence.create(entity);
@@ -80,7 +94,8 @@ public class FotoLogic {
      * @param id Identificador de la instancia a eliminar.
      */
    
-    public void deleteFotoVisita(Long id) {
+    public void deleteFotoVisita(Long id) 
+    {
         persistence.delete(id);
     }
 }
