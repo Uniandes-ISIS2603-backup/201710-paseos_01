@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jma.lovera10
  */
 @XmlRootElement
-public class FotoDTO {
+public class FotoDTO 
+{
     
     /**
      * Atributo que modela el id de la foto
