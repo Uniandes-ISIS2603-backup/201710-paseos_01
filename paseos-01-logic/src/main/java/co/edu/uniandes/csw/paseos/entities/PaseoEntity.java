@@ -35,7 +35,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
- * @author jma.lovera10
+ * @author Venegas
  */
 @Entity
 public class PaseoEntity implements Serializable{
