@@ -1,3 +1,6 @@
+/**
+ * @Author Tomas F. Venegas Bernal
+ */
 /* 
  * The MIT License
  *
@@ -38,7 +41,8 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Venegas
  */
 @Entity
-public class PaseoEntity implements Serializable{
+public class PaseoEntity implements Serializable
+{
     
     private static final long serialVersionUID = 1;
     
