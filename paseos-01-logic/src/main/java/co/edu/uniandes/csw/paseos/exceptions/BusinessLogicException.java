@@ -26,21 +26,41 @@ package co.edu.uniandes.csw.paseos.exceptions;
 import javax.ejb.ApplicationException;
 
 @ApplicationException(rollback = true)
-public class BusinessLogicException extends Exception {
-
-    public BusinessLogicException() {
+public class BusinessLogicException extends Exception 
+{
+    /**
+     * Constructor por defecto
+     */
+    public BusinessLogicException() 
+    {
         super();
     }
 
-    public BusinessLogicException(String message) {
+    /**
+     * Contructor con mensaje
+     * @param message mensaje de error
+     */
+    public BusinessLogicException(String message) 
+    {
         super(message);
     }
 
-    public BusinessLogicException(Throwable cause) {
+    /**
+     * Constructor con throwable
+     * @param cause throwable
+     */
+    public BusinessLogicException(Throwable cause) 
+    {
         super(cause);
     }
 
-    public BusinessLogicException(String message, Throwable cause) {
+    /**
+     * Constructor con mensaje y throwable
+     * @param message Mensaje de error
+     * @param cause causa de error
+     */
+    public BusinessLogicException(String message, Throwable cause) 
+    {
         super(message, cause);
     }
 

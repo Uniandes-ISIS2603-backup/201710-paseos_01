@@ -42,8 +42,11 @@ import javax.ws.rs.core.MediaType;
 @Path("/")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class FotoResource {
-    
+public class FotoResource 
+{
+    /**
+     * Relación con la logica de foto
+     */
     @Inject
     private FotoLogic fotoLogic;
     
@@ -54,9 +57,11 @@ public class FotoResource {
      * @return Lista de EmployeeDetailDTO convertida.
      * @generated
      */
-    private List<FotoDTO> listEntity2DTO(List<FotoEntity> entityList){
+    private List<FotoDTO> listEntity2DTO(List<FotoEntity> entityList)
+    {
         List<FotoDTO> list = new ArrayList<>();
-        for (FotoEntity entity : entityList) {
+        for (FotoEntity entity : entityList) 
+        {
             list.add(new FotoDTO(entity));
         }
         return list;
@@ -65,33 +70,38 @@ public class FotoResource {
     //Debug
     @DELETE
     @Path("fotos/{id: \\d+}")
-    public void deleteFotoVisita(@PathParam("id") Long id) {
+    public void deleteFotoVisita(@PathParam("id") Long id) 
+    {
         fotoLogic.deleteFotoVisita(id);
     }
     
     @GET
     @Path("visitas/{idVisita: \\d+}/fotos")
-    public List<FotoDTO> getFotosVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita){
+    public List<FotoDTO> getFotosVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita)
+    {
         return listEntity2DTO(fotoLogic.getFotosVisita(idVisita));
     }
     
     @GET
     @Path("visita/fotos/{id: \\d+}")
-    public FotoDTO getFotoVisita(@PathParam("id") Long id){
+    public FotoDTO getFotoVisita(@PathParam("id") Long id)
+    {
         return new FotoDTO(fotoLogic.getFotoVisita(id));
     }
     
     //POST /companies -- agrega una habitacion
     @POST
     @Path("visitas/{idVisita: \\d+}/fotos")
-    public FotoDTO addFotoVisita(@PathParam("idVisita") Long idVisita, FotoDTO fotoDTO)throws BusinessLogicException{
+    public FotoDTO addFotoVisita(@PathParam("idVisita") Long idVisita, FotoDTO fotoDTO)throws BusinessLogicException
+    {
         return new FotoDTO(fotoLogic.createFotoVisita(fotoDTO.toEntity(),idVisita));
     }
    
     
     @DELETE
     @Path("visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
-    public void deleteFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita) {
+    public void deleteFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita) 
+    {
         fotoLogic.deleteFotoVisita(id);
     }
  }

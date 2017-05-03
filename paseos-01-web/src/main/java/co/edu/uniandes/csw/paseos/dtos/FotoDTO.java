@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jma.lovera10
  */
 @XmlRootElement
-public class FotoDTO {
+public class FotoDTO 
+{
     
     /**
      * Atributo que modela el id de la foto
@@ -47,21 +48,26 @@ public class FotoDTO {
     /**
      * Constructor por defecto
      */
-    public FotoDTO() {
+    public FotoDTO() 
+    {
+        
     }
     
     /**
      * Constructor a partir de una entidad de foto
      * @param entity Entidad de foto
      */
-    public FotoDTO(FotoEntity entity){
-        if(entity!=null){
+    public FotoDTO(FotoEntity entity)
+    {
+        if(entity!=null)
+        {
             id = entity.getId();
             valor = "data:image/"+entity.getFormato()+";base64,"+Base64.getEncoder().encodeToString(entity.getValor());
         }
     }
 
-    public FotoEntity toEntity(){
+    public FotoEntity toEntity()
+    {
         FotoEntity entity = new FotoEntity();
         entity.setId(id);
         entity.setValor(Base64.getDecoder().decode(valor.split(",")[1]));
@@ -73,7 +79,8 @@ public class FotoDTO {
      * Método que retorna el id de la foto
      * @return id de la foto
      */
-    public Long getId() {
+    public Long getId() 
+    {
         return id;
     }
 
@@ -81,7 +88,8 @@ public class FotoDTO {
      * Método que establece el id de la foto 
      * @param id nuevo de la foto
      */
-    public void setId(Long id) {
+    public void setId(Long id) 
+    {
         this.id = id;
     }
 
@@ -89,7 +97,8 @@ public class FotoDTO {
      * Método que retorna el valor codificado de la foto
      * @return valor codificado de la foto
      */
-    public String getValor() {
+    public String getValor() 
+    {
         return valor;
     }
 
@@ -97,7 +106,8 @@ public class FotoDTO {
      * Método que establece el valor codificado de la foto 
      * @param valor nuevo de la foto
      */
-    public void setValor(String valor) {
+    public void setValor(String valor) 
+    {
         this.valor = valor;
     }
     
