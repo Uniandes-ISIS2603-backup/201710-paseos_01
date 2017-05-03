@@ -83,8 +83,10 @@ public class PaseoResource {
     @Path("/paseos/{id : \\d+}")
     // TODO: retornar una excepción / código 404 si no existe
     public PaseoDetailDTO getPaseo(@PathParam("id") long id){
-        return new PaseoDetailDTO(logic.getPaseo(id));
-        
+        PaseoEntity entity=logic.getPaseo(id);
+        PaseoDetailDTO paseo = new PaseoDetailDTO(entity);
+        paseo.llenarListas(entity);
+        return paseo;
     }
     
     @POST
