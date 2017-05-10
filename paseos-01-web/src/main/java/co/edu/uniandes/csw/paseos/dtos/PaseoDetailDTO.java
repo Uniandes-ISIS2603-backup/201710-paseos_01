@@ -1,3 +1,6 @@
+/**
+ * @Author Tomas F. Venegas Bernal
+ */
 /* 
  * The MIT License
  *
@@ -36,14 +39,32 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement
 public class PaseoDetailDTO extends PaseoDTO{
+    
+    /**
+     * Lista de ofertas que tiene el paseo
+     */
     private List<OfertaDTO> ofertas;
+    
+    /**
+     * Lista de algunas fotos del paseo
+     */
     private List<FotoDTO> fotos ;
+    
+    /**
+     * Descripción básica del paseo
+     */
     private String descripcion;
 
+    /**
+     * Constructor por defecto
+     */
     public PaseoDetailDTO() {
     }
 
-    
+    /**
+     * Constructor a usar
+     * @param entity 
+     */
     public PaseoDetailDTO(PaseoEntity entity) {
         super(entity);
         
@@ -53,6 +74,10 @@ public class PaseoDetailDTO extends PaseoDTO{
         
     }
     
+    /**
+     * LLena las listas de ofertas y fotos.
+     * @param entity 
+     */
     public void llenarListas(PaseoEntity entity){
         ofertas=new ArrayList<OfertaDTO>();
         List<OfertaEntity> ofertasEntities = entity.getOfertas();
@@ -63,7 +88,12 @@ public class PaseoDetailDTO extends PaseoDTO{
             ofertas.add(new OfertaDTO(of));
         }
            fotos= new ArrayList<FotoDTO>();
-        if (entity.getOfertas()==null || entity.getOfertas().isEmpty() || entity.getOfertas().get(0)==null || entity.getOfertas().get(0).getVisitas()==null || entity.getOfertas().get(0).getVisitas().isEmpty()){
+        if (entity.getOfertas()==null || entity.getOfertas().isEmpty() || entity.getOfertas().get(0)==null )
+        {
+            return;
+        }
+        if (entity.getOfertas().get(0).getVisitas()==null || entity.getOfertas().get(0).getVisitas().isEmpty()){
+            
             return;
         }
             List<FotoEntity> lista = entity.getOfertas().get(0).getVisitas().get(0).getFotos();
@@ -77,6 +107,11 @@ public class PaseoDetailDTO extends PaseoDTO{
         
         
     }
+    
+    /**
+     * Getters and setters
+     * 
+     */
 
 
     public List<FotoDTO> getFotos() {
@@ -87,13 +122,17 @@ public class PaseoDetailDTO extends PaseoDTO{
         this.fotos = fotos;
     }
 
-    /*public List<OfertaDTO> getOfertas() {
+    public List<OfertaDTO> getOfertas() {
         return ofertas;
     }
 
     public void setOfertas(List<OfertaDTO> ofertas) {
         this.ofertas = ofertas;
-    }*/
+    }
+    /**
+     * Genera la entidad
+     * @return entidad asociada al dto 
+     */
     public PaseoEntity toEntity(){
         PaseoEntity entity = new PaseoEntity();
         entity.setId(id);
