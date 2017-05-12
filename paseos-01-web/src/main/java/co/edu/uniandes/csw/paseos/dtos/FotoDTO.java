@@ -70,8 +70,16 @@ public class FotoDTO
     {
         FotoEntity entity = new FotoEntity();
         entity.setId(id);
-        entity.setValor(Base64.getDecoder().decode(valor.split(",")[1]));
-        entity.setFormato(valor.split(",")[0].split("/")[1].split(";")[0]);
+        try
+        {
+            entity.setValor(Base64.getDecoder().decode(valor.split(",")[1]));
+            entity.setFormato(valor.split(",")[0].split("/")[1].split(";")[0]);
+        }
+        catch(Exception e)
+        {
+            entity.setValor(null);
+            entity.setFormato(null);
+        }
         return entity;
     }
     

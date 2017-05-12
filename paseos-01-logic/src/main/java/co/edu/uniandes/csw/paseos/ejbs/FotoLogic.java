@@ -25,6 +25,7 @@ package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
 import co.edu.uniandes.csw.paseos.entities.VisitaEntity;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.paseos.persistence.FotoPersistence;
 import co.edu.uniandes.csw.paseos.persistence.VisitaPersistence;
 import java.util.List;
@@ -81,10 +82,14 @@ public class FotoLogic
      * @generated
      */
     
-    public FotoEntity createFotoVisita(FotoEntity entity, Long id) 
+    public FotoEntity createFotoVisita(FotoEntity entity, Long id) throws BusinessLogicException
     {
         VisitaEntity visita = visitaPersistence.find(id);
         entity.setVisita(visita);
+        if(entity.getFormato()==null||entity.getValor()==null)
+        {
+            throw new BusinessLogicException("Los datos de la imagen no son correctos");
+        }
         persistence.create(entity);
         return entity;
     }
