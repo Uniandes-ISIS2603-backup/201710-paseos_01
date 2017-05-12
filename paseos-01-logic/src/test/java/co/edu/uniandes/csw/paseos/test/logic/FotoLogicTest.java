@@ -181,6 +181,8 @@ public class FotoLogicTest
     {
         PodamFactory factory = new PodamFactoryImpl();
         FotoEntity newEntity = factory.manufacturePojo(FotoEntity.class);
+        newEntity.setFormato(null);
+        newEntity.setValor(null);
         newEntity.setVisita(visit);
         try
         {
