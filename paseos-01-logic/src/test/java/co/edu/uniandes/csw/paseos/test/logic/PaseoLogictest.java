@@ -41,6 +41,7 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
+import org.junit.Assert;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -168,6 +169,7 @@ public class PaseoLogictest {
              //null error
              try{
                 logic.createPaseo(null);
+                Assert.fail("Excepcion esperada  " );
              }
              catch(BusinessLogicException b){
                 assertEquals(b.getMessage(), new BusinessLogicException("El paseo no puede estar vacio").getMessage());
@@ -178,6 +180,7 @@ public class PaseoLogictest {
                 paseo.setNumeroMaximo(10);
                 paseo.setNumeroMinimo(100);
                 logic.createPaseo(paseo);
+                Assert.fail("Excepcion esperada  " );
              }
              catch(BusinessLogicException b){
 
@@ -190,6 +193,7 @@ public class PaseoLogictest {
                 paseo.setNumeroMaximo(100);
                 paseo.setCondicionFisica(-3);
                 logic.createPaseo(paseo);
+                Assert.fail("Excepcion esperada  " );
              }
              catch(BusinessLogicException b){
                  assertEquals(b.getMessage(), new BusinessLogicException("Condición física entre 0 y 10").getMessage());
@@ -201,6 +205,7 @@ public class PaseoLogictest {
                 paseo.setNumeroMaximo(100);
                 paseo.setCondicionFisica(13);
                 logic.createPaseo(paseo);
+                Assert.fail("Excepcion esperada  " );
              }
              catch(BusinessLogicException b){
                  assertEquals(b.getMessage(), new BusinessLogicException("Condición física entre 0 y 10").getMessage());
@@ -213,6 +218,7 @@ public class PaseoLogictest {
                 paseo.setCondicionFisica(6);
                 paseo.setCosto(new Double(-1000));
                 logic.createPaseo(paseo);
+                Assert.fail("Excepcion esperada  " );
              }
              catch(BusinessLogicException b){
                  assertEquals(b.getMessage(), new BusinessLogicException("EL costo del paseo debe ser positivo.").getMessage());
@@ -227,14 +233,18 @@ public class PaseoLogictest {
     *Prueba para consultar todos los paseos
     */
     @Test
-    public void getPaseosTest(){
+    public void getPaseosTest()
+    {
         List<PaseoEntity> list = logic.getPaseos();
         assertEquals(list.size(), data.size());
         
-        for (PaseoEntity paseo : list){
+        for (PaseoEntity paseo : list)
+        {
             boolean found=false;
-            for (PaseoEntity entity : data) {
-                if (paseo.getId().equals(entity.getId())) {
+            for (PaseoEntity entity : data) 
+            {
+                if (paseo.getId().equals(entity.getId())) 
+                {
                     found = true;           
                     assertEquals(paseo.getAlmuerzo(),entity.getAlmuerzo());
                     assertEquals(paseo.getCondicionFisica(),entity.getCondicionFisica());
