@@ -131,7 +131,7 @@ public class UsuarioPersistenceTest {
         UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
 
         Assert.assertEquals(newEntity.getNombres(), entity.getNombres());
-        Assert.assertEquals(newEntity.getFechaNaciemiento(), entity.getFechaNaciemiento());
+        Assert.assertEquals(newEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
         Assert.assertEquals(newEntity.getCondicionFisica(), entity.getCondicionFisica());
         Assert.assertEquals(newEntity.getLogin(), entity.getLogin());
         Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
@@ -171,13 +171,13 @@ public class UsuarioPersistenceTest {
         UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(newEntity.getNombres(), entity.getNombres());
-        Assert.assertEquals(newEntity.getFechaNaciemiento(), entity.getFechaNaciemiento());
+        Assert.assertEquals(newEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
         Assert.assertEquals(newEntity.getCondicionFisica(), entity.getCondicionFisica());
         Assert.assertEquals(newEntity.getLogin(), entity.getLogin());
         Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
         Assert.assertEquals(newEntity.getFormacion(), entity.getFormacion());
         Assert.assertEquals(newEntity.getExperiencia(), entity.getExperiencia());  Assert.assertEquals(newEntity.getNombres(), entity.getNombres());
-        Assert.assertEquals(newEntity.getFechaNaciemiento(), entity.getFechaNaciemiento());
+        Assert.assertEquals(newEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
         Assert.assertEquals(newEntity.getCondicionFisica(), entity.getCondicionFisica());
         Assert.assertEquals(newEntity.getLogin(), entity.getLogin());
         Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
@@ -214,8 +214,8 @@ public class UsuarioPersistenceTest {
 
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
 
-         Assert.assertEquals(newEntity.getNombres(), resp.getNombres());
-        Assert.assertEquals(newEntity.getFechaNaciemiento(), resp.getFechaNaciemiento());
+        Assert.assertEquals(newEntity.getNombres(), resp.getNombres());
+        Assert.assertEquals(newEntity.getFechaNaciemiento().getDay(), resp.getFechaNaciemiento().getDay());
         Assert.assertEquals(newEntity.getCondicionFisica(), resp.getCondicionFisica());
         Assert.assertEquals(newEntity.getLogin(), resp.getLogin());
         Assert.assertEquals(newEntity.getGuia(), resp.getGuia());
