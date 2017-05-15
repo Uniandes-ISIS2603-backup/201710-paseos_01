@@ -39,6 +39,9 @@
                     'listViewUsuario': {
                         templateUrl: basePath + 'fotos.list.vistausuario.html',
                     },
+                    'addView':{
+                        templateUrl: basePath + 'fotos.add.html',
+                    },
                 },
             }).state('fotoDetail',{
                 url: '/{fotoId:int}/detail',
@@ -102,6 +105,40 @@
                             function ($scope, deleteFoto, $state){
                                 $scope.deleteFoto= function(id){
                                     deleteFoto(id);
+                                    $state.reload();
+                                };
+                        }],
+                    },
+                    'addView':{
+                        templateUrl: basePath + 'fotos.add.html',
+                    },
+                },
+            }).state('agregarFoto',{
+                // Url que aparecerá en el browser
+                url: '/addFoto',
+                parent:'fotos',
+                resolve: {
+                    addFoto: ['$http','$stateParams',function($http){
+                    return function (files){
+                        var fd = new FormData();
+                        //Take the first selected file
+                        fd.append("file", files[0]);
+
+                        $http.post('/paseos-01-web/api/fotos/', fd, {
+                            withCredentials: true,
+                            headers: {'Content-Type': undefined },
+                            transformRequest: angular.identity
+                        });
+                    }
+                    }],
+                },
+                views: {
+                    'addSuccessView':{
+                        templateUrl: basePath + 'fotos.add.success.html',
+                        controller: ['$scope', 'addFoto','$state', 
+                            function ($scope, addFoto, $state){
+                                $scope.addFoto= function(files){
+                                    addFoto(files);
                                     $state.reload();
                                 };
                         }],
