@@ -11,9 +11,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="oferta in ofertasRecords">
-                    <td id="{{$index}}-topic">{{oferta.inscritos}}</td> 
-                    <td id="{{$index}}-place">{{oferta.id}}</td> 
-                    <td id="{{$index}}-date">{{oferta.fecha|date:'yyyy-MM-dd'}}</td>
+                    <td>{{oferta.inscritos}}</td> 
+                    <td>{{oferta.id}}</td> 
+                    <td>{{oferta.fecha|date:'yyyy-MM-dd'}}</td>
                     <td><a ui-sref="ofertaDetail({ofertaId: oferta.id})">Ver oferta</a></td>
                 </tr>
             </tbody>
