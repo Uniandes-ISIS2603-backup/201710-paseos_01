@@ -233,14 +233,18 @@ public class PaseoLogictest {
     *Prueba para consultar todos los paseos
     */
     @Test
-    public void getPaseosTest(){
+    public void getPaseosTest()
+    {
         List<PaseoEntity> list = logic.getPaseos();
         assertEquals(list.size(), data.size());
         
-        for (PaseoEntity paseo : list){
+        for (PaseoEntity paseo : list)
+        {
             boolean found=false;
-            for (PaseoEntity entity : data) {
-                if (paseo.getId().equals(entity.getId())) {
+            for (PaseoEntity entity : data) 
+            {
+                if (paseo.getId().equals(entity.getId())) 
+                {
                     found = true;           
                     assertEquals(paseo.getAlmuerzo(),entity.getAlmuerzo());
                     assertEquals(paseo.getCondicionFisica(),entity.getCondicionFisica());
