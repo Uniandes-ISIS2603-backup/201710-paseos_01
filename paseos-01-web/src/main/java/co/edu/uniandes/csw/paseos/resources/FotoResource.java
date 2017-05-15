@@ -57,7 +57,7 @@ public class FotoResource
      * @return Lista de EmployeeDetailDTO convertida.
      * @generated
      */
-    private List<FotoDTO> listEntity2DTO(List<FotoEntity> entityList)
+    private static List<FotoDTO> listEntity2DTO(List<FotoEntity> entityList)
     {
         List<FotoDTO> list = new ArrayList<>();
         for (FotoEntity entity : entityList) 
@@ -66,15 +66,21 @@ public class FotoResource
         }
         return list;
     }
-    
-    //Debug
-    @DELETE
-    @Path("fotos/{id: \\d+}")
-    public void deleteFotoVisita(@PathParam("id") Long id) 
+
+    /**
+     * Constructor por defecto de la clase
+     */
+    public FotoResource() 
     {
-        fotoLogic.deleteFotoVisita(id);
+        
     }
     
+    /**
+     * Método que consulta todas las fotos dada una visita
+     * @param id de la foto
+     * @param idVisita de la visita
+     * @return lista de fotos relacionadas con la visita
+     */
     @GET
     @Path("visitas/{idVisita: \\d+}/fotos")
     public List<FotoDTO> getFotosVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita)
@@ -82,6 +88,11 @@ public class FotoResource
         return listEntity2DTO(fotoLogic.getFotosVisita(idVisita));
     }
     
+    /**
+     * Método que obtiene una foto específica para un paseo
+     * @param id de la foto
+     * @return la foto relacionada con el id
+     */
     @GET
     @Path("visita/fotos/{id: \\d+}")
     public FotoDTO getFotoVisita(@PathParam("id") Long id)
@@ -89,7 +100,13 @@ public class FotoResource
         return new FotoDTO(fotoLogic.getFotoVisita(id));
     }
     
-    //POST /companies -- agrega una habitacion
+    /**
+     * Método que agrega una foto para una visita existente
+     * @param idVisita de la visita
+     * @param fotoDTO los datos de la foto
+     * @return estatus de la operación
+     * @throws BusinessLogicException si algo falla
+     */
     @POST
     @Path("visitas/{idVisita: \\d+}/fotos")
     public FotoDTO addFotoVisita(@PathParam("idVisita") Long idVisita, FotoDTO fotoDTO)throws BusinessLogicException
@@ -97,10 +114,13 @@ public class FotoResource
         return new FotoDTO(fotoLogic.createFotoVisita(fotoDTO.toEntity(),idVisita));
     }
    
-    
+    /**
+     * Método para eliminar una foto dado su id
+     * @param id de la foto a eliminar
+     */
     @DELETE
-    @Path("visitas/{idVisita: \\d+}/fotos/{id: \\d+}")
-    public void deleteFotoVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita) 
+    @Path("fotos/{id: \\d+}")
+    public void deleteFotoVisita(@PathParam("id") Long id) 
     {
         fotoLogic.deleteFotoVisita(id);
     }

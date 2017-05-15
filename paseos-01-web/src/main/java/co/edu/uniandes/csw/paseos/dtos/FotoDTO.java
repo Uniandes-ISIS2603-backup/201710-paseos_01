@@ -24,6 +24,7 @@
 package co.edu.uniandes.csw.paseos.dtos;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.Base64;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -32,8 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jma.lovera10
  */
 @XmlRootElement
-public class FotoDTO 
-{
+public class FotoDTO {
     
     /**
      * Atributo que modela el id de la foto
@@ -48,8 +48,7 @@ public class FotoDTO
     /**
      * Constructor por defecto
      */
-    public FotoDTO() 
-    {
+    public FotoDTO() {
         
     }
     
@@ -57,26 +56,20 @@ public class FotoDTO
      * Constructor a partir de una entidad de foto
      * @param entity Entidad de foto
      */
-    public FotoDTO(FotoEntity entity)
-    {
-        if(entity!=null)
-        {
+    public FotoDTO(FotoEntity entity){
+        if(entity!=null){
             id = entity.getId();
             valor = "data:image/"+entity.getFormato()+";base64,"+Base64.getEncoder().encodeToString(entity.getValor());
         }
     }
 
-    public FotoEntity toEntity()
-    {
+    public FotoEntity toEntity(){
         FotoEntity entity = new FotoEntity();
         entity.setId(id);
-        try
-        {
+        try{
             entity.setValor(Base64.getDecoder().decode(valor.split(",")[1]));
             entity.setFormato(valor.split(",")[0].split("/")[1].split(";")[0]);
-        }
-        catch(Exception e)
-        {
+        }catch(IndexOutOfBoundsException e){
             entity.setValor(null);
             entity.setFormato(null);
         }
@@ -87,8 +80,7 @@ public class FotoDTO
      * Método que retorna el id de la foto
      * @return id de la foto
      */
-    public Long getId() 
-    {
+    public Long getId() {
         return id;
     }
 
@@ -96,8 +88,7 @@ public class FotoDTO
      * Método que establece el id de la foto 
      * @param id nuevo de la foto
      */
-    public void setId(Long id) 
-    {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -105,8 +96,7 @@ public class FotoDTO
      * Método que retorna el valor codificado de la foto
      * @return valor codificado de la foto
      */
-    public String getValor() 
-    {
+    public String getValor() {
         return valor;
     }
 
