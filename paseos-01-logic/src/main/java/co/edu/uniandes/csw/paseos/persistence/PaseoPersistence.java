@@ -21,6 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/**
+ *
+ * @author Venegas
+ */
 package co.edu.uniandes.csw.paseos.persistence;
 
 import co.edu.uniandes.csw.paseos.entities.PaseoEntity;

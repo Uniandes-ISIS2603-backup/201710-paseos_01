@@ -27,19 +27,34 @@ import javax.ejb.ApplicationException;
 
 @ApplicationException(rollback = true)
 public class BusinessLogicException extends Exception {
-
+    /**
+     * Constructor por defecto
+     */
     public BusinessLogicException() {
         super();
     }
 
+    /**
+     * Contructor con mensaje
+     * @param message mensaje de error
+     */
     public BusinessLogicException(String message) {
         super(message);
     }
 
+    /**
+     * Constructor con throwable
+     * @param cause throwable
+     */
     public BusinessLogicException(Throwable cause) {
         super(cause);
     }
 
+    /**
+     * Constructor con mensaje y throwable
+     * @param message Mensaje de error
+     * @param cause causa de error
+     */
     public BusinessLogicException(String message, Throwable cause) {
         super(message, cause);
     }

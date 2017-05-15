@@ -1,3 +1,6 @@
+/**
+ * @Author Tomas F. Venegas Bernal
+ */
 /* 
  * The MIT License
  *
@@ -47,12 +50,25 @@ import javax.ws.rs.core.MediaType;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/")
-public class PaseoResource {
+public class PaseoResource 
+{
+
+    /**
+     * Constructor por defecto
+     */
+    public PaseoResource() {
+    }
     
     @Inject 
     private PaseoLogic logic;
    
-    
+    /**
+     * Serviio rest para obetener todos los paseos
+     * @param cat
+     * cat=1 : paseoDetail
+     * cat=0 : paseo
+     * @return 
+     */
     @GET
     @Path("paseos")
     public List<PaseoDTO> getPaseos( @QueryParam("catalogo")int cat ){
@@ -79,14 +95,28 @@ public class PaseoResource {
         
     }
     
+    
+    /**
+     * Servicio rest para obtener un paseo especifico
+     * @param id
+     * @return 
+     */
     @GET
     @Path("/paseos/{id : \\d+}")
     // TODO: retornar una excepción / código 404 si no existe
     public PaseoDetailDTO getPaseo(@PathParam("id") long id){
-        return new PaseoDetailDTO(logic.getPaseo(id));
-        
+        PaseoEntity entity=logic.getPaseo(id);
+        PaseoDetailDTO paseo = new PaseoDetailDTO(entity);
+        paseo.llenarListas(entity);
+        return paseo;
     }
     
+    /**
+     * Servicio rest para agregar un paseo
+     * @param paseo
+     * @return
+     * @throws BusinessLogicException 
+     */
     @POST
     @Path("/paseos")
     public PaseoDTO crearPaseo(PaseoDTO paseo) throws BusinessLogicException{
@@ -97,6 +127,14 @@ public class PaseoResource {
         return new PaseoDTO(logic.createPaseo(paseo.toEntity()));
     }
     
+    /**
+     * Servicio rest para modificar un paseo
+     * @param paseo
+     * @param id
+     * @return
+     * @throws BusinessLogicException 
+     */
+    
     @PUT
     @Path("/paseos/{id: \\d+}")
     public PaseoDTO modificarPaseo(PaseoDTO paseo, @PathParam("id") long id ) throws BusinessLogicException{
@@ -104,6 +142,11 @@ public class PaseoResource {
         entity.setId(id);
         return new PaseoDTO(logic.modificar(entity));
     }
+    
+    /**
+     * Servicio rest para eliminar un paseo
+     * @param id 
+     */
     
     @DELETE
     @Path("/paseos/{id: \\d+}")

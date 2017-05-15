@@ -35,7 +35,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author jma.lovera10
  */
 @RunWith(Arquillian.class)
-public class FotoPersistenceTest {
+public class FotoPersistenceTest 
+{
     
     /**
      * Nombre del war
@@ -47,10 +48,11 @@ public class FotoPersistenceTest {
      * @return 
      */
     @Deployment
-    public static WebArchive createDeployment(){
+    public static WebArchive createDeployment()
+    {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
                 .addPackage(FotoEntity.class.getPackage())
-                .addPackage(FotoPersistenceTest.class.getPackage())
+                .addPackage(FotoPersistence.class.getPackage())
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
     }
@@ -79,7 +81,8 @@ public class FotoPersistenceTest {
      * @generated
      */
     @Before
-    public void configTest() {
+    public void configTest() 
+    {
         try {
             utx.begin();
             clearData();
@@ -100,7 +103,8 @@ public class FotoPersistenceTest {
      *
      * @generated
      */
-    private void clearData() {
+    private void clearData() 
+    {
         em.createQuery("delete from FotoEntity").executeUpdate();
         em.createQuery("delete from VisitaEntity").executeUpdate();
     }
@@ -121,7 +125,8 @@ public class FotoPersistenceTest {
      *
      * @generated
      */
-    private void insertData() {
+    private void insertData() 
+    {
         PodamFactory fac = new PodamFactoryImpl();
         VisitaEntity vis = fac.manufacturePojo(VisitaEntity.class);
         em.persist(vis);
@@ -142,7 +147,8 @@ public class FotoPersistenceTest {
      * @generated
      */
     @Test
-    public void createFotoTest() {
+    public void createFotoTest() 
+    {
         PodamFactory factory = new PodamFactoryImpl();
         FotoEntity newEntity = factory.manufacturePojo(FotoEntity.class);
         newEntity.setVisita(visit);
@@ -163,7 +169,8 @@ public class FotoPersistenceTest {
      * @generated
      */
     @Test
-    public void getFotosTest() {
+    public void getFotosTest() 
+    {
         List<FotoEntity> list = fotoPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (FotoEntity ent : list) {
@@ -183,7 +190,8 @@ public class FotoPersistenceTest {
      * @generated
      */
     @Test
-    public void getFotoTest() {
+    public void getFotoTest() 
+    {
         FotoEntity entity = data.get(0);
         FotoEntity newEntity = fotoPersistence.find(entity.getId());
         Assert.assertNotNull("El resultado no puede ser nulo",newEntity);
@@ -198,7 +206,8 @@ public class FotoPersistenceTest {
      * @generated
      */
     @Test
-    public void deleteFotoTest() {
+    public void deleteFotoTest() 
+    {
         FotoEntity entity = data.get(0);
         fotoPersistence.delete(entity.getId());
         FotoEntity deleted = em.find(FotoEntity.class, entity.getId());

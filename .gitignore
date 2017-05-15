@@ -4,3 +4,5 @@
 /paseos-01-web/src/main/webapp/bower.json
 /.bowerrc
 /paseos-01-logic/nbproject/
+/paseos-01-logic/derby.log
+

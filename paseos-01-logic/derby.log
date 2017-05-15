@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-
-Wed Apr 26 15:28:55 COT 2017:
- Iniciando instancia a816c00e-015b-abf3-d66f-00000c4af1b0 de Derby, versiï¿½n The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
-en el directorio de base de datos C:\Users\n.acevedos\AppData\Local\Temp\gfembed3308330804346179848tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@4aa298b7
-Cargado desde file:/C:/Users/n.acevedos/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
+Mon May 15 08:27:03 COT 2017:
+ Iniciando instancia a816c00e-015c-0c4a-6b94-00001358d860 de Derby, versión The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): 
+en el directorio de base de datos C:\Users\veneg\AppData\Local\Temp\gfembed8966451016283422693tmp\lib\databases\embedded_default con el cargador de clases sun.misc.Launcher$AppClassLoader@18b4aac2
+Cargado desde file:/C:/Users/veneg/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/4.1/glassfish-embedded-all-4.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_111-b14
-user.dir=C:\Users\n.acevedos\Documents\DesarrolloProyecto\paseos_01\paseos-01-logic
-os.name=Windows 7
+java.runtime.version=1.8.0_101-b13
+user.dir=C:\Users\veneg\paseos_01\paseos-01-logic
+os.name=Windows 10
 os.arch=amd64
-
-
+os.version=10.0
+derby.system.home=null
+Cargador de clases de base de datos iniciado - derby.database.classpath=''

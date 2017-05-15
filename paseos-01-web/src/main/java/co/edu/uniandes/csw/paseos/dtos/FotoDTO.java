@@ -24,6 +24,7 @@
 package co.edu.uniandes.csw.paseos.dtos;
 
 import co.edu.uniandes.csw.paseos.entities.FotoEntity;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import java.util.Base64;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -48,6 +49,7 @@ public class FotoDTO {
      * Constructor por defecto
      */
     public FotoDTO() {
+        
     }
     
     /**
@@ -64,8 +66,13 @@ public class FotoDTO {
     public FotoEntity toEntity(){
         FotoEntity entity = new FotoEntity();
         entity.setId(id);
-        entity.setValor(Base64.getDecoder().decode(valor.split(",")[1]));
-        entity.setFormato(valor.split(",")[0].split("/")[1].split(";")[0]);
+        try{
+            entity.setValor(Base64.getDecoder().decode(valor.split(",")[1]));
+            entity.setFormato(valor.split(",")[0].split("/")[1].split(";")[0]);
+        }catch(IndexOutOfBoundsException e){
+            entity.setValor(null);
+            entity.setFormato(null);
+        }
         return entity;
     }
     
@@ -97,7 +104,8 @@ public class FotoDTO {
      * Método que establece el valor codificado de la foto 
      * @param valor nuevo de la foto
      */
-    public void setValor(String valor) {
+    public void setValor(String valor) 
+    {
         this.valor = valor;
     }
     

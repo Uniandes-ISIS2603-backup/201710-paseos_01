@@ -2,28 +2,29 @@
         
  <form class="form-horizontal">
     <div class="form-group"></div>
-    <label class="control-label col-sm-3" for="paseo" >Cambiar paseo:</label>
-    <div class="col-sm-7">
-    <select class="form-control">
-      <option>Paseo 1 disponible</option>
-      <option>Paseo 2 disponible</option>
-      <option>Paseo 3 disponible</option>
-      <option>...</option>
-      <option>Paseo n disponible</option>
-    </select>
-    </div>
+    <label class="control-label col-sm-3" >Destino - Tematica:</label>
+         <div class="col-sm-7"> 
+            <select class="form-control">
+                <option ng-repeat="paseo in catalogo">{{paseo.destino}} - {{paseo.tematica}}</option>            
+            </select>
+      </div>
     <br>
     <br>
-    <label class="control-label col-sm-3" for="apellidos">Cambiar fecha:</label>
+    <label class="control-label col-sm-3">Guía - id:</label>
+         <div class="col-sm-7"> 
+            <select class="form-control">
+                <option ng-repeat="guia in guias">{{guia.nombres}} - {{guia.id}}</option>            
+            </select>
+      </div>
+    <br>
+    <br>
+    <label class="control-label col-sm-3">Fecha:</label>
     <div class="col-sm-7">
     <input type="date" class="form-control">      
     </div>
-    
-    <br>
-    <br>
     <br>
     <br>
   <div class="form-group" style="text-align:center;">
-                    <button class="btn btn-default">Submit</button>
+  <button class="btn btn-default">Submit</button>
   </div>
 </form>
