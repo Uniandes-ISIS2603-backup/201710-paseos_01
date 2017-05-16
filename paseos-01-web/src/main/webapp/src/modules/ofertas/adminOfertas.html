@@ -14,8 +14,8 @@
                     <td>{{oferta.id}}</td> 
                     <td>{{oferta.fecha|date:'yyyy-MM-dd'}}</td>
                     <td>{{oferta.inscritos}}</td>
-                    <td><a ui-sref="editarOferta">Editar oferta</a></td>
-                    <td><a ui-sref="#">Eliminar oferta</a></td>
+                    <td><a ui-sref="editarOferta({ofertaId: oferta.id})">Editar oferta</a></td>
+                    <td><button ng-click= deleteOferta(oferta.id)> Eliminar oferta </button></td>
                 </tr>
             </tbody>
         </table>

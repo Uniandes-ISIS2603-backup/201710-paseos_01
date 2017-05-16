@@ -1,29 +1,8 @@
-/* 
- * The MIT License
- *
- * Copyright 2017 jma.lovera10.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package co.edu.uniandes.csw.paseos.ejbs;
 
 import co.edu.uniandes.csw.paseos.entities.OfertaEntity;
+import co.edu.uniandes.csw.paseos.entities.PaseoEntity;
+import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
 import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.paseos.persistence.OfertaPersistence;
 import co.edu.uniandes.csw.paseos.persistence.PaseoPersistence;
@@ -47,13 +26,34 @@ public class OfertaLogic {
     
     public OfertaEntity createOferta(OfertaEntity oferta)throws BusinessLogicException{
         if (oferta.getFecha() == null || oferta.getFecha().before(new Date()))
+        {
            throw new BusinessLogicException ("La oferta debe tener fecha y esta debe ser posterior a la fecha actual");
+        }
+        
         if(oferta.getInscritos() != 0)
+        {
            throw new BusinessLogicException ("El numero de inscritos no puede ser diferente de cero");
-        if(Ppersistence.find(oferta.getPaseo().getId()) == null)
+        }
+        
+        PaseoEntity paseo = Ppersistence.find(oferta.getPaseo().getId());
+        if(paseo == null)
+        {
             throw new BusinessLogicException ("El paseo no existe");
-        if(Upersistence.find(oferta.getGuia().getId()) == null || !Upersistence.find(oferta.getGuia().getId()).getGuia())
-            throw new BusinessLogicException ("El guía no existe");
+        }
+        else
+        {
+            oferta.setPaseo(paseo);
+        }
+        
+        UsuarioEntity usuario = Upersistence.find(oferta.getGuia().getId());
+        if(usuario == null || !usuario.getGuia())
+        {
+        throw new BusinessLogicException ("El guía no existe");
+        }
+        else
+        {
+            oferta.setGuia(usuario);
+        }
         return Opersistence.create(oferta);
     }
     

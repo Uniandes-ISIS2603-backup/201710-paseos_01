@@ -10,9 +10,8 @@
                 abstract: true,
                 resolve: {
                     ofertas: ['$http','ofertasContext', function ($http,ofertasContext) {
-                            return $http.get(ofertasContext);
-                            //return $http.get('data/ofertas.json');
-                        }]
+                                return $http.get(ofertasContext);
+                           }]
                 },
                 views: {
                     'mainView': {
@@ -41,47 +40,138 @@
                                 return $http.get('api/paseos?catalogo=0');
                         }],
                                 guias: ['$http', function ($http) {
-                                return $http.get('api/usuarios');
-                        }]
-                },
-                controller: ['$scope','catalogo','guias', function ($scope,catalogo,guias) {
-                                $scope.catalogo = catalogo.data;
-                                $scope.guias = guias.data;
-                            }]
-                    }
-                }
-            }).state('editarOferta', {
-                url: '/editarOferta',
-                parent: 'ofertas',
-                views: {
-                    'listView': {
-                        templateUrl: basePath + 'editOferta.html',
-                        resolve: {
-                                catalogo: ['$http', function ($http) {
-                                return $http.get('api/paseos?catalogo=0');
+                                return $http.get('api/usuarios?guia=1');
                         }],
-                                guias: ['$http', function ($http) {
-                                return $http.get('api/usuarios');
-                        }]
+                                setOferta: ["$http",function($http){
+                                const adicionOferta =  
+                                function (addOferta){
+                                $http.post("api/ofertas/",addOferta).success(function(data){
+                                return data;
+                                }).error(function(err){
+                                return err;
+                                });
+                            }
+                    return adicionOferta;                  
+               }]
                 },
-                controller: ['$scope','catalogo','guias', function ($scope,catalogo,guias) {
+                controller: ['$scope','catalogo','guias', 'setOferta', '$state', function ($scope,catalogo,guias,setOferta,$state) {
                                 $scope.catalogo = catalogo.data;
                                 $scope.guias = guias.data;
                                 $scope.paseoElegido = 0;
                                 $scope.guiaElegido = 0;
-                                //$scope.ok = function()
+                                $scope.fechaElegida = 0;
+                                $scope.oferta = {};
+                                $scope.ok = function(){                                    
+                                    $scope.oferta = {
+                                            "fecha": $scope.fechaElegida,
+                                            "inscritos": 0,
+                                            "guia":{
+                                                    "id": $scope.guiaElegido
+                                                    },
+                                            "paseo":{
+                                                    "id": $scope.paseoElegido
+                                                    },
+
+                                            "visitas": []
+                                        };
+                                    setOferta($scope.oferta);
+                                    $state.go($state.current, {}, {reload: true});
+                                    //$state.reload();
+                                };
                             }]
                     }
                 }
-            }).state('administrarOfertas', {
-                url: '/administrarOfertas',
+            }).state('editarOferta', {
+                url: '/{ofertaId:int}/updateOferta',
                 parent: 'ofertas',
+                param: {
+                    ofertaId: null
+                },
+                resolve: {
+                                putOferta:["$http",'$stateParams',function($http,$params){
+                                const modificarOferta = function (putOferta){
+                                $http.put("api/ofertas/"+$params.ofertaId.toString(),putOferta).success(function(data){
+                                return data;
+                    }).error(function(err){
+                        return err;
+                    });
+                };
+                    return modificarOferta;
+               }] 
+                        },
                 views: {
-                    'listView': {
-                        templateUrl: basePath + 'adminOfertas.html'
+                    'listView': {                        
+                        templateUrl: basePath + 'editOferta.html',   
+                        resolve: {
+                                guias: ['$http', function ($http) {
+                                return $http.get('api/usuarios?guia=1');
+                                }]
+                                },
+                                controller: ['$scope', 'putOferta', '$state','$http','guias', '$stateParams',
+                                    function ($scope, putOferta, $state, $http, guias, $params) {
+                                        $scope.guias = guias.data;
+                                        $http.get("/paseos-01-web/api/ofertas/"+ $params.ofertaId.toString())
+                                        .success(function(data){                             
+                                                    $scope.addOferta = data;
+                                                $scope.paseoElegido=$scope.addOferta.paseo.id;                                             
+                                                });
+                                                
+                                        $scope.ok = function (){
+                                            $scope.addOferta={
+                                            "fecha": $scope.fechaElegida,
+                                            "inscritos": 0,
+                                            "guia":{
+                                                    "id": $scope.guiaElegido
+                                                    },
+                                            "paseo":{
+                                                    "id": $scope.paseoElegido
+                                                    },
+
+                                            "visitas": []
+                                            };
+                                            putOferta($scope.addOferta);
+                                            $state.go('ofertasList');
+                                        };                                                                               
+                                 }]
+                                },
+                    'detailView': {                       
+                                templateUrl: basePath + 'ofertas.detail.html',        
+                                resolve: {
+                                        currentOferta: ['$http','ofertasContext','$stateParams', function ($http,ofertasContext,$params) {
+                                        return $http.get(ofertasContext+'/'+$params.ofertaId);
+                                        }]
+                                     },
+                                        controller: ['$scope','currentOferta', function ($scope,currentOferta) {
+                                        $scope.currentOferta = currentOferta.data;
+                                        }]
                     }
                 }
-            }).state('ofertaDetail', {
+            }).state('administrarOfertas', {
+                url: '/adminOfertas',
+                parent:"ofertas",
+                resolve: {
+                        deleteOferta: ["$http","ofertasContext",function($http, ofertasContext){
+                        const eliminarOferta = function (id){
+                        $http.delete(ofertasContext+"/"+id.toString()).success(function(data){
+                        return data;
+                    }).error(function(err){
+                        return err;
+                    });
+                }
+                    return eliminarOferta;                    
+               }]},               
+                views: {
+                'listView': {
+                templateUrl: basePath + 'adminOfertas.html',
+                controller: ['$scope', 'deleteOferta','$state', function ($scope, deleteOferta, $state, $window){                        
+                            $scope.deleteOferta = function(id){
+                            deleteOferta(id);
+                            $state.reload();
+                        };
+                        
+                }]
+            }
+            }}).state('ofertaDetail', {
                 url: '/{ofertaId:int}/detail',
                 parent: 'ofertas',
                 param: {
@@ -95,17 +185,14 @@
                                 resolve: {
                                         currentOferta: ['$http','ofertasContext','$stateParams', function ($http,ofertasContext,$params) {
                                         return $http.get(ofertasContext+'/'+$params.ofertaId);
-                        }]
-                },
-                        templateUrl: basePath + 'ofertas.detail.html',
-                        controller: ['$scope','currentOferta', function ($scope,currentOferta) {
-                                $scope.currentOferta = currentOferta.data;
-                            }]
+                                        }]
+                                     },
+                                        templateUrl: basePath + 'ofertas.detail.html',
+                                        controller: ['$scope','currentOferta', function ($scope,currentOferta) {
+                                        $scope.currentOferta = currentOferta.data;
+                                        }]
                     }
-
                 }
-
             });
         }]);
 })(window.angular);
-
