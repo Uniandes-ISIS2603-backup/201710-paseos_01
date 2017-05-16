@@ -30,8 +30,6 @@ import co.edu.uniandes.csw.paseos.persistence.PaseoPersistence;
 import static co.edu.uniandes.csw.paseos.test.persistence.PaseosPersitenceTest.DEPLOY;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
