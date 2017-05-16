@@ -76,6 +76,18 @@ public class FotoResource
     }
     
     /**
+     * Método que consulta todas las fotos
+     * @param id de la foto
+     * @return lista de fotos relacionadas con la visita
+     */
+    @GET
+    @Path("fotos")
+    public List<FotoDTO> getFotos()
+    {
+        return listEntity2DTO(fotoLogic.getFotos());
+    }
+    
+    /**
      * Método que consulta todas las fotos dada una visita
      * @param id de la foto
      * @param idVisita de la visita
@@ -83,7 +95,7 @@ public class FotoResource
      */
     @GET
     @Path("visitas/{idVisita: \\d+}/fotos")
-    public List<FotoDTO> getFotosVisita(@PathParam("id") Long id, @PathParam("idVisita") Long idVisita)
+    public List<FotoDTO> getFotosVisita(@PathParam("idVisita") Long idVisita)
     {
         return listEntity2DTO(fotoLogic.getFotosVisita(idVisita));
     }
@@ -94,7 +106,7 @@ public class FotoResource
      * @return la foto relacionada con el id
      */
     @GET
-    @Path("visita/fotos/{id: \\d+}")
+    @Path("visitas/fotos/{id: \\d+}")
     public FotoDTO getFotoVisita(@PathParam("id") Long id)
     {
         return new FotoDTO(fotoLogic.getFotoVisita(id));

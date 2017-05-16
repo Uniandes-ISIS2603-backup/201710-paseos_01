@@ -39,6 +39,9 @@
                     'listViewUsuario': {
                         templateUrl: basePath + 'fotos.list.vistausuario.html',
                     },
+                    'addView':{
+                        templateUrl: basePath + 'fotos.add.html',
+                    },
                 },
             }).state('fotoDetail',{
                 url: '/{fotoId:int}/detail',
@@ -105,6 +108,29 @@
                                     $state.reload();
                                 };
                         }],
+                    },
+                    'addView':{
+                        templateUrl: basePath + 'fotos.add.html',
+                    },
+                },
+            }).state('agregarFoto',{
+                // Url que aparecerá en el browser
+                url: '/addFoto',
+                parent:'fotos',
+                resolve: {
+                    addFoto: ['$scope','$http','$stateParams',function($scope,$http){
+                        return $http.post('/paseos-01-web/api/fotos/',{
+                            params:{
+                                id: 0,
+                                valor:"data:"+$scope.uploadImage.fileType+";base64,"+$scope.uploadImage.base64,
+                            }
+                        });
+                    }
+                    ],
+                },
+                views: {
+                    'addSuccessView':{
+                        templateUrl: basePath + 'fotos.add.success.html',
                     },
                 },
             })
