@@ -1,16 +1,38 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * The MIT License
+ *
+ * Copyright 2017 n.acevedos.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
-package co.edu.uniandes.csw.paseos.test.persistence;
+package co.edu.uniandes.csw.paseos.test.logic;
 
+import co.edu.uniandes.csw.paseos.ejbs.UsuarioLogic;
 import co.edu.uniandes.csw.paseos.entities.UsuarioEntity;
+import co.edu.uniandes.csw.paseos.exceptions.BusinessLogicException;
 import co.edu.uniandes.csw.paseos.persistence.UsuarioPersistence;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
-import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
@@ -30,11 +52,14 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  * @author n.acevedos
  */
 @RunWith(Arquillian.class)
-public class UsuarioPersistenceTest {
-    
-     public static final String DEPLOY = "PruebaUsuarioPersistence";
+public class UsuarioLogicTest {
+     public static final String DEPLOY = "PruebaUsuarioLogic";
 
     /**
+     * @generated
+     */
+     /**
+     * @return 
      * @generated
      */
     @Deployment
@@ -42,20 +67,22 @@ public class UsuarioPersistenceTest {
         return ShrinkWrap.create(WebArchive.class, DEPLOY + ".war")
                 .addPackage(UsuarioEntity.class.getPackage())
                 .addPackage(UsuarioPersistence.class.getPackage())
+                .addPackage(UsuarioLogic.class.getPackage())
                 .addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource("META-INF/beans.xml", "beans.xml");
     }
+
 
     /**
      * @generated
      */
     @Inject
-    private UsuarioPersistence usuarioPersistence;
+    private UsuarioLogic usuarioLogic;
 
     /**
      * @generated
      */
-    @PersistenceContext(unitName="paseosPU")
+    @PersistenceContext(unitName = "paseosPU")
     private EntityManager em;
 
     /**
@@ -110,6 +137,7 @@ public class UsuarioPersistenceTest {
         for (int i = 0; i < 3; i++) {
             PodamFactory factory = new PodamFactoryImpl();
             UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
+
             em.persist(entity);
             data.add(entity);
         }
@@ -121,23 +149,17 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     @Test
-    public void createUsuarioTest() {
+    public void createUsuarioTest() throws BusinessLogicException {
         PodamFactory factory = new PodamFactoryImpl();
-        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-        UsuarioEntity result = usuarioPersistence.create(newEntity);
-
-        Assert.assertNotNull(result);
-
-        UsuarioEntity entity = em.find(UsuarioEntity.class, result.getId());
-
-        Assert.assertEquals(newEntity.getNombres(), entity.getNombres());
-        Assert.assertEquals(newEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
-        Assert.assertEquals(newEntity.getCondicionFisica(), entity.getCondicionFisica());
-        Assert.assertEquals(newEntity.getLogin(), entity.getLogin());
-        Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
-        Assert.assertEquals(newEntity.getFormacion(), entity.getFormacion());
-        Assert.assertEquals(newEntity.getExperiencia(), entity.getExperiencia());
+        UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
+        UsuarioEntity result =null;
+        result = usuarioLogic.createUsuario(entity);
         
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result.getNombres(), entity.getNombres());
+        Assert.assertEquals(result.getApellidos(), entity.getApellidos());
+        Assert.assertEquals(result.getCondicionFisica(), entity.getCondicionFisica());
+        Assert.assertEquals(result.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
     }
 
     /**
@@ -147,12 +169,12 @@ public class UsuarioPersistenceTest {
      */
     @Test
     public void getUsuariosTest() {
-        List<UsuarioEntity> list = usuarioPersistence.findAll();
+        List<UsuarioEntity> list = usuarioLogic.getUsuarios();
         Assert.assertEquals(data.size(), list.size());
-        for (UsuarioEntity ent : list) {
+        for (UsuarioEntity entity : list) {
             boolean found = false;
-            for (UsuarioEntity entity : data) {
-                if (ent.getId().equals(entity.getId())) {
+            for (UsuarioEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
             }
@@ -168,21 +190,16 @@ public class UsuarioPersistenceTest {
     @Test
     public void getUsuarioTest() {
         UsuarioEntity entity = data.get(0);
-        UsuarioEntity newEntity = usuarioPersistence.find(entity.getId());
-        Assert.assertNotNull(newEntity);
-        Assert.assertEquals(newEntity.getNombres(), entity.getNombres());
-        Assert.assertEquals(newEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
-        Assert.assertEquals(newEntity.getCondicionFisica(), entity.getCondicionFisica());
-        Assert.assertEquals(newEntity.getLogin(), entity.getLogin());
-        Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
-        Assert.assertEquals(newEntity.getFormacion(), entity.getFormacion());
-        Assert.assertEquals(newEntity.getExperiencia(), entity.getExperiencia());  Assert.assertEquals(newEntity.getNombres(), entity.getNombres());
-        Assert.assertEquals(newEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
-        Assert.assertEquals(newEntity.getCondicionFisica(), entity.getCondicionFisica());
-        Assert.assertEquals(newEntity.getLogin(), entity.getLogin());
-        Assert.assertEquals(newEntity.getGuia(), entity.getGuia());
-        Assert.assertEquals(newEntity.getFormacion(), entity.getFormacion());
-        Assert.assertEquals(newEntity.getExperiencia(), entity.getExperiencia());
+        UsuarioEntity resultEntity= null ;
+         try {
+             resultEntity = usuarioLogic.getUsuario(entity.getId());
+         } catch (BusinessLogicException ex) {
+             Assert.fail("No deberia generar excepción"); 
+         }
+       Assert.assertEquals(resultEntity.getNombres(), entity.getNombres());
+        Assert.assertEquals(resultEntity.getApellidos(), entity.getApellidos());
+        Assert.assertEquals(resultEntity.getCondicionFisica(), entity.getCondicionFisica());
+        Assert.assertEquals(resultEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
     }
 
     /**
@@ -191,9 +208,13 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     @Test
-    public void deleteUsuarioTest() {
+    public void deleteBookTest() {
         UsuarioEntity entity = data.get(0);
-        usuarioPersistence.delete(entity.getId());
+         try {
+             usuarioLogic.deleteUsuario(entity.getId());
+         } catch (BusinessLogicException ex) {
+            Assert.fail("No deberia generar excepción"); 
+         }
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
@@ -204,23 +225,19 @@ public class UsuarioPersistenceTest {
      * @generated
      */
     @Test
-    public void updateUsuarioTest() {
+    public void updateBookTest() throws BusinessLogicException {
         UsuarioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
-        UsuarioEntity newEntity = factory.manufacturePojo(UsuarioEntity.class);
-        newEntity.setId(entity.getId());
+        UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
+        pojoEntity.setId(entity.getId());
 
-        usuarioPersistence.update(newEntity);
+        usuarioLogic.updateUsuario(pojoEntity);
 
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getNombres(), resp.getNombres());
-        Assert.assertEquals(newEntity.getFechaNaciemiento().getDay(), resp.getFechaNaciemiento().getDay());
-        Assert.assertEquals(newEntity.getCondicionFisica(), resp.getCondicionFisica());
-        Assert.assertEquals(newEntity.getLogin(), resp.getLogin());
-        Assert.assertEquals(newEntity.getGuia(), resp.getGuia());
-        Assert.assertEquals(newEntity.getFormacion(), resp.getFormacion());
-        Assert.assertEquals(newEntity.getExperiencia(), resp.getExperiencia());
+        Assert.assertEquals(pojoEntity.getNombres(), resp.getNombres());
+        Assert.assertEquals(pojoEntity.getApellidos(), resp.getApellidos());
+        Assert.assertEquals(pojoEntity.getCondicionFisica(), resp.getCondicionFisica());
+        Assert.assertEquals(pojoEntity.getFechaNaciemiento().getDay(), resp.getFechaNaciemiento().getDay());
     }
-    
 }
