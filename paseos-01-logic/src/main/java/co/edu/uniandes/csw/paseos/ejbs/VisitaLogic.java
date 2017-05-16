@@ -69,13 +69,13 @@ public class VisitaLogic {
     }
     
     public VisitaEntity updateVisita(VisitaEntity entity) throws BusinessLogicException{
-        if(getVisita(entity.getId()).getOferta()!=entity.getOferta()){
+        if(getVisita(entity.getId()).getOferta().getId()!=entity.getOferta().getId()){
             throw new BusinessLogicException("La oferta no es la oferta original");
         }
         if(!entity.getOferta().getFecha().before(new Date())){
             throw new BusinessLogicException("La fecha de oferta tiene que haber pasado");
         }
-        if(getVisita(entity.getId()).getUsuario()!=entity.getUsuario()){
+        if(getVisita(entity.getId()).getUsuario().getId()!=entity.getUsuario().getId()){
             throw new BusinessLogicException("El usuario no es el usuario original");
         }
         if(getVisita(entity.getId()).getCalificacion()!=entity.getCalificacion()){
