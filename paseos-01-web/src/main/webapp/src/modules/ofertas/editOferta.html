@@ -2,29 +2,21 @@
         
  <form class="form-horizontal">
     <div class="form-group"></div>
-    <label class="control-label col-sm-3" >Destino - Tematica:</label>
+      <label class="control-label col-sm-3">Cambiar Guía:</label>
          <div class="col-sm-7"> 
-            <select class="form-control">
-                <option ng-repeat="paseo in catalogo">{{paseo.destino}} - {{paseo.tematica}}</option>            
+             <select class="form-control" ng-model="guiaElegido">
+                <option ng-repeat="guia in guias" value="{{guia.id}}">{{guia.nombres}} - {{guia.id}}</option>            
             </select>
       </div>
     <br>
     <br>
-    <label class="control-label col-sm-3">Guía - id:</label>
-         <div class="col-sm-7"> 
-            <select class="form-control">
-                <option ng-repeat="guia in guias">{{guia.nombres}} - {{guia.id}}</option>            
-            </select>
-      </div>
-    <br>
-    <br>
-    <label class="control-label col-sm-3">Fecha:</label>
+    <label class="control-label col-sm-3">Cambiar Fecha:</label>
     <div class="col-sm-7">
-    <input type="date" class="form-control">      
+    <input type="date" class="form-control" ng-model="fechaElegida">      
     </div>
     <br>
     <br>
   <div class="form-group" style="text-align:center;">
-  <button class="btn btn-default">Submit</button>
+  <button class="btn btn-default" ng-click="ok()">Submit</button>
   </div>
 </form>
