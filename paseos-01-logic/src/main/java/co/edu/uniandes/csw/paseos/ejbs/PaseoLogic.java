@@ -40,60 +40,60 @@ import javax.inject.Inject;
  */
 @Stateless
 public class PaseoLogic {
-    
-    @Inject private PaseoPersistence persist;
-    
-    public PaseoEntity getPaseo(long id){
+
+    @Inject
+    private PaseoPersistence persist;
+
+    public PaseoEntity getPaseo(long id) {
         return persist.find(id);
     }
-    
-    public List<PaseoEntity> getPaseos(){
+
+    public List<PaseoEntity> getPaseos() {
         return persist.findAll();
     }
-    
-    public PaseoEntity createPaseo(PaseoEntity paseo) throws BusinessLogicException{
-        if (paseo==null) 
-        {
+
+    public PaseoEntity createPaseo(PaseoEntity paseo) throws BusinessLogicException {
+        if (paseo == null) {
             throw new BusinessLogicException("El paseo no puede estar vacio");
         }
-        if (paseo.getCosto()<0)
-        {
+        if (paseo.getCosto() < 0) {
             throw new BusinessLogicException("EL costo del paseo debe ser positivo.");
         }
-        if (paseo.getNumeroMaximo()<paseo.getNumeroMinimo() || paseo.getNumeroMinimo()<0) 
-        {
+        if (paseo.getNumeroMaximo() < paseo.getNumeroMinimo() || paseo.getNumeroMinimo() < 0) {
             throw new BusinessLogicException("El número máximo de participantes debe ser mayor al número minimo y debe ser positivo.");
         }
-        if (paseo.getCondicionFisica()<0 || paseo.getCondicionFisica()>10) 
-        {
+        if (paseo.getCondicionFisica() < 0 || paseo.getCondicionFisica() > 10) {
             throw new BusinessLogicException("Condición física entre 0 y 10");
         }
         return persist.create(paseo);
     }
-    
-    public PaseoEntity modificar(PaseoEntity paseo)throws BusinessLogicException{
-        if (paseo==null)
-        {
+
+    public PaseoEntity modificar(PaseoEntity paseo) throws BusinessLogicException {
+        if (paseo == null) {
             throw new BusinessLogicException("El paseo no puede estar vacio");
         }
-        if (paseo.getCosto()<0)
-        {
+        if (paseo.getId() == null) {
+            throw new BusinessLogicException("El id del paseo no puede estar vacio");
+        }
+        PaseoEntity actual = persist.find(paseo.getId());
+        if (actual == null) {
+             throw new BusinessLogicException("El paseo a modificar no existe");
+        }
+        if (paseo.getCosto() < 0) {
             throw new BusinessLogicException("EL costo del paseo debe ser positivo.");
         }
-        if (paseo.getNumeroMaximo()<paseo.getNumeroMinimo() || paseo.getNumeroMinimo()<0)
-        {
+        if (paseo.getNumeroMaximo() < paseo.getNumeroMinimo() || paseo.getNumeroMinimo() < 0) {
             throw new BusinessLogicException("El número máximo de participantes debe ser mayor al número minimo y debe ser positivo.");
         }
-        if (paseo.getCondicionFisica()<0 || paseo.getCondicionFisica()>10)
-        {
+        if (paseo.getCondicionFisica() < 0 || paseo.getCondicionFisica() > 10) {
             throw new BusinessLogicException("Condición física entre 0 y 10");
         }
         return persist.update(paseo);
     }
-    
+
     // Todo paseo se puede eliminar. Uno pasado, uno futuro. No hay restricciones de lógica de negocio 
     //para eliminar un paseo
-    public void delete (long id){
+    public void delete(long id) {
         persist.delete(id);
     }
 }

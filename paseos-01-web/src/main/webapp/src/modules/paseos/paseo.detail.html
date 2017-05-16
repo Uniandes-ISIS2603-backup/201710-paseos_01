@@ -1,26 +1,30 @@
 <div class="container">
     <div class="well">
-    <h1 class="text-center">Paseo a {{paseoActual.destino}}</h1>
-    <p>Temática: {{paseoActual.tematica}}</p>
-    <p>Condición física requerida: {{paseoActual.condicionFisica}}/10 </p>
-       
-    <div class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuenow="{{paseoActual.condicionFisica*10}}" aria-valuemin="0" aria-valuemax="100" style="width:{{paseoActual.condicionFisica*10}}%">
-     
-    </div>
-  </div>
-    <p>Almuerzo incluído : {{paseoActual.almuerzo}}</p>
-    <p>Transporte incluído : {{paseoActual.transporte}}</p>
-    <p>Costo por persona : {{paseoActual.costo}}</p>
-    <p>Número mínimo de participantes : {{paseoActual.numeroMinimo}}</p>
-    <p>Número máximo de participantes : {{paseoActual.numeroMaximo}}</p>
-    <div >
-        <div ng-repeat="foto in paseoActual.fotos">
-            <img />
+        <h1 class="text-center">Paseo a {{paseoActual.destino}}</h1>
+        <p>Temática: {{paseoActual.tematica}}</p>
+        <p>Condición física requerida: {{paseoActual.condicionFisica}}/10 </p>
+
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{paseoActual.condicionFisica * 10}}" aria-valuemin="0" aria-valuemax="100" style="width:{{paseoActual.condicionFisica * 10}}%">
+
+            </div>
         </div>
-    </div>
-    <div>Ofertas disponibles:
-        <a ng-repeat="oferta in paseoActual.ofertas" ui-sref="ofertaDetail({ofertaId: oferta.id})"> {{oferta.fecha}}</a>
-    </div>
+        <p>Almuerzo incluído : {{paseoActual.almuerzo}}</p>
+        <p>Transporte incluído : {{paseoActual.transporte}}</p>
+        <p>Costo por persona : {{paseoActual.costo}}</p>
+        <p>Número mínimo de participantes : {{paseoActual.numeroMinimo}}</p>
+        <p>Número máximo de participantes : {{paseoActual.numeroMaximo}}</p>
+        <div >
+            <div ng-repeat="foto in paseoActual.fotos">
+                <p>{{foto.id}} </p>
+                <img />
+            </div>
+        </div>
+        <div>Ofertas disponibles:
+            <ul ng-repeat="oferta in paseoActual.ofertas" ng-init="current = 0; current = current + 1;">
+                <li> <a  ui-sref="ofertaDetail({ofertaId: oferta.id})"> {{current}}.{{oferta.fecha|date}}</a></li>
+
+            </ul>
+        </div>
     </div>
 </div>

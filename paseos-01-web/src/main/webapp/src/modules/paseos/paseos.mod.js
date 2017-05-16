@@ -103,7 +103,7 @@ const appPaseos=ng.module('paseosModule',['ui.router']);
                     setPaseo: ["$http",function($http){
                           const adicionPaseo =  
                      function (addPaseo){
-                    $http.post("/paseos-01-web/api/paseos/",addPaseo).success(function(data){
+                        $http.post("/paseos-01-web/api/paseos/",addPaseo).success(function(data){
                         return data;
                     }).error(function(err){
                         return err;
@@ -142,7 +142,6 @@ const appPaseos=ng.module('paseosModule',['ui.router']);
                             }
                         setPaseo($scope.addPaseo);
                         $state.reload();
-
                         };
                         
                 }]

@@ -103,7 +103,13 @@ public class UsuarioLogic {
      */
     // TODO: revisar las validaciones al momento de actualizar
     public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException {
-        UsuarioEntity ue = getUsuario(entity.getId()); 
+       
+        UsuarioEntity ue = getUsuario(entity.getId());
+        if (ue == null)
+        {
+            throw new BusinessLogicException("No hay un usuario con ese login"); 
+        }
+          
         if (persistence.loginUnico(entity.getLogin()))
         {
         return persistence.update(entity);
@@ -123,7 +129,14 @@ public class UsuarioLogic {
     // TODO: revisar las validaciones al momento de borrar
     public void deleteUsuario(Long id) throws BusinessLogicException {
         UsuarioEntity ue = getUsuario(id); 
+        if (ue != null)
+        {
         persistence.delete(id);
+        }
+        else 
+        {
+           throw new BusinessLogicException("No hay un usuario con ese login"); 
+        }
     }
     
     

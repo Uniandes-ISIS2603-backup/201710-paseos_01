@@ -41,80 +41,74 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author Venegas
  */
 @Entity
-public class PaseoEntity implements Serializable
-{
-    
+public class PaseoEntity implements Serializable {
+
     private static final long serialVersionUID = 1;
-    
+
     /**
-    *Id del Paseo. Exclude by podam
-    */
+     * Id del Paseo. Exclude by podam
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @PodamExclude
     private Long id;
-    
+
     /**
      * temática del paseo
-    */
+     */
     private String tematica;
-    
+
     /**
      * Destino del paseo
      */
     private String destino;
-    
+
     /**
-     * condición física mínima requerida para poder ir al paseo
-     * Entero entre 0 y 10
-    */
+     * condición física mínima requerida para poder ir al paseo Entero entre 0 y
+     * 10
+     */
     private Integer condicionFisica;
-    
+
     /**
      * costo para cada persona que asista al paseo
      */
     private Double costo;
-    
+
     /**
      * booleano que indica si hay transporte incluido o no
      */
-    
     private Boolean transporte;
-    
+
     /**
      * Booleano que indica si hay almuerzo íncluido en el paseo.
      */
-    
     private Boolean almuerzo;
-    
+
     /**
      * número mínimo de participantes para que se pueda realizar el paseo
      */
-    
     private Integer numeroMinimo;
-    
+
     /**
      * Número máximo de participantes aceptados
      */
     private Integer numeroMaximo;
-    
+
     /**
      * Drescripción básica del paseo.
      */
-     
     private String descripcion;
-    
+
     @PodamExclude
     @OneToMany(mappedBy = "paseo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OfertaEntity> ofertas;
-    
+
     @PodamExclude
     @OneToMany
     private List<FotoEntity> fotos;
 
     public PaseoEntity() {
     }
-    
 
     public Long getId() {
         return id;
@@ -210,6 +204,6 @@ public class PaseoEntity implements Serializable
 
     public void setFotos(List<FotoEntity> fotos) {
         this.fotos = fotos;
-    }   
-    
+    }
+
 }
