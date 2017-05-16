@@ -1,10 +1,19 @@
 <div class="container-fluid">
-    <div ui-view="detailView"></div>
-    <div ui-view="listView"></div>
-    <div ui-view="detailViewUsuario"></div>
-    <div ui-view="listViewUsuario"></div>
-    <div ui-view="addSuccessView"></div>
-    <aside>
-        <div ui-view="addView"></div>
-    </aside>
+    <div class="row">
+        <div class="col-sm-9">
+            
+            <div ui-view="listViewUsuario"></div>
+            <div ui-view="detailViewUsuario"></div>
+            <div ui-view="addSuccessView"></div>
+            
+        </div>
+        <div class="col-sm-3">
+            <div ui-view="addView"></div>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div ui-view="detailView"></div>
+        <div ui-view="listView"></div>
+    </div>
 </div>

@@ -118,30 +118,19 @@
                 url: '/addFoto',
                 parent:'fotos',
                 resolve: {
-                    addFoto: ['$http','$stateParams',function($http){
-                    return function (files){
-                        var fd = new FormData();
-                        //Take the first selected file
-                        fd.append("file", files[0]);
-
-                        $http.post('/paseos-01-web/api/fotos/', fd, {
-                            withCredentials: true,
-                            headers: {'Content-Type': undefined },
-                            transformRequest: angular.identity
+                    addFoto: ['$scope','$http','$stateParams',function($scope,$http){
+                        return $http.post('/paseos-01-web/api/fotos/',{
+                            params:{
+                                id: 0,
+                                valor:"data:"+$scope.uploadImage.fileType+";base64,"+$scope.uploadImage.base64,
+                            }
                         });
                     }
-                    }],
+                    ],
                 },
                 views: {
                     'addSuccessView':{
                         templateUrl: basePath + 'fotos.add.success.html',
-                        controller: ['$scope', 'addFoto','$state', 
-                            function ($scope, addFoto, $state){
-                                $scope.addFoto= function(files){
-                                    addFoto(files);
-                                    $state.reload();
-                                };
-                        }],
                     },
                 },
             })

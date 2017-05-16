@@ -1,5 +1,13 @@
-<div class="container-fluid" >
-    <aside>
-        <input type="file" name="file" onchange="angular.element(this).scope().addFoto(this.files)"/>
-    </aside>
+<div class="sidebar-nav-fixed pull-right affix">
+                <div class="well">
+                    <ul class="nav ">
+                        <li class="nav-header"><h2>Opciones</h2></li>
+                        <h3>Agregar Foto</h3>
+                        <input align="center" type='file' ng-model='uploadImage' multiple accept="image/*" base-sixty-four-input>
+                        <!--<input type="file" name="file" onchange="angular.element(this).scope().addFoto(this.files)"/> -->
+                        <br>
+                        <button ng-click=agregarFoto() align="center" type="button" class="btn btn-info">Subir</button>
+                    </ul>
+            </div>
+                <!--/.well -->
 </div>
