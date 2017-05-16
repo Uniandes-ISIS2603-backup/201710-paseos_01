@@ -81,6 +81,9 @@
                                 }
                         }],
                     },
+                    'addView':{
+                        templateUrl: basePath + 'fotos.add.html',
+                    },
                 },
             }).state('eliminarFoto',{
                 // Url que aparecerá en el browser
@@ -113,26 +116,46 @@
                         templateUrl: basePath + 'fotos.add.html',
                     },
                 },
-            }).state('agregarFoto',{
+            }).state('addFoto', {
                 // Url que aparecerá en el browser
                 url: '/addFoto',
-                parent:'fotos',
+                parent:"fotos",
+                
                 resolve: {
-                    addFoto: ['$scope','$http','$stateParams',function($scope,$http){
-                        return $http.post('/paseos-01-web/api/fotos/',{
-                            params:{
-                                id: 0,
-                                valor:"data:"+$scope.uploadImage.fileType+";base64,"+$scope.uploadImage.base64,
-                            }
-                        });
-                    }
-                    ],
+                    setFoto: ['$http',function($http){
+                          const adicionFoto =  
+                     function (addFoto){
+                        $http.post("/paseos-01-web/api/visitas/1/fotos",addFoto).success(function(data){
+                        return data;
+                    }).error(function(err){
+                        return err;
+                    });
+                }
+                    return adicionFoto; 
+               }]
                 },
+                
                 views: {
-                    'addSuccessView':{
-                        templateUrl: basePath + 'fotos.add.success.html',
-                    },
-                },
-            })
+                'addSuccessView': {
+                // Template que se utilizara para ejecutar el estado
+                templateUrl: basePath + 'fotos.add.success.html',
+                controller: ['$scope', 'setFoto','$state', function ($scope, setFoto,$state){
+                        $scope.id=0;
+                        $scope.valor="";
+                        $scope.addFoto={};
+                        $scope.saveFoto= function(){
+                            $scope.addFoto={
+                                "id":$scope.fotosRecords[0].id,
+                                "valor":$scope.fotosRecords[0].valor,
+                            }
+                        setFoto($scope.addFoto);
+                        $state.reload();
+                        };
+                        
+                }]
+                // El controlador guarda en el scope en la variable booksRecords los datos que trajo el resolve
+                // booksRecords será visible en el template
+               }
+            }})
     }]);
 })(window.angular);
