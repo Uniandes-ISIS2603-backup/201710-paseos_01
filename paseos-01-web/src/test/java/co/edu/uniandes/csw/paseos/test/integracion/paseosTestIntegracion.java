@@ -29,7 +29,6 @@ package co.edu.uniandes.csw.paseos.test.integracion;
  */
 
 
-import co.edu.uniandes.csw.bakery.resources.BakerResource;
 import co.edu.uniandes.csw.paseos.resources.PaseoResource;
 import java.io.BufferedReader;
 import java.io.File;

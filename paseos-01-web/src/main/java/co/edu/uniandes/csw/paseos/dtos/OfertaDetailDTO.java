@@ -6,56 +6,56 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
 @XmlRootElement
-public class OfertaDetailDTO extends OfertaDTO{
-    
-    private List <VisitaDTO> visitas;
-    
+public class OfertaDetailDTO extends OfertaDTO {
+
+    private List<VisitaDTO> visitas;
+
     private UsuarioDTO guia;
-    
+
     private PaseoDTO paseo;
-    
-    public OfertaDetailDTO(){
+
+    public OfertaDetailDTO() {
         super();
     }
-    public OfertaDetailDTO(OfertaEntity entity){
+
+    public OfertaDetailDTO(OfertaEntity entity) {
         super(entity);
-        List <VisitaEntity> visitasEntities = entity.getVisitas();
-        visitas = new ArrayList <VisitaDTO> ();
-        for(VisitaEntity vi : visitasEntities){
+        List<VisitaEntity> visitasEntities = entity.getVisitas();
+        visitas = new ArrayList<VisitaDTO>();
+        for (VisitaEntity vi : visitasEntities) {
             visitas.add(new VisitaDTO(vi));
         }
         guia = new UsuarioDTO(entity.getGuia());
         paseo = new PaseoDTO(entity.getPaseo());
     }
-    
-     public List<VisitaDTO> getVisitas() {
+
+    public List<VisitaDTO> getVisitas() {
         return visitas;
     }
 
     public void setVisitas(List<VisitaDTO> visitas) {
         this.visitas = visitas;
     }
-    
-    public UsuarioDTO getGuia(){
+
+    public UsuarioDTO getGuia() {
         return guia;
     }
-    
-    public void setGuia (UsuarioDTO guia){
+
+    public void setGuia(UsuarioDTO guia) {
         this.guia = guia;
     }
-    
-    public PaseoDTO getPaseo(){
+
+    public PaseoDTO getPaseo() {
         return paseo;
     }
-    
-    public void setPaseo (PaseoDTO paseo){
+
+    public void setPaseo(PaseoDTO paseo) {
         this.paseo = paseo;
     }
-    
+
     @Override
-    public OfertaEntity toEntity(){
+    public OfertaEntity toEntity() {
         OfertaEntity entity = new OfertaEntity();
         entity.setId(id);
         entity.setFecha(fecha);
@@ -69,5 +69,4 @@ public class OfertaDetailDTO extends OfertaDTO{
         entity.setVisitas(list);
         return entity;
     }
-} 
-
+}
