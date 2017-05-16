@@ -72,6 +72,13 @@ public class PaseoLogic {
         if (paseo == null) {
             throw new BusinessLogicException("El paseo no puede estar vacio");
         }
+        if (paseo.getId() == null) {
+            throw new BusinessLogicException("El id del paseo no puede estar vacio");
+        }
+        PaseoEntity actual = persist.find(paseo.getId());
+        if (actual == null) {
+             throw new BusinessLogicException("El paseo a modificar no existe");
+        }
         if (paseo.getCosto() < 0) {
             throw new BusinessLogicException("EL costo del paseo debe ser positivo.");
         }
