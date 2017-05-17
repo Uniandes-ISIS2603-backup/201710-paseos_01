@@ -67,6 +67,8 @@
                                 $scope.fechaNacimientoElegido =  0;
                                 $scope.formacionElegido = 0;
                                 $scope.loginElegido = 0;
+                                $scope.condicionFisicaElegido = 0;
+                                $scope.guiaElegido = false;
                                 
                                                 
                                         $scope.saveUsuario = function (){
@@ -74,9 +76,10 @@
                                             "nombres": $scope.nombresElegido,
                                             "apellidos": $scope.apellidosElegido,
                                             "fechaNacimiento":$scope.fechaNacimientoElegido, 
-                                            "condicionFisica":$scope.formacionElegido,
+                                            "formacion":$scope.formacionElegido,
                                             "login": $scope.loginElegido,
-                                            "guia": true
+                                            "condicionFisica": $scope.condicionFisicaElegido,
+                                            "guia": $scope.guiaElegido
                                             };
                                             putUsuario($scope.agregarUsuario);
                                             $state.go('usuariosList');
@@ -121,7 +124,7 @@
                                 $scope.nombresElegido = "";
                                 $scope.apellidosElegido = "";
                                 $scope.fechaNacimientoElegido =  0;
-                                $scope.formacionElegido = 0;
+                                
                                 $scope.loginElegido = 0;
                                 $scope.guiaElegido = false;
                                 $scope.usuario = {}
@@ -131,7 +134,7 @@
                                             "nombres": $scope.nombresElegido,
                                             "apellidos": $scope.apellidosElegido,
                                             "fechaNacimiento":$scope.fechaNacimientoElegido, 
-                                            "formacion":$scope.formacionElegido,
+                                            
                                             "login": $scope.loginElegido,
                                             "guia": $scope.guiaElegido
                       
