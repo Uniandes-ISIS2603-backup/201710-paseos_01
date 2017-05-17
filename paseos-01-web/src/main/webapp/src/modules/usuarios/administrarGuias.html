@@ -7,7 +7,7 @@
                     <th>Nombres</th>    
                     <th>Apellidos</th> 
                   
-                    <th>Condicion Fisica</th>
+                   <th>Formacion</th>
                     <th>Fecha de Nacimiento</th>
                     <th>Es guia?</th>
                     
@@ -22,7 +22,7 @@
                     <td id="{{$index}}-description">   {{usuario.nombres}}</td>
                     <td id="{{$index}}-descrption">{{usuario.apellidos}}</td>  
                   
-                    <td id="{{$index}}-descrption">{{usuario.condicionFisica}}</td> 
+                    <td id="{{$index}}-descrption">{{usuario.formacion}}</td> 
                     <td id="{{$index}}-descrption">{{usuario.fechaNacimiento|date:'yyyy-MM-dd'}}</td> 
                     <td id="{{$index}}-descrption">{{usuario.guia}}</td> 
                     <td><button ng-click= deleteUsuario(usuario.id)> Eliminar usuario </button></td>
