@@ -69,6 +69,7 @@
                                 $scope.loginElegido = 0;
                                 $scope.condicionFisicaElegido = 0;
                                 $scope.guiaElegido = false;
+                                $scope.experienciaElegido = "";
                                 
                                                 
                                         $scope.saveUsuario = function (){
@@ -79,7 +80,8 @@
                                             "formacion":$scope.formacionElegido,
                                             "login": $scope.loginElegido,
                                             "condicionFisica": $scope.condicionFisicaElegido,
-                                            "guia": $scope.guiaElegido
+                                            "guia": $scope.guiaElegido,
+                                            "experiencia": $scope.experienciaElegido
                                             };
                                             putUsuario($scope.agregarUsuario);
                                             $state.go('usuariosList');
