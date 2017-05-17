@@ -39,7 +39,10 @@
                         resolve: {
                                 catalogo: ['$http', function ($http) {
                                 return $http.get('api/ofertas');
-                        }]}                
+                        }]},
+                        controller: ['$scope','catalogo', function ($scope,catalogo) {
+                                        $scope.catalogo = catalogo.data;
+                                        }]                
                     }
                 }
             }).state('deleteVisita', {
@@ -51,7 +54,10 @@
                         resolve: {
                                 catalogo: ['$http', function ($http) {
                                 return $http.get('api/visitas');
-                        }]}  
+                        }]},
+                        controller: ['$scope','catalogo', function ($scope,catalogo) {
+                                        $scope.catalogo = catalogo.data;
+                                        }]
                     }
                 }
             }).state('updateVisita', {
@@ -63,7 +69,10 @@
                         resolve: {
                                 catalogo: ['$http', function ($http) {
                                 return $http.get('api/visitas');
-                        }]}  
+                        }]},
+                        controller: ['$scope','catalogo', function ($scope,catalogo) {
+                                        $scope.catalogo = catalogo.data;
+                                        }]  
                     }
                 }
             }).state('visitasDetail', {
