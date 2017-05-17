@@ -145,8 +145,8 @@
                         $scope.addFoto={};
                         $scope.saveFoto= function(){
                             $scope.addFoto={
-                                "id":1
-                                "valor":$scope.valor,
+                                "id":1,
+                                "valor":$scope.valor
                             }
                         setFoto($scope.addFoto);
                         $state.reload();
