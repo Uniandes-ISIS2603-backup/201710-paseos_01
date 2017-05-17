@@ -41,6 +41,11 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class UsuarioEntity implements Serializable {
+    
+    public UsuarioEntity()
+            {
+                
+            }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -187,7 +192,7 @@ public class UsuarioEntity implements Serializable {
         boolean encontrado = false;
         while(!encontrado){
             for(int i = 0; i<visitas.size(); i++){
-                if(this.visitas.get(i).getId() == visita.getId()){
+                if(this.visitas.get(i).getId().equals(visita.getId())){
                     this.visitas.remove(i);
                     encontrado = true;
                 }
@@ -198,7 +203,7 @@ public class UsuarioEntity implements Serializable {
         boolean encontrado = false;
         while(!encontrado){
             for(int i = 0; i<ofertas.size(); i++){
-                if(this.ofertas.get(i).getId() == oferta.getId()){
+                if(this.ofertas.get(i).getId().equals(oferta.getId())){
                     this.ofertas.remove(i);
                     encontrado = true;
                 }
