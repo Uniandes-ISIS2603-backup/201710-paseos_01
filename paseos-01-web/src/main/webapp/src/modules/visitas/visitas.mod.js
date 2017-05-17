@@ -33,9 +33,13 @@
             }).state('addVisita', {
                 url: '/addVisita',
                 parent: 'visitas',
-                views: {
+                 views: {
                     'listView': {
-                        templateUrl: basePath + 'addVisita.html'
+                        templateUrl: basePath + 'addOferta.html',
+                        resolve: {
+                                catalogo: ['$http', function ($http) {
+                                return $http.get('api/ofertas');
+                        }]}                
                     }
                 }
             }).state('deleteVisita', {
@@ -43,7 +47,11 @@
                 parent: 'visitas',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'deleteVisita.html'
+                        templateUrl: basePath + 'deleteVisita.html',
+                        resolve: {
+                                catalogo: ['$http', function ($http) {
+                                return $http.get('api/visitas');
+                        }]}  
                     }
                 }
             }).state('updateVisita', {
@@ -51,7 +59,11 @@
                 parent: 'visitas',
                 views: {
                     'listView': {
-                        templateUrl: basePath + 'updateVisita.html'
+                        templateUrl: basePath + 'updateVisita.html',
+                        resolve: {
+                                catalogo: ['$http', function ($http) {
+                                return $http.get('api/visitas');
+                        }]}  
                     }
                 }
             }).state('visitasDetail', {
