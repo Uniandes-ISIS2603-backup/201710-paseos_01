@@ -3,27 +3,33 @@
         
  <form class="form-horizontal">
     <div class="form-group"></div>
+    
     <label class="control-label col-sm-3" >Destino - Tematica:</label>
          <div class="col-sm-7"> 
             <select class="form-control" ng-model="paseoElegido">
                 <option ng-repeat="paseo in catalogo" value="{{paseo.id}}">{{paseo.destino}} - {{paseo.tematica}}</option>            
             </select>
       </div>
+    
     <br>
     <br>
+    
     <label class="control-label col-sm-3">Guía - id:</label>
          <div class="col-sm-7"> 
              <select class="form-control" ng-model="guiaElegido">
                 <option ng-repeat="guia in guias" value="{{guia.id}}">{{guia.nombres}} - {{guia.id}}</option>            
             </select>
       </div>
+    
     <br>
     <br>
+    
     <label class="control-label col-sm-3">Fecha:</label>
     <div class="col-sm-7">
     <input type="date" class="form-control" ng-model="fechaElegida">      
     </div>
     <br>
+    
     <br>
   <div class="form-group" style="text-align:center;">
   <button class="btn btn-default" ng-click="ok()">Submit</button>

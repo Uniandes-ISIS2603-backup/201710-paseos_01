@@ -40,7 +40,7 @@
                                 return $http.get('api/paseos?catalogo=0');
                         }],
                                 guias: ['$http', function ($http) {
-                                return $http.get('api/usuarios?guia=1');
+                                return $http.get('api/usuarios?guias=1');
                         }],
                                 setOferta: ["$http",function($http){
                                 const adicionOferta =  
@@ -50,7 +50,7 @@
                                 }).error(function(err){
                                 return err;
                                 });
-                            }
+                            };
                     return adicionOferta;                  
                }]
                 },
@@ -104,7 +104,7 @@
                         templateUrl: basePath + 'editOferta.html',   
                         resolve: {
                                 guias: ['$http', function ($http) {
-                                return $http.get('api/usuarios?guia=1');
+                                return $http.get('api/usuarios?guias=1');
                                 }]
                                 },
                                 controller: ['$scope', 'putOferta', '$state','$http','guias', '$stateParams',
@@ -157,7 +157,7 @@
                     }).error(function(err){
                         return err;
                     });
-                }
+                };
                     return eliminarOferta;                    
                }]},               
                 views: {
