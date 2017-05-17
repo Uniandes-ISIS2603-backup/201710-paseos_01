@@ -100,13 +100,12 @@ public class PaseoDetailDTO extends PaseoDTO {
             return;
         }
         List<FotoEntity> lista = entity.getOfertas().get(0).getVisitas().get(0).getFotos();
-        if (lista == null) {
-            return;
-        }
-        for (FotoEntity fotoEntity : lista) {
-            fotos.add(new FotoDTO(fotoEntity));
-        }
+        if (lista != null) {
 
+            for (FotoEntity fotoEntity : lista) {
+                fotos.add(new FotoDTO(fotoEntity));
+            }
+        }
     }
 
     /**

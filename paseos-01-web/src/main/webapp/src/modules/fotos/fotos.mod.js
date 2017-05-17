@@ -1,161 +1,161 @@
-(function(ng){
+(function (ng) {
     const mod = ng.module('fotosModule', ['ui.router']);
     mod.constant('fotosContext', 'api/fotos');
-   // Configuración de los estados del módulo
-    mod.config(['$stateProvider', '$urlRouterProvider', 
-       function ($stateProvider, $urlRouterProvider) {
-       const basePath = 'src/modules/fotos/';
-       $urlRouterProvider.otherwise('src/index.html');
-       $stateProvider.state('fotos', {
+    // Configuración de los estados del módulo
+    mod.config(['$stateProvider', '$urlRouterProvider',
+        function ($stateProvider, $urlRouterProvider) {
+            const basePath = 'src/modules/fotos/';
+            $urlRouterProvider.otherwise('src/index.html');
+            $stateProvider.state('fotos', {
                 // Url que aparecerá en el browser
                 url: '/fotos',
                 abstract: true,
-                 resolve: {
+                resolve: {
                     fotos: ['$http', function ($http) {
-                            return $http.get('/paseos-01-web/api/fotos'); 
+                            return $http.get('/paseos-01-web/api/fotos');
                             // $http retorna una promesa 
                         }],
                 },
                 views: {
-                    'mainView':{
+                    'mainView': {
                         templateUrl: basePath + 'fotos.html',
-                        controller: ['$scope','fotos',function($scope,fotos){
+                        controller: ['$scope', 'fotos', function ($scope, fotos) {
                                 $scope.fotosRecords = fotos.data;
-                        }],
+                            }],
                     },
-                },             
-            }).state('fotosList',{
+                },
+            }).state('fotosList', {
                 url: '/list',
                 parent: 'fotos',
-                views:{
-                    'listView':{
+                views: {
+                    'listView': {
                         templateUrl: basePath + 'fotos.list.html',
                     },
                 },
-            }).state('fotosListUsuario',{
+            }).state('fotosListUsuario', {
                 url: '/listUsuario',
                 parent: 'fotos',
-                views:{
+                views: {
                     'listViewUsuario': {
                         templateUrl: basePath + 'fotos.list.vistausuario.html',
                     },
-                    'addView':{
+                    'addView': {
                         templateUrl: basePath + 'fotos.add.html',
                     },
                 },
-            }).state('fotoDetail',{
+            }).state('fotoDetail', {
                 url: '/{fotoId:int}/detail',
                 parent: 'fotos',
-                param:{
+                param: {
                     fotoId: null,
                 },
                 views: {
-                    'detailView':{
+                    'detailView': {
                         templateUrl: basePath + 'fotos.detail.html',
-                        controller: ['$scope','$stateParams',
-                            function($scope,$params){
-                                for(let i=0; i<$scope.fotosRecords.length;i++){
-                                    if($scope.fotosRecords[i].id == $params.fotoId){
+                        controller: ['$scope', '$stateParams',
+                            function ($scope, $params) {
+                                for (let i = 0; i < $scope.fotosRecords.length; i++) {
+                                    if ($scope.fotosRecords[i].id == $params.fotoId) {
                                         $scope.currentFoto = $scope.fotosRecords[i];
                                     }
                                 }
-                        }],
+                            }],
                     },
                 },
-            }).state('fotoDetailUsuario',{
+            }).state('fotoDetailUsuario', {
                 url: '/{fotoId:int}/detailUsuario',
                 parent: 'fotos',
-                param:{
+                param: {
                     fotoId: null,
                 },
                 views: {
-                    'detailViewUsuario':{
-                        templateUrl: basePath 
+                    'detailViewUsuario': {
+                        templateUrl: basePath
                                 + 'fotos.detail.vistausuario.html',
-                        controller: ['$scope','$stateParams',
-                            function($scope,$params){
-                                for(let i=0; i<$scope.fotosRecords.length;i++){
-                                    if($scope.fotosRecords[i].id == $params.fotoId){
+                        controller: ['$scope', '$stateParams',
+                            function ($scope, $params) {
+                                for (let i = 0; i < $scope.fotosRecords.length; i++) {
+                                    if ($scope.fotosRecords[i].id == $params.fotoId) {
                                         $scope.currentFoto = $scope.fotosRecords[i];
                                     }
                                 }
-                        }],
+                            }],
                     },
-                    'addView':{
+                    'addView': {
                         templateUrl: basePath + 'fotos.add.html',
                     },
                 },
-            }).state('eliminarFoto',{
+            }).state('eliminarFoto', {
                 // Url que aparecerá en el browser
                 url: '/deleteFoto',
-                parent:'fotos',
+                parent: 'fotos',
                 resolve: {
-                    deleteFoto: ['$http','$stateParams',function($http){
-                    return function (id){
-                        $http.delete('/paseos-01-web/api/fotos/'
-                                +id.toString()).success(function(data){
-                            return data;
-                        }).error(function(err){
-                            return err;
-                        });
-                    }
-                    }],
+                    deleteFoto: ['$http', '$stateParams', function ($http) {
+                            return function (id) {
+                                $http.delete('/paseos-01-web/api/fotos/'
+                                        + id.toString()).success(function (data) {
+                                    return data;
+                                }).error(function (err) {
+                                    return err;
+                                });
+                            }
+                        }],
                 },
                 views: {
-                    'listViewUsuario':{
+                    'listViewUsuario': {
                         templateUrl: basePath + 'fotos.list.vistausuario.html',
-                        controller: ['$scope', 'deleteFoto','$state', 
-                            function ($scope, deleteFoto, $state){
-                                $scope.deleteFoto= function(id){
+                        controller: ['$scope', 'deleteFoto', '$state',
+                            function ($scope, deleteFoto, $state) {
+                                $scope.deleteFoto = function (id) {
                                     deleteFoto(id);
                                     $state.reload();
                                 };
-                        }],
+                            }],
                     },
-                    'addView':{
+                    'addView': {
                         templateUrl: basePath + 'fotos.add.html',
                     },
                 },
             }).state('addFoto', {
                 // Url que aparecerá en el browser
                 url: '/addFoto',
-                parent:"fotos",
-                
+                parent: "fotos",
+
                 resolve: {
-                    setFoto: ['$http',function($http){
-                          const adicionFoto =  
-                     function (addFoto){
-                        $http.post("/paseos-01-web/api/visitas/1/fotos",addFoto).success(function(data){
-                        return data;
-                    }).error(function(err){
-                        return err;
-                    });
-                }
-                    return adicionFoto; 
-               }]
+                    setFoto: ['$http', function ($http) {
+                            const adicionFoto =
+                                    function (addFoto) {
+                                        $http.post("/paseos-01-web/api/visitas/1/fotos", addFoto).success(function (data) {
+                                            return data;
+                                        }).error(function (err) {
+                                            return err;
+                                        });
+                                    }
+                            return adicionFoto;
+                        }]
                 },
-                
+
                 views: {
-                'addSuccessView': {
-                // Template que se utilizara para ejecutar el estado
-                templateUrl: basePath + 'fotos.add.success.html',
-                controller: ['$scope', 'setFoto','$state', function ($scope, setFoto,$state){
-                        $scope.id=0;
-                        $scope.valor="";
-                        $scope.addFoto={};
-                        $scope.saveFoto= function(){
-                            $scope.addFoto={
-                                "id":$scope.fotosRecords[0].id,
-                                "valor":$scope.fotosRecords[0].valor,
-                            }
-                        setFoto($scope.addFoto);
-                        $state.reload();
-                        };
-                        
-                }]
-                // El controlador guarda en el scope en la variable booksRecords los datos que trajo el resolve
-                // booksRecords será visible en el template
-               }
-            }});
-    }]);
+                    'addSuccessView': {
+                        // Template que se utilizara para ejecutar el estado
+                        templateUrl: basePath + 'fotos.add.success.html',
+                        controller: ['$scope', 'setFoto', '$state', function ($scope, setFoto, $state) {
+                                $scope.id = 0;
+                                $scope.valor = "";
+                                $scope.addFoto = {};
+                                $scope.saveFoto = function () {
+                                    $scope.addFoto = {
+                                        "id": 1,
+                                        "valor": $scope.valor
+                                    }
+                                    setFoto($scope.addFoto);
+                                    $state.reload();
+                                };
+
+                            }]
+                                // El controlador guarda en el scope en la variable booksRecords los datos que trajo el resolve
+                                // booksRecords será visible en el template
+                    }
+                }})
+        }]);
 })(window.angular);
