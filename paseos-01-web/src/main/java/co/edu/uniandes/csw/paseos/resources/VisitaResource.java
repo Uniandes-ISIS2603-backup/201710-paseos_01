@@ -54,7 +54,7 @@ public class VisitaResource {
     
     @Inject private OfertaLogic ofertaLogic;
     
-    @Inject private UsuarioLogic usuarioLogic;
+    @Inject private UsuarioLogic ofertaLogic;
     
     private List<VisitaDTO> listEntity2DTO(List<VisitaEntity> entityList){
         List<VisitaDTO> list = new ArrayList<>();
@@ -96,7 +96,7 @@ public class VisitaResource {
         VisitaDTO visita = new VisitaDTO(visitaLogic.createVisita(entity));
         OfertaEntity oferta = ofertaLogic.getOferta(idOferta);
         entity.setOferta(oferta);
-        UsuarioEntity usuario = usuarioLogic.getUsuario(idUsuario);
+        UsuarioEntity usuario = ofertaLogic.getUsuario(idUsuario);
         entity.setUsuario(usuario);
         visitaLogic.setUsuarioYOferta(entity);
         return visita;

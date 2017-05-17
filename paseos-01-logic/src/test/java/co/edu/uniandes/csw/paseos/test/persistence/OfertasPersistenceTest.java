@@ -135,8 +135,6 @@ public class OfertasPersistenceTest {
 
     /**
      * Prueba para consultar la lista de Ofertas.
-     *
-     * @generated
      */
     @Test
     public void getOfertasTest() {
