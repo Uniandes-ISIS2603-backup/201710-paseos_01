@@ -123,6 +123,7 @@
                                 $scope.fechaNacimientoElegido =  0;
                                 $scope.formacionElegido = 0;
                                 $scope.loginElegido = 0;
+                                $scope.guiaElegido = false;
                                 $scope.usuario = {}
                                 $scope.saveUsuario = function(){                                    
                                     $scope.usuario = {
@@ -130,9 +131,9 @@
                                             "nombres": $scope.nombresElegido,
                                             "apellidos": $scope.apellidosElegido,
                                             "fechaNacimiento":$scope.fechaNacimientoElegido, 
-                                            "condicionFisica":$scope.formacionElegido,
+                                            "formacion":$scope.formacionElegido,
                                             "login": $scope.loginElegido,
-                                            "guia": true
+                                            "guia": $scope.guiaElegido
                       
                                         };
                                     setUsuario($scope.usuario);
