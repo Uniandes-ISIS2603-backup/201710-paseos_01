@@ -35,14 +35,21 @@
                 parent: 'visitas',
                  views: {
                     'listView': {
-                        templateUrl: basePath + 'addOferta.html',
+                        templateUrl: basePath + 'addVisita.html',
                         resolve: {
                                 catalogo: ['$http', function ($http) {
                                 return $http.get('api/ofertas');
-                        }]},
-                        controller: ['$scope','catalogo', function ($scope,catalogo) {
+                            }],
+                                usuarios: ['$http', function ($http){
+                                    return $http.get('api/usuarios?guias=1');
+                        }]          
+               },
+                        controller: ['$scope','catalogo', 'usuarios', function ($scope,catalogo,usuarios) {
                                         $scope.catalogo = catalogo.data;
-                                        }]                
+                                        $scope.usuarios = usuarios.data;
+                                      
+                                }
+                                       ]             
                     }
                 }
             }).state('deleteVisita', {
