@@ -38,18 +38,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author jma.lovera10
  */
 @XmlRootElement
-public class PaseoDetailDTO extends PaseoDTO{
-    
+public class PaseoDetailDTO extends PaseoDTO {
+
     /**
      * Lista de ofertas que tiene el paseo
      */
     private List<OfertaDTO> ofertas;
-    
+
     /**
      * Lista de algunas fotos del paseo
      */
-    private List<FotoDTO> fotos ;
-    
+    private List<FotoDTO> fotos;
+
     /**
      * Descripción básica del paseo
      */
@@ -63,57 +63,55 @@ public class PaseoDetailDTO extends PaseoDTO{
 
     /**
      * Constructor a usar
-     * @param entity 
+     *
+     * @param entity
      */
     public PaseoDetailDTO(PaseoEntity entity) {
         super(entity);
-        
-        ofertas=null;
-       
-        fotos=null;
-        
+
+        ofertas = null;
+
+        fotos = null;
+
+        descripcion = entity.getDescripcion();
+
     }
-    
+
     /**
      * LLena las listas de ofertas y fotos.
-     * @param entity 
+     *
+     * @param entity
      */
-    public void llenarListas(PaseoEntity entity){
-        ofertas=new ArrayList<OfertaDTO>();
+    public void llenarListas(PaseoEntity entity) {
+        ofertas = new ArrayList<OfertaDTO>();
         List<OfertaEntity> ofertasEntities = entity.getOfertas();
-        if(ofertasEntities==null) {
+        if (ofertasEntities == null) {
             return;
         }
         for (OfertaEntity of : ofertasEntities) {
             ofertas.add(new OfertaDTO(of));
         }
-           fotos= new ArrayList<FotoDTO>();
-        if (entity.getOfertas()==null || entity.getOfertas().isEmpty() || entity.getOfertas().get(0)==null )
-        {
+        fotos = new ArrayList<FotoDTO>();
+        if (entity.getOfertas() == null || entity.getOfertas().isEmpty() || entity.getOfertas().get(0) == null) {
             return;
         }
-        if (entity.getOfertas().get(0).getVisitas()==null || entity.getOfertas().get(0).getVisitas().isEmpty()){
-            
+        if (entity.getOfertas().get(0).getVisitas() == null || entity.getOfertas().get(0).getVisitas().isEmpty()) {
+
             return;
         }
-            List<FotoEntity> lista = entity.getOfertas().get(0).getVisitas().get(0).getFotos();
-            if (lista==null){
-                return;
-            }
+        List<FotoEntity> lista = entity.getOfertas().get(0).getVisitas().get(0).getFotos();
+        if (lista != null) {
+
             for (FotoEntity fotoEntity : lista) {
-                fotos.add( new FotoDTO(fotoEntity));
+                fotos.add(new FotoDTO(fotoEntity));
             }
-                         
-        
-        
+        }
     }
-    
+
     /**
      * Getters and setters
-     * 
+     *
      */
-
-
     public List<FotoDTO> getFotos() {
         return fotos;
     }
@@ -129,11 +127,21 @@ public class PaseoDetailDTO extends PaseoDTO{
     public void setOfertas(List<OfertaDTO> ofertas) {
         this.ofertas = ofertas;
     }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     /**
      * Genera la entidad
-     * @return entidad asociada al dto 
+     *
+     * @return entidad asociada al dto
      */
-    public PaseoEntity toEntity(){
+    public PaseoEntity toEntity() {
         PaseoEntity entity = new PaseoEntity();
         entity.setId(id);
         entity.setTematica(tematica);
@@ -146,18 +154,16 @@ public class PaseoDetailDTO extends PaseoDTO{
         entity.setNumeroMaximo(numeroMaximo);
         entity.setDescripcion(descripcion);
         ArrayList<OfertaEntity> list = new ArrayList<OfertaEntity>();
-        for (OfertaDTO ofertaDTO : ofertas) {
-            list.add(ofertaDTO.toEntity());
+        if (ofertas != null) {
+            for (OfertaDTO ofertaDTO : ofertas) {
+                list.add(ofertaDTO.toEntity());
+            }
+            entity.setOfertas(list);
+        } else {
+            entity.setOfertas(null);
         }
-        entity.setOfertas(list);
+
         return entity;
     }
-    
-        
-    
-    
-    
-    
-    
-    
+
 }

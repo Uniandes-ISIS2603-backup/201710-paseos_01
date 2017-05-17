@@ -1,7 +1,14 @@
-<div class="container-fluid" >
-<form >
-  <input type="file" name="pic" accept="image/*">
-  <br>
-  <input type="submit">
-</form> 
+<div class="sidebar-nav-fixed pull-right affix">
+                <div class="well">
+                    <ul class="nav ">
+                        <li class="nav-header"><h2>Opciones</h2></li>
+                        <h3>Agregar Foto</h3>
+                        <input align="center" type='file' ng-model='valor' multiple accept="image/*" base-sixty-four-input>
+                        <!--<input type="file" name="file" onchange="angular.element(this).scope().addFoto(this.files)"/> -->
+                        <br>
+                        <button ng-click=saveFoto() align="button" type="submit" class="btn btn-info">Subir</button>
+                        
+                    </ul>
+            </div>
+                <!--/.well -->
 </div>

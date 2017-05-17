@@ -55,6 +55,14 @@ public class FotoLogic
     }
     
     /**
+     * Método que obtiene todas las fotos de la base de datos
+     * @return lista con todas las fotos
+     */
+    public List<FotoEntity> getFotos() {
+        return persistence.findAll();
+    }
+    
+    /**
      * Obtiene los datos de una instancia de Foto a partir de su ID.
      * @param id Identificador de la instancia a consultar
      * @return Instancia de FotoEntity con los datos de la Foto consultada.
@@ -103,4 +111,5 @@ public class FotoLogic
     {
         persistence.delete(id);
     }
+
 }

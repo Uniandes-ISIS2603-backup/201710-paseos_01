@@ -1,21 +1,32 @@
 <div class="container-fluid">
-    <h2 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Administrar guias</h2>    
-    <div class="col-md-12">
+    <div class="col-sm-12">
         <table class="table table-hover">
             <thead>
-                <tr>                    
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Formacion</th>
+                <tr>
+                     <th>Login</th> 
+                    <th>Nombres</th>    
+                    <th>Apellidos</th> 
+                  
+                    <th>Condicion Fisica</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Es guia?</th>
+                    
+                     
+                    
+
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="usuario in usuariosRecords">
-                    <td id="{{$index}}-topic">{{usuario.nombres}}</td> 
-                    <td id="{{$index}}-place">{{usuario.apellidos}}</td> 
-                    <td id="{{$index}}-date">{{usuario.formacion}}</td>
-                    <td><a ui-sref="editarUsuario">Editar guia</a></td>
-                    <td id="{{$index}}-id"> <a ui-sref="eliminarUsuario({usuarioId: usuario.id})">{{usuario.login}}</a> </td>
+                    <td id="{{$index}}-name"> <a ui-sref="editarUsuario({usuarioId: usuario.id})">{{usuario.login}}</a> </td> 
+                    <td id="{{$index}}-description">   {{usuario.nombres}}</td>
+                    <td id="{{$index}}-descrption">{{usuario.apellidos}}</td>  
+                  
+                    <td id="{{$index}}-descrption">{{usuario.condicionFisica}}</td> 
+                    <td id="{{$index}}-descrption">{{usuario.fechaNacimiento|date:'yyyy-MM-dd'}}</td> 
+                    <td id="{{$index}}-descrption">{{usuario.guia}}</td> 
+                    <td><button ng-click= deleteUsuario(usuario.id)> Eliminar usuario </button></td>
+                   
                 </tr>
             </tbody>
         </table>

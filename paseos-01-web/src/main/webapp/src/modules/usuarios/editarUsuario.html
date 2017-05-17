@@ -1,36 +1,39 @@
 
-<h1 class="text-center">Editar un guia</h1>
+<h1 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Editar un usuario</h1>  
         
  <form class="form-horizontal">
-  <div class="form-group">
-      
-      
-      
-    <label class="control-label col-sm-3" for="nombres" >Cambiar nombres</label>
-    <div class="col-sm-7">
-      <input type="text" class="form-control" id="nombres" placeholder="Carlos" ng-model="nombre">
-    </div>
-    
-    <label class="control-label col-sm-3" for="apellidos">Cambiar apellidos</label>
-    <div class="col-sm-7">
-      <input type="text" class="form-control" id="apeliidos" placeholder="Perez" ng-model="apellidos">
-    </div>
-    
-     <label class="control-label col-sm-3" for="formacion">Cambiar formacion</label>
-    <div class="col-sm-7">
-      <input type="text" class="form-control" id="formacion" placeholder="Alta" ng-model="formacion">
-    </div>
-     
-    <label class="control-label col-sm-3" for="fechaNacimiento">Cambiar fecha de nacimiento</label>
-    <div class="col-sm-7">
-      <input type="date" class="form-control" id="fechaNacimiento" placeholder="fechaNacimiento" ng-model="fechaNacimiento">
-    </div>
-    
- 
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-9">
-      <button type="submit" class="btn btn-default" ng-click="saveUsuario()">Submit</button>
-    </div>
+    <div class="form-group"></div>
+    <label class="control-label col-sm-3" >Login</label>
+         <div class="col-sm-7"> 
+            <input type="String" class="form-control" ng-model="loginElegido">  
+      </div>
+    <br>
+    <br>
+   <label class="control-label col-sm-3" >nombres</label>
+         <div class="col-sm-7"> 
+            <input type="String" class="form-control" ng-model="nombresElegido">  
+      </div>
+    <br>
+    <br>
+    <label class="control-label col-sm-3" >apellidos</label>
+         <div class="col-sm-7"> 
+            <input type="String" class="form-control" ng-model="apellidosElegido">  
+      </div>
+    <br>
+    <br>
+    <label class="control-label col-sm-3" >formacion</label>
+         <div class="col-sm-7"> 
+            <input type="String" class="form-control" ng-model="formacionElegido">  
+      </div>
+    <br>
+    <br>
+    <label class="control-label col-sm-3" >Fecha de nacimiento</label>
+         <div class="col-sm-7"> 
+            <input type="date" class="form-control" ng-model="fechaNacimientoElegido">  
+      </div>
+    <br>
+    <br>
+  <div class="form-group" style="text-align:center;">
+  <button class="btn btn-default" ng-click="saveUsuario()">Submit</button>
   </div>
 </form>
-        
