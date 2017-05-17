@@ -160,6 +160,11 @@ public class UsuarioLogicTest {
         Assert.assertEquals(result.getApellidos(), entity.getApellidos());
         Assert.assertEquals(result.getCondicionFisica(), entity.getCondicionFisica());
         Assert.assertEquals(result.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
+        Assert.assertEquals(result.getFechaNaciemiento().getMonth(), entity.getFechaNaciemiento().getMonth());
+        Assert.assertEquals(result.getExperiencia(), entity.getExperiencia());
+        Assert.assertEquals(result.getFormacion(), entity.getFormacion());
+        Assert.assertEquals(result.getGuia(), entity.getGuia());
+        
     }
     
      
@@ -202,6 +207,10 @@ public class UsuarioLogicTest {
         Assert.assertEquals(resultEntity.getApellidos(), entity.getApellidos());
         Assert.assertEquals(resultEntity.getCondicionFisica(), entity.getCondicionFisica());
         Assert.assertEquals(resultEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
+        Assert.assertEquals(resultEntity.getFechaNaciemiento().getMonth(), entity.getFechaNaciemiento().getMonth());
+        Assert.assertEquals(resultEntity.getExperiencia(), entity.getExperiencia());
+        Assert.assertEquals(resultEntity.getFormacion(), entity.getFormacion());
+        Assert.assertEquals(resultEntity.getGuia(), entity.getGuia());
     }
     /**
      * Prueba encontrar un usuario que no existe
@@ -288,5 +297,9 @@ public class UsuarioLogicTest {
         Assert.assertEquals(pojoEntity.getApellidos(), resp.getApellidos());
         Assert.assertEquals(pojoEntity.getCondicionFisica(), resp.getCondicionFisica());
         Assert.assertEquals(pojoEntity.getFechaNaciemiento().getDay(), resp.getFechaNaciemiento().getDay());
+        Assert.assertEquals(pojoEntity.getFechaNaciemiento().getMonth(), resp.getFechaNaciemiento().getMonth());
+        Assert.assertEquals(pojoEntity.getExperiencia(), resp.getExperiencia());
+        Assert.assertEquals(pojoEntity.getFormacion(), resp.getFormacion());
+        Assert.assertEquals(pojoEntity.getGuia(), resp.getGuia());
     }
 }
