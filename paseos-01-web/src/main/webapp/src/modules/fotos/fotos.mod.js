@@ -156,6 +156,6 @@
                 // El controlador guarda en el scope en la variable booksRecords los datos que trajo el resolve
                 // booksRecords será visible en el template
                }
-            }})
+            }});
     }]);
 })(window.angular);
