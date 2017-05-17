@@ -179,7 +179,10 @@ public class UsuarioDTO {
     }
 
     public Boolean getGuia() {
-        if (guia == null) return false; 
+        if (guia == null)
+        {
+            return false;
+        } 
         return guia;
     }
 

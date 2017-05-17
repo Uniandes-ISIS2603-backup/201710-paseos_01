@@ -1,8 +1,8 @@
 (function (ng) {
-    var mod = ng.module("usuarioModule", ['ui.router']);
+    const mod = ng.module("usuarioModule", ['ui.router']);
     mod.constant("usuariosContext", "api/usuarios");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/usuarios/';
+            const basePath = 'src/modules/usuarios/';
            
             $urlRouterProvider.otherwise("/usuariosList");
 
@@ -207,7 +207,7 @@
                         
                          resolve: {
                     currentUsuario: ['$http','usuariosContext','$stateParams', function ($http,usuariosContext,$params) {
-                            var i =(usuariosContext+'/'+$params.usuarioId);
+                            const i =(usuariosContext+'/'+$params.usuarioId);
                             return $http.get(usuariosContext+'/'+$params.usuarioId)
                             
                             //return $http.get('data/usuarios.json');
