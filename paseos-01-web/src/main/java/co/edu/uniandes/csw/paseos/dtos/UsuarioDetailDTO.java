@@ -91,6 +91,8 @@ public class UsuarioDetailDTO extends UsuarioDTO{
         entity.setGuia(this.guia);
         entity.setNombres(this.nombres);
         entity.setLogin(this.login);
+        entity.setApellidos(this.apellidos);
+        entity.setFormacion(this.formacion);
         List<OfertaEntity> ofertas1 = new ArrayList<OfertaEntity>(); 
         List<VisitaEntity> visitas1 = new ArrayList<VisitaEntity>(); 
         
