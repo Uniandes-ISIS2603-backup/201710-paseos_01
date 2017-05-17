@@ -1,23 +1,17 @@
 
-<h1 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Desinscribir un paseo:</h1>  
+<h1 class="text-center"><span class="glyphicon glyphicon-tree-deciduous"></span>Eliminar una visita:</h1>  
         
  <form class="form-horizontal">
     <div class="form-group"></div>
-    <label class="control-label col-sm-3" for="oferta" >oferta</label>
-    <div class="col-sm-7">
-    <select class="form-control">
-      <option>oferta disponible</option>
-      <option>oferta 2 disponible</option>
-      <option>oferta 3 disponible</option>
-      <option>...</option>
-      <option>oferta n disponible</option>
-    </select>
-    </div>
-    <br>
-    <br>
+    <label class="control-label col-sm-3" >Visita:</label>
+         <div class="col-sm-7"> 
+            <select class="form-control" ng-model="visitaElegida">
+                <option ng-repeat="visita in catalogo" value="{{visita.id}}">{{visita.comentario}} - {{visita.calificacion}}</option>            
+            </select>
+      </div>
     <br>
     <br>
   <div class="form-group" style="text-align:center;">
-  <button class="btn btn-default">Submit</button>
+  <button class="btn btn-default" ng-click="ok()">Submit</button>
   </div>
 </form>

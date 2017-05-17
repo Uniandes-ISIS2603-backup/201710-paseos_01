@@ -3,35 +3,15 @@
         
  <form class="form-horizontal">
     <div class="form-group"></div>
-    <label class="control-label col-sm-3" for="visita" >visita</label>
-    <div class="col-sm-7">
-    <select class="form-control">
-      <option>visita 1 disponible</option>
-      <option>visita 2 disponible</option>
-      <option>visita 3 disponible</option>
-      <option>...</option>
-      <option>visita n disponible</option>
-    </select>
-    </div>
-    <br>
-    <br>
-    <label class="control-label col-sm-3" for="comentario">comentario</label>
-    <div class="col-sm-7">
-    <input type="text" class="form-control">      
-    </div>
-    <br>
-    <label class="control-label col-sm-3" for="comentario">calificacion</label>
-    <div class="col-sm-7">
-    <input type="text" class="form-control">      
-    </div>
-    <br>
-    <br>
-    <div class="form-group" style="text-align:center;">
-    <button class="btn btn-default btn-file">Subir fotos</button>
-    </div>
+    <label class="control-label col-sm-3" >Visita:</label>
+         <div class="col-sm-7"> 
+            <select class="form-control" ng-model="visitaElegida">
+                <option ng-repeat="visita in catalogo" value="{{visita.id}}">{{visita.comentario}} - {{visita.calificacion}}</option>            
+            </select>
+      </div>
     <br>
     <br>
   <div class="form-group" style="text-align:center;">
-  <button class="btn btn-default">Submit</button>
+  <button class="btn btn-default" ng-click="ok()">Submit</button>
   </div>
 </form>
