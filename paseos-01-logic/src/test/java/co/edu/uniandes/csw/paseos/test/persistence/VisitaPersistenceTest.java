@@ -115,7 +115,7 @@ public class VisitaPersistenceTest {
      * @generated
      */
     @Test
-    public void createBookTest() {
+    public void createVisitaTest() {
         PodamFactory factory = new PodamFactoryImpl();
         VisitaEntity newEntity = factory.manufacturePojo(VisitaEntity.class);
         VisitaEntity result = VisitaPersistence.create(newEntity);
@@ -124,6 +124,10 @@ public class VisitaPersistenceTest {
 
         VisitaEntity entity = em.find(VisitaEntity.class, result.getId());
 
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertArrayEquals(newEntity.getFotos().toArray(), entity.getFotos().toArray());
+        Assert.assertEquals(newEntity.getOferta(), entity.getOferta());
+        Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
         Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
     }
@@ -134,7 +138,7 @@ public class VisitaPersistenceTest {
      * @generated
      */
     @Test
-    public void getBooksTest() {
+    public void getVisitasTest() {
         List<VisitaEntity> list = VisitaPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
         for (VisitaEntity ent : list) {
@@ -154,10 +158,15 @@ public class VisitaPersistenceTest {
      * @generated
      */
     @Test
-    public void getBookTest() {
+    public void getVisitaTest() {
         VisitaEntity entity = data.get(0);
         VisitaEntity newEntity = VisitaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
+        
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+        Assert.assertArrayEquals(newEntity.getFotos().toArray(), entity.getFotos().toArray());
+        Assert.assertEquals(newEntity.getOferta(), entity.getOferta());
+        Assert.assertEquals(newEntity.getUsuario(), entity.getUsuario());
         Assert.assertEquals(newEntity.getComentario(), entity.getComentario());
         Assert.assertEquals(newEntity.getCalificacion(), entity.getCalificacion());
     }
@@ -168,7 +177,7 @@ public class VisitaPersistenceTest {
      * @generated
      */
     @Test
-    public void deleteBookTest() {
+    public void deleteVisitaTest() {
         VisitaEntity entity = data.get(0);
         VisitaPersistence.delete(entity.getId());
         VisitaEntity deleted = em.find(VisitaEntity.class, entity.getId());
@@ -181,7 +190,7 @@ public class VisitaPersistenceTest {
      * @generated
      */
     @Test
-    public void updateBookTest() {
+    public void updateVisitaTest() {
         VisitaEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         VisitaEntity newEntity = factory.manufacturePojo(VisitaEntity.class);
@@ -191,6 +200,10 @@ public class VisitaPersistenceTest {
 
         VisitaEntity resp = em.find(VisitaEntity.class, entity.getId());
 
+        Assert.assertEquals(newEntity.getId(), resp.getId());
+        Assert.assertArrayEquals(newEntity.getFotos().toArray(), resp.getFotos().toArray());
+        Assert.assertEquals(newEntity.getOferta(), resp.getOferta());
+        Assert.assertEquals(newEntity.getUsuario(), resp.getUsuario());
         Assert.assertEquals(newEntity.getComentario(), resp.getComentario());
         Assert.assertEquals(newEntity.getCalificacion(), resp.getCalificacion());
     }
