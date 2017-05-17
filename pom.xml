@@ -36,11 +36,12 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.glassfish.embedded/maven-embedded-glassfish-plugin -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
+            <scope>test</scope> 
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
@@ -64,30 +65,88 @@
             <artifactId>podam</artifactId>
             <version>6.0.2.RELEASE</version>
         </dependency>
-		<dependency>
-              <groupId>org.jboss.shrinkwrap.resolver</groupId>
-              <artifactId>shrinkwrap-resolver-depchain</artifactId>
-              <scope>test</scope>
-              <type>pom</type>
-         </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-depchain</artifactId>
+            <scope>test</scope>
+            <type>pom</type>
+        </dependency>   
     </dependencies>
     <build>
-        <plugins>
+        <plugins> 
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
+                <version>0.7.6.201602180812</version>        
+                <executions>
+                    <execution>
+                        <goals>  
+                            <goal>prepare-agent</goal>
+                            <goal>prepare-agent-integration</goal>
+                            <goal>report</goal>
+                            <goal>report-integration</goal>    
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>  
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.19.1</version>
                 <executions>
                     <execution>
                         <goals>
-                           <goal>prepare-agent</goal>
-                           <goal>prepare-agent-integration</goal>
-                           <goal>report</goal>
-                           <goal>report-integration</goal>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.2</version>
+                <executions>
+                    <execution>
+                        <id>sonar-report</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>sonar</goal>
+                            
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo>sonar-report</echo>                            
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>  
+            <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <version>1.6.0</version>
+                <executions> 
+                    <execution>
+                        <id>exec-node-newman</id>
+                        <phase>package</phase>
+                        <configuration>
+                            <executable>
+                                node
+                            </executable>
+                            <arguments>
+                                <argument>
+                                    /Users/jma.lovera10/AppData/Roaming/npm/collection_runner.js
+                                </argument>  
+                            </arguments>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>       
         </plugins>
     </build>
 </project>
