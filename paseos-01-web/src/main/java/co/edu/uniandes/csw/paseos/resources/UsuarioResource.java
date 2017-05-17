@@ -57,6 +57,10 @@ import javax.ws.rs.QueryParam;
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/")
 public class UsuarioResource {
+    public UsuarioResource()
+            {
+                
+            }
     
     @Inject 
     private UsuarioLogic usuarioLogic;

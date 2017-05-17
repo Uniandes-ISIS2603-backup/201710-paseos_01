@@ -42,6 +42,11 @@ import java.util.List;
 @Stateless
 public class UsuarioLogic {
     
+    public UsuarioLogic()
+            {
+                
+            }
+    
     @Inject private UsuarioPersistence persistence;
     
     /**
@@ -104,8 +109,8 @@ public class UsuarioLogic {
     // TODO: revisar las validaciones al momento de actualizar
     public UsuarioEntity updateUsuario(UsuarioEntity entity) throws BusinessLogicException {
        
-        UsuarioEntity ue = getUsuario(entity.getId());
-        if (ue == null)
+       
+        if (getUsuario(entity.getId()) == null)
         {
             throw new BusinessLogicException("No hay un usuario con ese login"); 
         }
@@ -128,8 +133,8 @@ public class UsuarioLogic {
      */
     // TODO: revisar las validaciones al momento de borrar
     public void deleteUsuario(Long id) throws BusinessLogicException {
-        UsuarioEntity ue = getUsuario(id); 
-        if (ue != null)
+        
+        if (getUsuario(id) != null)
         {
         persistence.delete(id);
         }

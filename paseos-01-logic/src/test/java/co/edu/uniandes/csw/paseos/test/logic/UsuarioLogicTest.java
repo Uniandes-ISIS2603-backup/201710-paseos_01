@@ -161,25 +161,27 @@ public class UsuarioLogicTest {
         Assert.assertEquals(result.getCondicionFisica(), entity.getCondicionFisica());
         Assert.assertEquals(result.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
     }
+    
+     
 
     /**
-     * Prueba para consultar la lista de Books.
+     * Prueba crear un usuario con un login que ya existe
      *
      * @generated
      */
     @Test
-    public void getUsuariosTest() {
-        List<UsuarioEntity> list = usuarioLogic.getUsuarios();
-        Assert.assertEquals(data.size(), list.size());
-        for (UsuarioEntity entity : list) {
-            boolean found = false;
-            for (UsuarioEntity storedEntity : data) {
-                if (entity.getId().equals(storedEntity.getId())) {
-                    found = true;
-                }
-            }
-            Assert.assertTrue(found);
-        }
+    public void createUsuarioTest1()  {
+         try {
+             PodamFactory factory = new PodamFactoryImpl();
+             UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
+             UsuarioEntity result =null;
+             entity.setLogin(data.get(0).getLogin());
+             result = usuarioLogic.createUsuario(entity);
+             
+             
+         } catch (BusinessLogicException ex) {
+             Assert.assertEquals(1, 1); 
+         }
     }
 
     /**
@@ -201,6 +203,40 @@ public class UsuarioLogicTest {
         Assert.assertEquals(resultEntity.getCondicionFisica(), entity.getCondicionFisica());
         Assert.assertEquals(resultEntity.getFechaNaciemiento().getDay(), entity.getFechaNaciemiento().getDay());
     }
+    /**
+     * Prueba encontrar un usuario que no existe
+     */
+    @Test
+    public void getUsuarioTest1() {
+        UsuarioEntity entity = data.get(0);
+        UsuarioEntity resultEntity= null ;
+         try {
+             resultEntity = usuarioLogic.getUsuario(100L);
+         } catch (BusinessLogicException ex) {
+             Assert.assertEquals(1, 1);  
+         }
+      
+    }
+    
+    /**
+     * Prueba para consultar la lista de Books.
+     *
+     * @generated
+     */
+    @Test
+    public void getUsuariosTest() {
+        List<UsuarioEntity> list = usuarioLogic.getUsuarios();
+        Assert.assertEquals(data.size(), list.size());
+        for (UsuarioEntity entity : list) {
+            boolean found = false;
+            for (UsuarioEntity storedEntity : data) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
 
     /**
      * Prueba para eliminar un Book.
@@ -208,7 +244,7 @@ public class UsuarioLogicTest {
      * @generated
      */
     @Test
-    public void deleteBookTest() {
+    public void deleteUsuarioTest() {
         UsuarioEntity entity = data.get(0);
          try {
              usuarioLogic.deleteUsuario(entity.getId());
@@ -218,6 +254,19 @@ public class UsuarioLogicTest {
         UsuarioEntity deleted = em.find(UsuarioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
+    /**
+     * Prueba eliminar un usuario que no existe
+     */
+     @Test
+    public void deleteUsuarioTest1() {
+        UsuarioEntity entity = data.get(0);
+         try {
+             usuarioLogic.deleteUsuario(100L);
+         } catch (BusinessLogicException ex) {
+            Assert.assertEquals(1, 1); 
+         }
+        
+    }
 
     /**
      * Prueba para actualizar un Book.
@@ -225,7 +274,7 @@ public class UsuarioLogicTest {
      * @generated
      */
     @Test
-    public void updateBookTest() throws BusinessLogicException {
+    public void updateUsuarioTest() throws BusinessLogicException {
         UsuarioEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
