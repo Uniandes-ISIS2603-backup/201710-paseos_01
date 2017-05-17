@@ -44,22 +44,28 @@ public class VisitaDetailDTO extends VisitaDTO{
     
     public VisitaDetailDTO(VisitaEntity entity) {
         super(entity);
-        List<FotoEntity> temp = entity.getFotos();
-        for(FotoEntity x: temp){
-            FotoDTO fotoTemp = new FotoDTO(x);
-            fotos.add(fotoTemp);
-        }        
+        fotos = new ArrayList<FotoDTO>();
+        if(entity.getFotos()!=null||entity.getFotos().size()!=0){
+            List<FotoEntity> temp = entity.getFotos();
+            for(FotoEntity x: temp){
+                FotoDTO fotoTemp = new FotoDTO(x);
+                fotos.add(fotoTemp);
+            }   
+        }             
     }
     
     public VisitaEntity toEntity() {
         VisitaEntity entity = super.toEntity();
-        List<FotoEntity> temp = new ArrayList<FotoEntity>();
-        for(FotoDTO x: fotos){
-            FotoEntity fotoTemp =x.toEntity();
-            temp.add(fotoTemp);
-        }
-        entity.setFotos(temp);
+        if(fotos!=null){
+            List<FotoEntity> temp = new ArrayList<FotoEntity>();
+            if(fotos.size()!=0){
+                for(FotoDTO x: fotos){
+                    FotoEntity fotoTemp =x.toEntity();
+                    temp.add(fotoTemp);
+                }
+            }            
+            entity.setFotos(temp);
+        }        
         return entity;
-    }
-    
+    }    
 }
