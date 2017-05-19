@@ -63,7 +63,7 @@ public class UsuarioResource {
             }
     
     @Inject 
-    private UsuarioLogic ofertaLogic;
+    private UsuarioLogic usuarioLogic;
     
     /**
      * Convierte una lista de EmployeeEntity a una lista de EmployeeDetailDTO.
@@ -92,7 +92,7 @@ public class UsuarioResource {
 
     public List<UsuarioDetailDTO> getUsuarios() {
         
-        return listEntity2DTO(ofertaLogic.getUsuarios());
+        return listEntity2DTO(usuarioLogic.getUsuarios());
     }  
     **/
     
@@ -107,7 +107,7 @@ public class UsuarioResource {
     @Path("/usuarios/{id: \\d+}")
     // TODO: retornar una excepción / código 404 si no existe
     public UsuarioDetailDTO getUsuario(@PathParam("id") Long id) throws BusinessLogicException {
-        return new UsuarioDetailDTO(ofertaLogic.getUsuario(id));
+        return new UsuarioDetailDTO(usuarioLogic.getUsuario(id));
     }
 
     /**
@@ -120,7 +120,7 @@ public class UsuarioResource {
     @POST
     @Path("usuarios")
     public UsuarioDTO createUsuario(UsuarioDTO dto) throws BusinessLogicException {
-        return new UsuarioDTO(ofertaLogic.createUsuario(dto.toEntity()));
+        return new UsuarioDTO(usuarioLogic.createUsuario(dto.toEntity()));
     }
 
     /**
@@ -136,7 +136,7 @@ public class UsuarioResource {
     public UsuarioDetailDTO updateUsuario(@PathParam("id") Long id, UsuarioDetailDTO dto) throws BusinessLogicException {
         UsuarioEntity entity = dto.toEntity();
         entity.setId(id);
-        return new UsuarioDetailDTO(ofertaLogic.updateUsuario(entity));
+        return new UsuarioDetailDTO(usuarioLogic.updateUsuario(entity));
     }
 
     /**
@@ -150,14 +150,14 @@ public class UsuarioResource {
     @Path("usuarios/{id: \\d+}")
 
     public void deleteUsuario(@PathParam("id") Long id) throws BusinessLogicException {
-        ofertaLogic.deleteUsuario(id);
+        usuarioLogic.deleteUsuario(id);
     }
     
    @GET
    @Path("usuarios")
    public List<UsuarioDetailDTO> getUsuariosGuias(@QueryParam("guias")int g ){
       List<UsuarioDetailDTO> lista = new ArrayList<UsuarioDetailDTO>(); 
-      List<UsuarioDetailDTO> lista1 = listEntity2DTO(ofertaLogic.getUsuarios());
+      List<UsuarioDetailDTO> lista1 = listEntity2DTO(usuarioLogic.getUsuarios());
       for (UsuarioDetailDTO usuario : lista1 )
       {
           if (usuario.getGuia()!=null)
