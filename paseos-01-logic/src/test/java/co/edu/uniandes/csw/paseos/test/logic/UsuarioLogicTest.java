@@ -77,7 +77,7 @@ public class UsuarioLogicTest {
      * @generated
      */
     @Inject
-    private UsuarioLogic ofertaLogic;
+    private UsuarioLogic usuarioLogic;
 
     /**
      * @generated
@@ -153,7 +153,7 @@ public class UsuarioLogicTest {
         PodamFactory factory = new PodamFactoryImpl();
         UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
         UsuarioEntity result =null;
-        result = ofertaLogic.createUsuario(entity);
+        result = usuarioLogic.createUsuario(entity);
         
         Assert.assertNotNull(result);
         Assert.assertEquals(result.getNombres(), entity.getNombres());
@@ -181,7 +181,7 @@ public class UsuarioLogicTest {
              UsuarioEntity entity = factory.manufacturePojo(UsuarioEntity.class);
              UsuarioEntity result =null;
              entity.setLogin(data.get(0).getLogin());
-             result = ofertaLogic.createUsuario(entity);
+             result = usuarioLogic.createUsuario(entity);
              
              
          } catch (BusinessLogicException ex) {
@@ -199,7 +199,7 @@ public class UsuarioLogicTest {
         UsuarioEntity entity = data.get(0);
         UsuarioEntity resultEntity= null ;
          try {
-             resultEntity = ofertaLogic.getUsuario(entity.getId());
+             resultEntity = usuarioLogic.getUsuario(entity.getId());
          } catch (BusinessLogicException ex) {
              Assert.fail("No deberia generar excepción"); 
          }
@@ -220,7 +220,7 @@ public class UsuarioLogicTest {
         UsuarioEntity entity = data.get(0);
         UsuarioEntity resultEntity= null ;
          try {
-             resultEntity = ofertaLogic.getUsuario(100L);
+             resultEntity = usuarioLogic.getUsuario(100L);
          } catch (BusinessLogicException ex) {
              Assert.assertEquals(1, 1);  
          }
@@ -234,7 +234,7 @@ public class UsuarioLogicTest {
      */
     @Test
     public void getUsuariosTest() {
-        List<UsuarioEntity> list = ofertaLogic.getUsuarios();
+        List<UsuarioEntity> list = usuarioLogic.getUsuarios();
         Assert.assertEquals(data.size(), list.size());
         for (UsuarioEntity entity : list) {
             boolean found = false;
@@ -256,7 +256,7 @@ public class UsuarioLogicTest {
     public void deleteUsuarioTest() {
         UsuarioEntity entity = data.get(0);
          try {
-             ofertaLogic.deleteUsuario(entity.getId());
+             usuarioLogic.deleteUsuario(entity.getId());
          } catch (BusinessLogicException ex) {
             Assert.fail("No deberia generar excepción"); 
          }
@@ -270,7 +270,7 @@ public class UsuarioLogicTest {
     public void deleteUsuarioTest1() {
         UsuarioEntity entity = data.get(0);
          try {
-             ofertaLogic.deleteUsuario(100L);
+             usuarioLogic.deleteUsuario(100L);
          } catch (BusinessLogicException ex) {
             Assert.assertEquals(1, 1); 
          }
@@ -289,7 +289,7 @@ public class UsuarioLogicTest {
         UsuarioEntity pojoEntity = factory.manufacturePojo(UsuarioEntity.class);
         pojoEntity.setId(entity.getId());
 
-        ofertaLogic.updateUsuario(pojoEntity);
+        usuarioLogic.updateUsuario(pojoEntity);
 
         UsuarioEntity resp = em.find(UsuarioEntity.class, entity.getId());
 
